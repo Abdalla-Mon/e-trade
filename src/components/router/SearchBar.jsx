@@ -25,6 +25,7 @@ export default function SearchBar({ setSearchBar }) {
       initial={{ scale: 0 }}
       animate={{ scale: [0, 0.5, 1] }}
     >
+      <div className="remove" onClick={() => setSearchBar(false)}></div>
       <div className="searchbar-container relative ">
         <div className="close-btn" onClick={() => setSearchBar(false)}>
           <FontAwesomeIcon icon="fa-solid fa-xmark" />

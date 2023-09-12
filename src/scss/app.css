@@ -174,7 +174,7 @@
   top: 0;
   height: -webkit-fill-available;
   width: 100%;
-  z-index: 100000;
+  z-index: 10000;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -182,11 +182,19 @@
   overflow-y: scroll;
   background-color: rgba(0, 0, 0, 0.3215686275);
 }
+.searchbar .remove {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+}
 
 .searchbar-container {
+  z-index: 100000;
   height: 100%;
   width: 100%;
-  max-width: 800px;
+  max-width: 1000px;
   margin: auto;
   max-height: 800px;
   background-color: #ffffff;
