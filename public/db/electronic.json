@@ -1,0 +1,128 @@
+[
+  {
+    "id": "electronic-1",
+    "img": "./electronics-products/electronic-1.png",
+    "name": "electronic-1",
+    "price": 500,
+    "qty": 0,
+    "cat": "electronic",
+    "sortOrder": 1
+  },
+  {
+    "id": "electronic-2",
+    "img": "./electronics-products/electronic-2.png",
+    "name": "electronic-2",
+    "price": 120,
+    "qty": 0,
+    "cat": "electronic",
+    "sortOrder": 2
+  },
+  {
+    "id": "electronic-3",
+    "img": "./electronics-products/electronic-3.png",
+    "name": "electronic-3",
+    "price": 320,
+    "qty": 0,
+    "cat": "electronic",
+    "sortOrder": 3
+  },
+  {
+    "id": "electronic-4",
+    "img": "./electronics-products/electronic-4.png",
+    "name": "electronic-4",
+    "price": 100,
+    "qty": 0,
+    "cat": "electronic",
+    "sortOrder": 4
+  },
+  {
+    "id": "electronic-5",
+    "img": "./electronics-products/electronic-5.png",
+    "name": "electronic-5",
+    "price": 110,
+    "qty": 0,
+    "cat": "electronic",
+    "sortOrder": 5
+  },
+  {
+    "id": "electronic-6",
+    "img": "./electronics-products/electronic-6.png",
+    "name": "electronic-6",
+    "price": 150,
+    "qty": 0,
+    "cat": "electronic",
+    "sortOrder": 6
+  },
+  {
+    "id": "electronic-7",
+    "img": "./electronics-products/electronic-7.png",
+    "name": "electronic-7",
+    "price": 180,
+    "qty": 0,
+    "cat": "electronic",
+    "sortOrder": 7
+  },
+  {
+    "id": "electronic-8",
+    "img": "./electronics-products/electronic-8.png",
+    "name": "electronic-8",
+    "price": 200,
+    "qty": 0,
+    "cat": "electronic",
+    "sortOrder": 8
+  },
+  {
+    "id": "electronic-9",
+    "img": "./electronics-products/electronic-9.png",
+    "name": "electronic-9",
+    "price": 450,
+    "qty": 0,
+    "cat": "electronic",
+    "sortOrder": 9
+  },
+  {
+    "id": "electronic-10",
+    "img": "./electronics-products/electronic-10.png",
+    "name": "electronic-10",
+    "price": 120,
+    "qty": 0,
+    "cat": "electronic",
+    "sortOrder": 10
+  },
+  {
+    "id": "electronic-11",
+    "img": "./electronics-products/electronic-11.png",
+    "name": "electronic-11",
+    "price": 180,
+    "qty": 0,
+    "cat": "electronic",
+    "sortOrder": 11
+  },
+  {
+    "id": "electronic-12",
+    "img": "./electronics-products/electronic-12.png",
+    "name": "electronic-12",
+    "price": 500,
+    "qty": 0,
+    "cat": "electronic",
+    "sortOrder": 12
+  },
+  {
+    "id": "electronic-13",
+    "img": "./electronics-products/electronic-13.png",
+    "name": "electronic-13",
+    "price": 550,
+    "qty": 0,
+    "cat": "electronic",
+    "sortOrder": 13
+  },
+  {
+    "id": "electronic-14",
+    "img": "./electronics-products/electronic-14.png",
+    "name": "electronic-14",
+    "price": 100,
+    "qty": 0,
+    "cat": "electronic",
+    "sortOrder": 14
+  }
+]

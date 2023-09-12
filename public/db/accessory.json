@@ -1,0 +1,173 @@
+[
+  {
+    "id": "fashion-1",
+    "img": "./accessory-products/accessory-1.png",
+    "name": "diamond jewellery-1",
+    "price": 60,
+    "qty": 0,
+    "cat": "women",
+    "subCat": "jewellery",
+    "sortOrder": 1
+  },
+  {
+    "id": "fashion-2",
+    "img": "./accessory-products/accessory-2.png",
+    "name": "diamond jewellery-2",
+    "price": 80,
+    "qty": 0,
+    "cat": "women",
+    "subCat": "jewellery",
+    "sortOrder": 2
+  },
+  {
+    "id": "fashion-3",
+    "img": "./accessory-products/accessory-3.png",
+    "name": "diamond jewellery-3",
+    "price": 50,
+    "qty": 0,
+    "cat": "women",
+    "subCat": "jewellery",
+    "sortOrder": 3
+  },
+  {
+    "id": "fashion-4",
+    "img": "./accessory-products/accessory-4.png",
+    "name": "diamond jewellery-4",
+    "price": 55,
+    "qty": 0,
+    "cat": "women",
+    "subCat": "jewellery",
+    "sortOrder": 4
+  },
+  {
+    "id": "fashion-5",
+    "img": "./accessory-products/accessory-5.png",
+    "name": "diamond jewellery-5",
+    "price": 65,
+    "qty": 0,
+    "cat": "women",
+    "subCat": "jewellery",
+    "sortOrder": 5
+  },
+  {
+    "id": "fashion-6",
+    "img": "./accessory-products/accessory-6.png",
+    "name": "diamond jewellery-6",
+    "price": 35,
+    "qty": 0,
+    "cat": "women",
+    "subCat": "jewellery",
+    "sortOrder": 6
+  },
+  {
+    "id": "fashion-7",
+    "img": "./accessory-products/accessory-7.png",
+    "name": "makeup-1",
+    "price": 15,
+    "qty": 0,
+    "cat": "women",
+    "subCat": "makeup",
+    "sortOrder": 7
+  },
+  {
+    "id": "fashion-8",
+    "img": "./accessory-products/accessory-8.png",
+    "name": "makeup-2",
+    "price": 20,
+    "qty": 0,
+    "cat": "women",
+    "subCat": "makeup",
+    "sortOrder": 8
+  },
+  {
+    "id": "fashion-9",
+    "img": "./accessory-products/accessory-9.png",
+    "name": "makeup-3",
+    "price": 18,
+    "qty": 0,
+    "cat": "women",
+    "subCat": "makeup",
+    "sortOrder": 9
+  },
+  {
+    "id": "fashion-10",
+    "img": "./accessory-products/accessory-10.png",
+    "name": "diamond jewellery-7",
+    "price": 75,
+    "qty": 0,
+    "cat": "women",
+    "subCat": "jewellery",
+    "sortOrder": 10
+  },
+  {
+    "id": "fashion-11",
+    "img": "./accessory-products/accessory-11.png",
+    "name": "diamond jewellery-8",
+    "price": 90,
+    "qty": 0,
+    "cat": "women",
+    "subCat": "jewellery",
+    "sortOrder": 11,
+    "discount": true
+  },
+  {
+    "id": "fashion-12",
+    "img": "./accessory-products/accessory-12.png",
+    "name": "diamond jewellery-9",
+    "price": 95,
+    "qty": 0,
+    "cat": "women",
+    "subCat": "jewellery",
+    "sortOrder": 12
+  },
+  {
+    "id": "fashion-13",
+    "img": "./accessory-products/accessory-13.png",
+    "name": "diamond jewellery-10",
+    "price": 60,
+    "qty": 0,
+    "cat": "women",
+    "subCat": "jewellery",
+    "sortOrder": 13
+  },
+  {
+    "id": "fashion-14",
+    "img": "./accessory-products/accessory-14.png",
+    "name": "diamond jewellery-11",
+    "price": 95,
+    "qty": 0,
+    "cat": "women",
+    "subCat": "jewellery",
+    "sortOrder": 14
+  },
+  {
+    "id": "fashion-15",
+    "img": "./accessory-products/accessory-15.png",
+    "name": "diamond jewellery-12",
+    "price": 75,
+    "qty": 0,
+    "cat": "women",
+    "subCat": "jewellery",
+    "sortOrder": 15
+  },
+  {
+    "id": "fashion-16",
+    "img": "./accessory-products/accessory-16.png",
+    "name": "diamond jewellery-13",
+    "price": 100,
+    "qty": 0,
+    "cat": "women",
+    "subCat": "jewellery",
+    "sortOrder": 16
+  },
+  {
+    "id": "fashion-17",
+    "img": "./accessory-products/accessory-17.png",
+    "name": "diamond jewellery-14",
+    "price": 85,
+    "qty": 0,
+    "cat": "women",
+    "subCat": "jewellery",
+    "sortOrder": 17
+  }
+]

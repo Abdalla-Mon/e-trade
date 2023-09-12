@@ -1,0 +1,137 @@
+[
+  {
+    "id": "furniture-1",
+    "img": "./furniture-products/furniture-1.png",
+    "name": "furniture-1",
+    "price": 200,
+    "qty": 0,
+    "cat": "furniture",
+    "sortOrder": 1
+  },
+  {
+    "id": "furniture-2",
+    "img": "./furniture-products/furniture-2.png",
+    "name": "furniture-2",
+    "price": 180,
+    "qty": 0,
+    "cat": "furniture",
+    "sortOrder": 2
+  },
+  {
+    "id": "furniture-3",
+    "img": "./furniture-products/furniture-3.png",
+    "name": "furniture-3",
+    "price": 220,
+    "qty": 0,
+    "cat": "furniture",
+    "sortOrder": 3
+  },
+  {
+    "id": "furniture-4",
+    "img": "./furniture-products/furniture-4.png",
+    "name": "furniture-4",
+    "price": 250,
+    "qty": 0,
+    "cat": "furniture",
+    "sortOrder": 4
+  },
+  {
+    "id": "furniture-5",
+    "img": "./furniture-products/furniture-5.png",
+    "name": "furniture-5",
+    "price": 230,
+    "qty": 0,
+    "cat": "furniture",
+    "sortOrder": 5
+  },
+  {
+    "id": "furniture-6",
+    "img": "./furniture-products/furniture-6.png",
+    "name": "furniture-6",
+    "price": 200,
+    "qty": 0,
+    "cat": "furniture",
+    "sortOrder": 6
+  },
+  {
+    "id": "furniture-7",
+    "img": "./furniture-products/furniture-7.png",
+    "name": "furniture-7",
+    "price": 270,
+    "qty": 0,
+    "cat": "furniture",
+    "sortOrder": 7
+  },
+  {
+    "id": "furniture-8",
+    "img": "./furniture-products/furniture-8.png",
+    "name": "furniture-8",
+    "price": 270,
+    "qty": 0,
+    "cat": "furniture",
+    "sortOrder": 8
+  },
+  {
+    "id": "furniture-9",
+    "img": "./furniture-products/furniture-9.png",
+    "name": "furniture-9",
+    "price": 250,
+    "qty": 0,
+    "cat": "furniture",
+    "sortOrder": 9
+  },
+  {
+    "id": "furniture-10",
+    "img": "./furniture-products/furniture-10.png",
+    "name": "furniture-10",
+    "price": 220,
+    "qty": 0,
+    "cat": "furniture",
+    "sortOrder": 10
+  },
+  {
+    "id": "furniture-11",
+    "img": "./furniture-products/furniture-11.png",
+    "name": "furniture-11",
+    "price": 190,
+    "qty": 0,
+    "cat": "furniture",
+    "sortOrder": 12
+  },
+  {
+    "id": "furniture-12",
+    "img": "./furniture-products/furniture-12.png",
+    "name": "furniture-12",
+    "price": 200,
+    "qty": 0,
+    "cat": "furniture",
+    "sortOrder": 12
+  },
+  {
+    "id": "furniture-13",
+    "img": "./furniture-products/furniture-13.png",
+    "name": "furniture-13",
+    "price": 250,
+    "qty": 0,
+    "cat": "furniture",
+    "sortOrder": 13
+  },
+  {
+    "id": "furniture-14",
+    "img": "./furniture-products/furniture-14.png",
+    "name": "furniture-14",
+    "price": 280,
+    "qty": 0,
+    "cat": "furniture",
+    "sortOrder": 14
+  },
+  {
+    "id": "furniture-15",
+    "img": "./furniture-products/furniture-15.png",
+    "name": "furniture-15",
+    "price": 300,
+    "qty": 0,
+    "cat": "furniture",
+    "sortOrder": 15
+  }
+]

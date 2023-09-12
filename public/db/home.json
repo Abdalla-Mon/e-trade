@@ -1,0 +1,176 @@
+[
+  {
+    "id": "accessory-14",
+    "img": "./accessory-products/accessory-14.png",
+    "name": "diamond jewellery-11",
+    "price": 95,
+    "qty": 0,
+    "cat": "women",
+    "subCat": "jewellery",
+    "sortOrder": 217,
+    "newArrival": true,
+    "prod": true
+  },
+  {
+    "id": "accessory-15",
+    "img": "./accessory-products/accessory-15.png",
+    "name": "diamond jewellery-12",
+    "price": 75,
+    "qty": 0,
+    "cat": "women",
+    "subCat": "jewellery",
+    "sortOrder": 19,
+    "newArrival": true,
+    "prod": true
+  },
+  {
+    "id": "accessory-16",
+    "img": "./accessory-products/accessory-16.png",
+    "name": "diamond jewellery-13",
+    "price": 100,
+    "qty": 0,
+    "cat": "women",
+    "subCat": "jewellery",
+    "sortOrder": 29,
+    "newArrival": true
+  },
+  {
+    "id": "accessory-17",
+    "img": "./accessory-products/accessory-17.png",
+    "name": "diamond jewellery-14",
+    "price": 85,
+    "qty": 0,
+    "cat": "women",
+    "subCat": "jewellery",
+    "sortOrder": 218,
+    "newArrival": true
+  },
+  {
+    "id": "electronic-1",
+    "img": "./electronics-products/electronic-1.png",
+    "name": "electronic-1",
+    "price": 500,
+    "qty": 0,
+    "cat": "electronic",
+    "sortOrder": 100,
+    "prod": true
+  },
+
+  {
+    "id": "electronic-5",
+    "img": "./electronics-products/electronic-5.png",
+    "name": "electronic-5",
+    "price": 110,
+    "qty": 0,
+    "cat": "electronic",
+    "sortOrder": 201,
+    "newArrival": true,
+    "prod": true
+  },
+
+  {
+    "id": "fashion-3",
+    "img": "./fashion-products/fashion-3.png",
+    "name": "clothes-3",
+    "price": 65,
+    "qty": 0,
+    "cat": "men",
+    "subCat": "clothes",
+    "sortOrder": 7,
+    "newArrival": true,
+    "prod": true
+  },
+
+  {
+    "id": "fashion-8",
+    "img": "./fashion-products/fashion-8.png",
+    "name": "clothes-8",
+    "price": 100,
+    "qty": 0,
+    "cat": "men",
+    "subCat": "clothes",
+    "sortOrder": 8,
+    "bestSeller": true
+  },
+  {
+    "id": "fashion-9",
+    "img": "./fashion-products/fashion-9.png",
+    "name": "clothes-9",
+    "price": 70,
+    "qty": 0,
+    "cat": "men",
+    "subCat": "clothes",
+    "sortOrder": 19,
+    "bestSeller": true,
+    "prod": true
+  },
+  {
+    "id": "fashion-10",
+    "img": "./fashion-products/fashion-10.png",
+    "name": "clothes-10",
+    "price": 75,
+    "qty": 0,
+    "cat": "men",
+    "subCat": "clothes",
+    "sortOrder": 22,
+    "bestSeller": true,
+    "prod": true
+  },
+  {
+    "id": "fashion-11",
+    "img": "./fashion-products/fashion-11.png",
+    "name": "clothes-11",
+    "price": 80,
+    "qty": 0,
+    "cat": "men",
+    "subCat": "clothes",
+    "sortOrder": 115,
+    "bestSeller": true
+  },
+  {
+    "id": "fashion-12",
+    "img": "./fashion-products/fashion-12.png",
+    "name": "clothes-12",
+    "price": 90,
+    "qty": 0,
+    "cat": "men",
+    "subCat": "clothes",
+    "sortOrder": 222,
+    "bestSeller": true
+  },
+  {
+    "id": "fashion-13",
+    "img": "./fashion-products/fashion-13.png",
+    "name": "clothes-13",
+    "price": 85,
+    "qty": 0,
+    "cat": "men",
+    "subCat": "clothes",
+    "sortOrder": 151,
+    "bestSeller": true,
+    "prod": true
+  },
+  {
+    "id": "fashion-14",
+    "img": "./fashion-products/fashion-14.png",
+    "name": "clothes-14",
+    "price": 85,
+    "qty": 0,
+    "cat": "men",
+    "subCat": "clothes",
+    "sortOrder": 10,
+    "bestSeller": true
+  },
+  {
+    "id": "fashion-15",
+    "img": "./fashion-products/fashion-15.png",
+    "name": "clothes-15",
+    "price": 100,
+    "qty": 0,
+    "cat": "men",
+    "subCat": "clothes",
+    "sortOrder": 23,
+    "bestSeller": true,
+    "prod": true
+  }
+]
