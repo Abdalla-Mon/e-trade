@@ -4,8 +4,13 @@ import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 import { createHashRouter, createRoutesFromElements } from "react-router-dom";
 import { fetchAllProducts } from "./react-query/FetchData";
 import Navbar from "./router/Navbar";
+import Home from "./home/Home";
 const router = createHashRouter(
-  createRoutesFromElements(<Route path="" element={<Routes />}></Route>)
+  createRoutesFromElements(
+    <Route path="" element={<Routes />}>
+      <Route index element={<Home />} />
+    </Route>
+  )
 );
 
 const queryClient = new QueryClient();

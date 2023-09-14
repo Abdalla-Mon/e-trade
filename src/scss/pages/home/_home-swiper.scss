@@ -1,0 +1,225 @@
+@use "../../variables/variables" as *;
+.custom-container {
+  margin-top: 50px;
+  margin-bottom: 50px;
+  position: relative;
+  h1 {
+    color: $heading-color;
+    font-weight: bold;
+    font-size: calc(2rem + 0.2vw);
+    margin: 15px 0 40px;
+  }
+  .container {
+    position: relative;
+  }
+  .custom-header {
+    .flex {
+      color: $primary-light;
+
+      .icon {
+        padding: 6px;
+        border-radius: 50%;
+      }
+      svg {
+        color: $white-color;
+      }
+    }
+  }
+}
+.new-arrival {
+  margin-bottom: 75px;
+
+  .custom-header {
+    .flex {
+      color: $primary-light;
+
+      .icon {
+        background-color: $primary-light;
+      }
+    }
+  }
+}
+
+.best-seller {
+  margin-top: 75px;
+
+  .custom-header {
+    .flex {
+      color: $secondary-color;
+
+      .icon {
+        background-color: $secondary-color;
+      }
+    }
+  }
+  .swiper-slide {
+    padding: 25px;
+    z-index: 1;
+    &::before {
+      content: "";
+      position: absolute;
+      left: 0;
+      top: 20px;
+      z-index: -1;
+      height: 70%;
+      width: 100%;
+      background-color: $secondary-bg;
+    }
+    .title-link {
+      color: $heading-color;
+      font-weight: bold;
+      font-size: calc(1.4rem + 0.2vw);
+      margin: 0 0 15px;
+    }
+    h5 {
+      font-weight: bold;
+      margin-bottom: 10px;
+      color: $heading-color;
+    }
+    .best-seller-card {
+      padding-top: 20px;
+    }
+    .cart-icon {
+      position: absolute;
+      padding: 12px;
+      background: $lighter-color;
+      border: 5px solid #ffffff;
+      cursor: pointer;
+      font-size: 1.8rem;
+      top: 0;
+      right: 15px;
+      border-radius: 50%;
+      -webkit-border-radius: 50%;
+      -moz-border-radius: 50%;
+      -ms-border-radius: 50%;
+      -o-border-radius: 50%;
+      transition: 0.3s;
+      -webkit-transition: 0.3s;
+      -moz-transition: 0.3s;
+      -ms-transition: 0.3s;
+      -o-transition: 0.3s;
+      &:hover {
+        background-color: $primary-color;
+        color: $white-color;
+      }
+    }
+  }
+}
+.custom-swiper {
+  position: unset !important;
+  .swiper-slide {
+    a {
+      color: $body-color;
+      font-size: 1.2rem;
+      display: block;
+      margin: 30px 0 15px;
+      transition: 0.3s;
+      -webkit-transition: 0.3s;
+      -moz-transition: 0.3s;
+      -ms-transition: 0.3s;
+      -o-transition: 0.3s;
+      text-transform: capitalize;
+      &:hover {
+        color: $primary-color;
+      }
+    }
+    h3 {
+      font-weight: bold;
+      font-size: calc(1.4rem + 0.2vw);
+      color: $heading-color;
+    }
+  }
+  .navigation {
+    position: absolute;
+    right: 0;
+    top: 0;
+    display: flex;
+    flex-direction: row-reverse;
+    gap: 10px;
+    span {
+      display: block;
+      padding: 16px;
+      border-radius: 6px;
+      font-size: 1.1rem;
+      background-color: $lighter-color;
+      color: $body-color;
+      cursor: pointer;
+    }
+  }
+  .img-container {
+    overflow: hidden;
+    img {
+      transition: 0.3s;
+      -webkit-transition: 0.3s;
+      -moz-transition: 0.3s;
+      -ms-transition: 0.3s;
+      -o-transition: 0.3s;
+    }
+    &:hover {
+      img {
+        scale: 1.2;
+      }
+      .show-btns {
+        bottom: 35px;
+      }
+    }
+  }
+  .show-btns {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    bottom: -50px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100%;
+    gap: 8px;
+
+    .love-icon,
+    .inspect-icon {
+      width: 38px;
+      height: 38px;
+      background: $primary-bg;
+      color: $heading-color !important;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.1rem;
+      border-radius: 6px;
+      transition: 0.3s;
+      -webkit-transition: 0.3s;
+      -moz-transition: 0.3s;
+      -ms-transition: 0.3s;
+      -o-transition: 0.3s;
+      cursor: pointer;
+      margin: 0;
+      &:hover {
+        scale: 1.2;
+        color: $primary-color !important;
+      }
+    }
+    .cart-icon {
+      padding: 12px 16px;
+      background-color: $secondary-color;
+      color: $white-color;
+      font-weight: bold;
+      font-size: 1.1rem;
+      border-radius: 6px;
+      transition: 0.3s;
+      -webkit-transition: 0.3s;
+      -moz-transition: 0.3s;
+      -ms-transition: 0.3s;
+      -o-transition: 0.3s;
+      cursor: pointer;
+
+      &:hover {
+        scale: 1.1;
+      }
+    }
+    transition: 0.5s;
+    -webkit-transition: 0.5s;
+    -moz-transition: 0.5s;
+    -ms-transition: 0.5s;
+    -o-transition: 0.5s;
+  }
+}

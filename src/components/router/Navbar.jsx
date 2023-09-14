@@ -6,7 +6,7 @@ import NavItemsDrawer from "./NavItemsDrawer";
 import { useState } from "react";
 import SearchBar from "./SearchBar";
 export default function Navbar() {
-  const [showSearchBar, setSearchBar] = useState(false);
+  const [SearchBarPopup, setSearchBarPopup] = useState(false);
   return (
     <>
       <nav className="upper-nav">
@@ -17,7 +17,7 @@ export default function Navbar() {
             </div>
             <div
               className="fake-search-bar w-3/6"
-              onClick={() => setSearchBar(true)}
+              onClick={() => setSearchBarPopup(true)}
             >
               <FakeSearchBar />
             </div>
@@ -29,11 +29,13 @@ export default function Navbar() {
           <LowerNav />
         </div>{" "}
       </nav>
-      {showSearchBar ? <SearchBar setSearchBar={setSearchBar} /> : null}
+      {SearchBarPopup ? (
+        <SearchBar setSearchBarPopup={setSearchBarPopup} />
+      ) : null}
     </>
   );
 }
-function FakeSearchBar({}) {
+function FakeSearchBar() {
   return (
     <>
       <Paper
@@ -78,7 +80,7 @@ export function NavItems({ className }) {
   return (
     <ul
       className={
-        "nav-ul gap-4 tab:gap-5 flex  tab:flex-row lap:items-center flex-col"
+        "nav-ul gap-4 tab:gap-6 flex  tab:flex-row lap:items-center flex-col"
       }
     >
       {navItems.map((el) => {

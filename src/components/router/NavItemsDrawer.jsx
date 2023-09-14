@@ -21,24 +21,6 @@ export default function NavItemsDrawer() {
     setState({ ...state, [anchor]: open });
   };
 
-  const list = (anchor) => (
-    <Box
-      sx={{ width: anchor === "top" || anchor === "bottom" ? "auto" : 250 }}
-      role="presentation"
-      onClick={toggleDrawer(anchor, false)}
-      onKeyDown={toggleDrawer(anchor, false)}
-      className="nav-items-drawer"
-    >
-      <div className="flex justify-end">
-        <div className="close-btn">
-          <FontAwesomeIcon icon="fa-solid fa-xmark" />
-        </div>
-      </div>
-      <Divider />
-      <NavItems />
-    </Box>
-  );
-
   return (
     <div className="nav-drawer-btn tab:hidden">
       {["right"].map((anchor) => (
@@ -51,10 +33,27 @@ export default function NavItemsDrawer() {
             open={state[anchor]}
             onClose={toggleDrawer(anchor, false)}
           >
-            {list(anchor)}
+            {list(anchor, toggleDrawer)}
           </Drawer>
         </React.Fragment>
       ))}
     </div>
   );
 }
+const list = (anchor, toggleDrawer) => (
+  <Box
+    sx={{ width: anchor === "top" || anchor === "bottom" ? "auto" : 250 }}
+    role="presentation"
+    onClick={toggleDrawer(anchor, false)}
+    onKeyDown={toggleDrawer(anchor, false)}
+    className="nav-items-drawer block tab:hidden"
+  >
+    <div className="flex justify-end">
+      <div className="close-btn">
+        <FontAwesomeIcon icon="fa-solid fa-xmark" />
+      </div>
+    </div>
+    <Divider />
+    <NavItems />
+  </Box>
+);
