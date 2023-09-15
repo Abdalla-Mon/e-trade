@@ -19,7 +19,7 @@ export default function NewArrival() {
 }
 export function ShopCard(e) {
   return (
-    <div className="new-arrival-card flex flex-col justify-center text-center relative">
+    <div className="shop-card new-arrival-card flex flex-col justify-center text-center relative">
       <div className="img-container relative">
         <img src={e.img} alt={e.id} />
         <div className="show-btns flex gap-1">

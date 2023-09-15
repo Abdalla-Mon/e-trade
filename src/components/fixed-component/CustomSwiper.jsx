@@ -42,8 +42,8 @@ export default function CustomSwiper({ data, num, swiperEle }) {
         }}
         loop={true}
         navigation={{
-          nextEl: nextRef.current,
-          prevEl: prevRef.current,
+          // nextEl: nextRef.current,
+          // prevEl: prevRef.current,
           enabled: true,
         }}
         modules={[Navigation]}
