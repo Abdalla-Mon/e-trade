@@ -76,20 +76,24 @@ function SearchBarLabel({ setTextInput }) {
 }
 function LoadMoreData({ slicedData, data, setNumOfProduct }) {
   return (
-    <button
-      disabled={slicedData.length === data.length}
-      onClick={() => {
-        data.length > slicedData.length ? setNumOfProduct((e) => e + 2) : null;
-      }}
-      style={
-        slicedData.length === data.length
-          ? { cursor: "no-drop", opacity: 0.4 }
-          : { opacity: 1 } || data.length === 0
-          ? { display: "none" }
-          : { display: "block" }
-      }
-    >
-      Load More
-    </button>
+    <>
+      {data.length === 0 ? null : (
+        <button
+          disabled={slicedData.length === data.length}
+          onClick={() => {
+            data.length > slicedData.length
+              ? setNumOfProduct((e) => e + 2)
+              : null;
+          }}
+          style={
+            slicedData.length === data.length
+              ? { cursor: "no-drop", opacity: 0.4 }
+              : { opacity: 1 }
+          }
+        >
+          Load More
+        </button>
+      )}
+    </>
   );
 }

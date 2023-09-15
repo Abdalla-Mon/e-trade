@@ -5,6 +5,8 @@ import { NavLink } from "react-router-dom";
 import NavItemsDrawer from "./NavItemsDrawer";
 import { useState } from "react";
 import SearchBar from "./SearchBar";
+import { AiOutlineHeart } from "react-icons/ai";
+import { BiUser, BiCart } from "react-icons/bi";
 export default function Navbar() {
   const [SearchBarPopup, setSearchBarPopup] = useState(false);
   return (
@@ -57,17 +59,17 @@ function FakeSearchBar() {
 }
 
 const icons = [
-  "fa-regular fa-heart",
-  "fa-solid fa-cart-shopping",
-  "fa-regular fa-user",
+  <AiOutlineHeart key={"love-icon"} />,
+  <BiCart key={"cart-icon"} />,
+  <BiUser key={"user-icon"} />,
 ];
 function Icons() {
   return (
     <div className="nav-icons flex">
-      {icons.map((e) => {
+      {icons.map((e, i) => {
         return (
-          <div className="nav-icon" key={e}>
-            <FontAwesomeIcon icon={e} />
+          <div className="nav-icon" key={i}>
+            {e}
           </div>
         );
       })}

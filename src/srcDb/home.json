@@ -9,7 +9,8 @@
     "subCat": "jewellery",
     "sortOrder": 217,
     "newArrival": true,
-    "prod": true
+    "prod": true,
+    "desc": 10
   },
   {
     "id": "accessory-15",
@@ -21,7 +22,8 @@
     "subCat": "jewellery",
     "sortOrder": 19,
     "newArrival": true,
-    "prod": true
+    "prod": true,
+    "desc": 5
   },
   {
     "id": "accessory-16",
@@ -43,7 +45,8 @@
     "cat": "women",
     "subCat": "jewellery",
     "sortOrder": 218,
-    "newArrival": true
+    "newArrival": true,
+    "desc": 25
   },
   {
     "id": "electronic-1",
@@ -53,7 +56,8 @@
     "qty": 0,
     "cat": "electronic",
     "sortOrder": 100,
-    "prod": true
+    "prod": true,
+    "desc": 80
   },
 
   {
@@ -65,7 +69,8 @@
     "cat": "electronic",
     "sortOrder": 201,
     "newArrival": true,
-    "prod": true
+    "prod": true,
+    "desc": 20
   },
 
   {
@@ -78,7 +83,8 @@
     "subCat": "clothes",
     "sortOrder": 7,
     "newArrival": true,
-    "prod": true
+    "prod": true,
+    "desc": 5
   },
 
   {
@@ -90,7 +96,8 @@
     "cat": "men",
     "subCat": "clothes",
     "sortOrder": 8,
-    "bestSeller": true
+    "bestSeller": true,
+    "desc": 10
   },
   {
     "id": "fashion-9",
@@ -136,7 +143,8 @@
     "cat": "men",
     "subCat": "clothes",
     "sortOrder": 222,
-    "bestSeller": true
+    "bestSeller": true,
+    "desc": 10
   },
   {
     "id": "fashion-13",
@@ -171,6 +179,7 @@
     "subCat": "clothes",
     "sortOrder": 23,
     "bestSeller": true,
-    "prod": true
+    "prod": true,
+    "desc": 15
   }
 ]

@@ -1,5 +1,13 @@
 @use "./variables/variables" as *;
 .shop-card {
+  &:hover {
+    img {
+      scale: 1.2;
+    }
+    .show-btns {
+      bottom: 35px;
+    }
+  }
   .img-container {
     overflow: hidden;
     img {
@@ -9,14 +17,6 @@
       -ms-transition: 0.3s;
       -o-transition: 0.3s;
       border-radius: 6px;
-    }
-    &:hover {
-      img {
-        scale: 1.2;
-      }
-      .show-btns {
-        bottom: 35px;
-      }
     }
   }
   .show-btns {
@@ -76,5 +76,14 @@
     -moz-transition: 0.5s;
     -ms-transition: 0.5s;
     -o-transition: 0.5s;
+  }
+  .card-price {
+    font-weight: bold;
+    font-size: calc(1.3rem + 0.2vw);
+    color: $heading-color;
+    .old-price {
+      text-decoration: line-through;
+      color: $body-color;
+    }
   }
 }

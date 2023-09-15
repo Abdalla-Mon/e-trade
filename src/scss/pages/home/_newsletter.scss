@@ -1,0 +1,67 @@
+@use "../../variables/variables" as *;
+.newsletter-conatiner {
+  padding: 60px 15px;
+  .newsletter {
+    background-image: url("/landing-page/watch-bg.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center center;
+    padding: 100px 60px;
+    border-radius: 6px;
+    -webkit-border-radius: 6px;
+    -moz-border-radius: 6px;
+    -ms-border-radius: 6px;
+    -o-border-radius: 6px;
+    @media (max-width: 991px) {
+      padding: 80px 40px;
+    }
+    @media (max-width: 767px) {
+      padding: 40px 20px;
+    }
+    .header {
+      color: $primary-color;
+      .icon {
+        color: $white-color;
+        background-color: $primary-color;
+        padding: 6px;
+        border-radius: 50%;
+        -webkit-border-radius: 50%;
+        -moz-border-radius: 50%;
+        -ms-border-radius: 50%;
+        -o-border-radius: 50%;
+      }
+    }
+    h1 {
+      color: $heading-color;
+      font-weight: bold;
+    }
+    label {
+      background-color: $white-color;
+      padding: 20px 35px;
+      align-items: center;
+      svg {
+        font-size: 1.2rem;
+      }
+      input {
+        background-color: transparent;
+        width: 100%;
+      }
+    }
+    button {
+      padding: 16px 20px;
+      background: $heading-color;
+      color: $white-color;
+      border-radius: 6px;
+      font-weight: 600;
+      transition: 0.3s;
+      -webkit-transition: 0.3s;
+      -moz-transition: 0.3s;
+      -ms-transition: 0.3s;
+      -o-transition: 0.3s;
+      width: fit-content;
+      &:hover {
+        scale: 1.1;
+      }
+    }
+  }
+}

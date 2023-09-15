@@ -8,7 +8,8 @@
     "cat": "women",
     "subCat": "jewellery",
     "sortOrder": 1,
-    "mainCat": "all"
+    "mainCat": "all",
+    "desc": 5
   },
   {
     "id": "accessory-2",
@@ -107,7 +108,8 @@
     "cat": "women",
     "subCat": "jewellery",
     "sortOrder": 101,
-    "mainCat": "all"
+    "mainCat": "all",
+    "desc": 10
   },
   {
     "id": "accessory-11",
@@ -130,7 +132,8 @@
     "cat": "women",
     "subCat": "jewellery",
     "sortOrder": 11,
-    "mainCat": "all"
+    "mainCat": "all",
+    "desc": 15
   },
   {
     "id": "accessory-13",
@@ -174,7 +177,8 @@
     "cat": "women",
     "subCat": "jewellery",
     "sortOrder": 29,
-    "mainCat": "all"
+    "mainCat": "all",
+    "desc": 15
   },
   {
     "id": "accessory-17",
@@ -195,7 +199,8 @@
     "qty": 0,
     "cat": "electronic",
     "sortOrder": 100,
-    "mainCat": "all"
+    "mainCat": "all",
+    "desc": 80
   },
   {
     "id": "electronic-2",
@@ -205,7 +210,8 @@
     "qty": 0,
     "cat": "electronic",
     "sortOrder": 2,
-    "mainCat": "all"
+    "mainCat": "all",
+    "desc": 5
   },
   {
     "id": "electronic-3",
@@ -215,7 +221,8 @@
     "qty": 0,
     "cat": "electronic",
     "sortOrder": 102,
-    "mainCat": "all"
+    "mainCat": "all",
+    "desc": 40
   },
   {
     "id": "electronic-4",
@@ -225,7 +232,8 @@
     "qty": 0,
     "cat": "electronic",
     "sortOrder": 4,
-    "mainCat": "all"
+    "mainCat": "all",
+    "desc": 10
   },
   {
     "id": "electronic-5",
@@ -245,7 +253,8 @@
     "qty": 0,
     "cat": "electronic",
     "sortOrder": 203,
-    "mainCat": "all"
+    "mainCat": "all",
+    "desc": 15
   },
   {
     "id": "electronic-7",
@@ -255,7 +264,8 @@
     "qty": 0,
     "cat": "electronic",
     "sortOrder": 207,
-    "mainCat": "all"
+    "mainCat": "all",
+    "desc": 20
   },
   {
     "id": "electronic-8",
@@ -265,7 +275,8 @@
     "qty": 0,
     "cat": "electronic",
     "sortOrder": 8,
-    "mainCat": "all"
+    "mainCat": "all",
+    "desc": 10
   },
   {
     "id": "electronic-9",
@@ -275,7 +286,8 @@
     "qty": 0,
     "cat": "electronic",
     "sortOrder": 209,
-    "mainCat": "all"
+    "mainCat": "all",
+    "desc": 50
   },
   {
     "id": "electronic-10",
@@ -305,7 +317,8 @@
     "qty": 0,
     "cat": "electronic",
     "sortOrder": 300,
-    "mainCat": "all"
+    "mainCat": "all",
+    "desc": 60
   },
   {
     "id": "electronic-13",
@@ -315,7 +328,8 @@
     "qty": 0,
     "cat": "electronic",
     "sortOrder": 105,
-    "mainCat": "all"
+    "mainCat": "all",
+    "desc": 70
   },
   {
     "id": "electronic-14",
@@ -370,7 +384,8 @@
     "cat": "women",
     "subCat": "clothes",
     "sortOrder": 108,
-    "mainCat": "all"
+    "mainCat": "all",
+    "desc": 5
   },
   {
     "id": "fashion-6",
@@ -403,7 +418,8 @@
     "cat": "men",
     "subCat": "clothes",
     "sortOrder": 8,
-    "mainCat": "all"
+    "mainCat": "all",
+    "desc": 15
   },
   {
     "id": "fashion-9",
@@ -490,7 +506,8 @@
     "qty": 0,
     "cat": "furniture",
     "sortOrder": 1,
-    "mainCat": "all"
+    "mainCat": "all",
+    "desc": 15
   },
   {
     "id": "furniture-2",
@@ -500,7 +517,8 @@
     "qty": 0,
     "cat": "furniture",
     "sortOrder": 25,
-    "mainCat": "all"
+    "mainCat": "all",
+    "desc": 20
   },
   {
     "id": "furniture-3",
@@ -510,7 +528,8 @@
     "qty": 0,
     "cat": "furniture",
     "sortOrder": 13,
-    "mainCat": "all"
+    "mainCat": "all",
+    "desc": 15
   },
   {
     "id": "furniture-4",
@@ -520,7 +539,8 @@
     "qty": 0,
     "cat": "furniture",
     "sortOrder": 208,
-    "mainCat": "all"
+    "mainCat": "all",
+    "desc": 25
   },
   {
     "id": "furniture-5",
@@ -540,7 +560,8 @@
     "qty": 0,
     "cat": "furniture",
     "sortOrder": 100,
-    "mainCat": "all"
+    "mainCat": "all",
+    "desc": 15
   },
   {
     "id": "furniture-7",
@@ -570,7 +591,8 @@
     "qty": 0,
     "cat": "furniture",
     "sortOrder": 111,
-    "mainCat": "all"
+    "mainCat": "all",
+    "desc": 25
   },
   {
     "id": "furniture-10",
@@ -580,7 +602,8 @@
     "qty": 0,
     "cat": "furniture",
     "sortOrder": 119,
-    "mainCat": "all"
+    "mainCat": "all",
+    "desc": 20
   },
   {
     "id": "furniture-11",
@@ -620,7 +643,8 @@
     "qty": 0,
     "cat": "furniture",
     "sortOrder": 115,
-    "mainCat": "all"
+    "mainCat": "all",
+    "desc": 30
   },
   {
     "id": "furniture-15",
@@ -630,6 +654,7 @@
     "qty": 0,
     "cat": "furniture",
     "sortOrder": 222,
-    "mainCat": "all"
+    "mainCat": "all",
+    "desc": 30
   }
 ]

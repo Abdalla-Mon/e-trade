@@ -13,7 +13,7 @@
     color: $heading-color;
     font-weight: bold;
     font-size: calc(2rem + 0.2vw);
-    margin: 15px 0 40px;
+    margin: 8px 0 40px;
   }
   .container {
     position: relative;
@@ -21,107 +21,12 @@
   .custom-header {
     .flex {
       color: $primary-light;
-
+      font-weight: 600;
       .icon {
         padding: 6px;
         border-radius: 50%;
       }
       svg {
-        color: $white-color;
-      }
-    }
-  }
-}
-.new-arrival {
-  margin-bottom: 75px;
-
-  .custom-header {
-    .flex {
-      color: $primary-light;
-      .icon {
-        background-color: $primary-light;
-      }
-    }
-  }
-}
-
-.best-seller {
-  margin-top: 75px;
-
-  .custom-header {
-    .flex {
-      color: $secondary-color;
-
-      .icon {
-        background-color: $secondary-color;
-      }
-    }
-  }
-  .swiper-slide {
-    padding: 25px;
-    z-index: 1;
-    img {
-      transition: 0.3s;
-      -webkit-transition: 0.3s;
-      -moz-transition: 0.3s;
-      -ms-transition: 0.3s;
-      -o-transition: 0.3s;
-    }
-    &:hover {
-      img {
-        scale: 0.9;
-      }
-    }
-    &::before {
-      content: "";
-      position: absolute;
-      left: 0;
-      top: 20px;
-      z-index: -1;
-      height: 70%;
-      width: 100%;
-      background-color: $secondary-bg;
-      border-radius: 6px;
-      -webkit-border-radius: 6px;
-      -moz-border-radius: 6px;
-      -ms-border-radius: 6px;
-      -o-border-radius: 6px;
-    }
-    .title-link {
-      color: $heading-color;
-      font-weight: bold;
-      font-size: calc(1.4rem + 0.2vw);
-      margin: 0 0 15px;
-    }
-    h5 {
-      font-weight: bold;
-      margin-bottom: 10px;
-      color: $heading-color;
-    }
-    .best-seller-card {
-      padding-top: 20px;
-    }
-    .cart-icon {
-      position: absolute;
-      padding: 12px;
-      background: $lighter-color;
-      border: 5px solid #ffffff;
-      cursor: pointer;
-      font-size: 1.8rem;
-      top: 0;
-      right: 15px;
-      border-radius: 50%;
-      -webkit-border-radius: 50%;
-      -moz-border-radius: 50%;
-      -ms-border-radius: 50%;
-      -o-border-radius: 50%;
-      transition: 0.3s;
-      -webkit-transition: 0.3s;
-      -moz-transition: 0.3s;
-      -ms-transition: 0.3s;
-      -o-transition: 0.3s;
-      &:hover {
-        background-color: $primary-color;
         color: $white-color;
       }
     }
@@ -184,5 +89,209 @@
   .swiper-button-prev,
   .swiper-button-next {
     opacity: 0 !important;
+  }
+}
+
+.new-arrival {
+  margin-bottom: 75px;
+
+  .custom-header {
+    .flex {
+      color: $primary-light;
+      .icon {
+        background-color: $primary-light;
+      }
+    }
+  }
+}
+
+.best-seller {
+  margin-top: 75px;
+
+  .custom-header {
+    .flex {
+      color: $secondary-color;
+
+      .icon {
+        background-color: $secondary-color;
+      }
+    }
+  }
+  .swiper-slide {
+    padding: 25px;
+    z-index: 1;
+    img {
+      transition: 0.3s;
+      -webkit-transition: 0.3s;
+      -moz-transition: 0.3s;
+      -ms-transition: 0.3s;
+      -o-transition: 0.3s;
+    }
+    &:hover {
+      img {
+        scale: 0.9;
+      }
+    }
+    &::before {
+      content: "";
+      position: absolute;
+      left: 0;
+      top: 20px;
+      z-index: -1;
+      height: 70%;
+      width: 100%;
+      background-color: $secondary-bg;
+      border-radius: 6px;
+      -webkit-border-radius: 6px;
+      -moz-border-radius: 6px;
+      -ms-border-radius: 6px;
+      -o-border-radius: 6px;
+    }
+    .title-link {
+      color: $primary-color;
+      font-weight: bold;
+      font-size: calc(1.2rem + 0.2vw);
+      margin: 0 0 12px;
+      &:hover {
+        color: $secondary-color;
+      }
+    }
+    h5 {
+      font-weight: bold;
+      margin-bottom: 10px;
+      color: $heading-color;
+    }
+    .best-seller-card {
+      padding-top: 20px;
+    }
+    .cart-icon {
+      position: absolute;
+      padding: 12px;
+      background: $lighter-color;
+      border: 5px solid #ffffff;
+      cursor: pointer;
+      font-size: 1.8rem;
+      top: 0;
+      right: 15px;
+      border-radius: 50%;
+      -webkit-border-radius: 50%;
+      -moz-border-radius: 50%;
+      -ms-border-radius: 50%;
+      -o-border-radius: 50%;
+      transition: 0.3s;
+      -webkit-transition: 0.3s;
+      -moz-transition: 0.3s;
+      -ms-transition: 0.3s;
+      -o-transition: 0.3s;
+      &:hover {
+        background-color: $primary-color;
+        color: $white-color;
+      }
+    }
+  }
+}
+.testi-container {
+  padding: 0 20px;
+  @media (max-width: 767px) {
+    padding: 0 15px;
+  }
+}
+.testimonials {
+  // padding: 50px 0;
+  margin-top: 0;
+  padding-top: 80px;
+  padding-bottom: 80px;
+
+  @media (max-width: 991px) {
+    padding-top: 60px;
+    padding-bottom: 60px;
+  }
+  @media (max-width: 767px) {
+    padding-top: 40px;
+    padding-bottom: 40px;
+  }
+
+  background-color: $teritary-bg;
+  .custom-header {
+    padding: 20px 0 0;
+  }
+  .icon {
+    background-color: $primary-light;
+  }
+  .swiper-slide {
+    margin-bottom: 30px;
+    transition: 0.3s;
+    -webkit-transition: 0.3s;
+    -moz-transition: 0.3s;
+    -ms-transition: 0.3s;
+    -o-transition: 0.3s;
+    .quote {
+      padding: 30px 40px;
+      background: $white-color;
+      color: $body-color;
+      font-size: calc(1.2rem + 0.2vw);
+      margin-bottom: 40px;
+      position: relative;
+      border-radius: 10px;
+      -webkit-border-radius: 10px;
+      -moz-border-radius: 10px;
+      -ms-border-radius: 10px;
+      -o-border-radius: 10px;
+      &::after {
+        content: "";
+        width: 0;
+        height: 0;
+        border-top: 25px solid $white-color;
+        border-right: 50px solid rgba(0, 0, 0, 0);
+        position: absolute;
+        bottom: -25px;
+        left: 100px;
+      }
+    }
+    h6 {
+      color: $body-color;
+      font-weight: bold;
+      font-size: 0.9rem;
+      margin-bottom: 6px;
+    }
+    h5 {
+      font-size: 1.2rem;
+      font-weight: bold;
+      color: $heading-color;
+    }
+  }
+  .swiper-slide-active {
+    @media (min-width: 768px) {
+      transform: translateY(30px);
+    }
+  }
+}
+.month-arrival {
+  .swiper {
+    padding: 20px 0;
+  }
+  .icon {
+    background-color: $primary-light;
+  }
+  .img-container {
+    background-color: $secondary-bg;
+    border-radius: 50%;
+    @media (max-width: 767px) {
+      width: 280px;
+      height: 280px;
+      margin: auto;
+    }
+    img {
+      width: 100%;
+    }
+  }
+  .show-btns {
+    margin-top: 20px;
+    transform: none !important;
+    -webkit-transform: none !important;
+    -moz-transform: none !important;
+    -ms-transform: none !important;
+    -o-transform: none !important;
+    position: unset !important;
   }
 }

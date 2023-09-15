@@ -1,0 +1,99 @@
+@use "../../variables/variables" as *;
+.home-offer {
+  padding: 50px 15px;
+  .offer {
+    background-color: $lighter-color;
+    border-radius: 8px;
+    -webkit-border-radius: 8px;
+    -moz-border-radius: 8px;
+    -ms-border-radius: 8px;
+    -o-border-radius: 8px;
+
+    padding: 30px 15px;
+    @media (min-width: 768px) {
+      padding: 40px;
+    }
+    @media (min-width: 992px) {
+      padding: 50px;
+    }
+    @media (min-width: 1200px) {
+      padding: 60px;
+    }
+    .left {
+      align-items: center;
+      text-align: center;
+
+      > .flex {
+        &:first-child {
+          align-items: center;
+          color: $secondary-color;
+          font-weight: bold;
+          .icon {
+            background-color: $secondary-color;
+            color: $white-color;
+            padding: 6px;
+            border-radius: 50%;
+            -webkit-border-radius: 50%;
+            -moz-border-radius: 50%;
+            -ms-border-radius: 50%;
+            -o-border-radius: 50%;
+          }
+        }
+      }
+      h1 {
+        color: $heading-color;
+        font-weight: bold;
+        font-size: calc(2rem + 0.5vw);
+        max-width: 400px;
+        line-height: 1.5;
+      }
+      .time {
+        width: 75px;
+        height: 75px;
+        padding: 10px;
+        background-color: $white-color;
+
+        border-radius: 50px;
+        -webkit-border-radius: 50px;
+        -moz-border-radius: 50px;
+        -ms-border-radius: 50px;
+        -o-border-radius: 50px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        h5 {
+          font-weight: bold;
+          color: $black-color;
+        }
+        h6 {
+          color: $body-color;
+          font-size: 0.9rem;
+          text-transform: capitalize;
+        }
+      }
+      a {
+        display: block;
+        padding: 20px 40px;
+        background-color: $primary-color;
+        color: $white-color;
+        margin: 30px 0 0;
+        font-weight: bold;
+        width: fit-content;
+        border-radius: 6px;
+        -webkit-border-radius: 6px;
+        -moz-border-radius: 6px;
+        -ms-border-radius: 6px;
+        -o-border-radius: 6px;
+        transition: 0.3s;
+        -webkit-transition: 0.3s;
+        -moz-transition: 0.3s;
+        -ms-transition: 0.3s;
+        -o-transition: 0.3s;
+        &:hover {
+          box-shadow: 0 0 3px 3px #0000003b;
+        }
+      }
+    }
+  }
+}
