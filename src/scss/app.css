@@ -1145,6 +1145,14 @@
 .shop .searched-prod p {
   margin-bottom: 20px;
   color: #777777;
+  line-height: 1.6;
+}
+.shop .searched-prod h3 {
+  margin-top: 5px;
+  color: #292930;
+}
+.shop .searched-prod h3 .old-price {
+  color: #777777;
 }
 
 .pagination ul {

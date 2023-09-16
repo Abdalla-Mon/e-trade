@@ -123,6 +123,14 @@
     p {
       margin-bottom: 20px;
       color: $body-color;
+      line-height: 1.6;
+    }
+    h3 {
+      margin-top: 5px;
+      color: $heading-color;
+      .old-price {
+        color: $body-color;
+      }
     }
   }
 }
