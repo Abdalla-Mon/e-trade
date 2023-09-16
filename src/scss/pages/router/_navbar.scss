@@ -305,6 +305,13 @@
   &:hover {
     border-color: transparent;
     box-shadow: 0px 1px 3px 4px #f1f1f138, 0px 3px 3px 2px #00000014;
+    h4 {
+      color: $primary-color;
+    }
+  }
+  .old-price {
+    color: $body-color;
+    text-decoration: line-through;
   }
   .love-icon,
   .cart-icon {

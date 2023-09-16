@@ -5,10 +5,12 @@ import { createHashRouter, createRoutesFromElements } from "react-router-dom";
 import { fetchAllProducts } from "./react-query/FetchData";
 import Navbar from "./router/Navbar";
 import Home from "./home/Home";
+import Shop from "./shop/Shop";
 const router = createHashRouter(
   createRoutesFromElements(
     <Route path="" element={<Routes />}>
       <Route index element={<Home />} />
+      <Route path="shop" element={<Shop />} />
     </Route>
   )
 );
@@ -16,13 +18,11 @@ const router = createHashRouter(
 const queryClient = new QueryClient();
 function App() {
   return (
-    <>
-      <QueryClientProvider client={queryClient}>
-        <RouterProvider router={router} />
+    <QueryClientProvider client={queryClient}>
+      <RouterProvider router={router} />
 
-        <ReactQueryDevtools />
-      </QueryClientProvider>
-    </>
+      <ReactQueryDevtools />
+    </QueryClientProvider>
   );
 }
 function Routes() {

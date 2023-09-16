@@ -305,6 +305,13 @@
   border-color: transparent;
   box-shadow: 0px 1px 3px 4px rgba(241, 241, 241, 0.2196078431), 0px 3px 3px 2px rgba(0, 0, 0, 0.0784313725);
 }
+.searched-prod:hover h4 {
+  color: #3577f0;
+}
+.searched-prod .old-price {
+  color: #777777;
+  text-decoration: line-through;
+}
 .searched-prod .love-icon,
 .searched-prod .cart-icon {
   padding: 15px;
@@ -604,9 +611,8 @@
   -moz-transition: 0.3s;
   -ms-transition: 0.3s;
   -o-transition: 0.3s;
-  text-transform: capitalize;
 }
-.custom-swiper .swiper-slide a:hover {
+.custom-swiper .swiper-slide:hover {
   color: #3577f0;
 }
 .custom-swiper .swiper-slide h3 {
@@ -1023,6 +1029,135 @@
   scale: 1.1;
 }
 
+.shop {
+  min-height: 100vh;
+}
+.shop .shop-container {
+  padding: 80px 15px;
+}
+.shop .shop-card {
+  text-align: left !important;
+}
+.shop .shop-card img {
+  width: 100%;
+}
+.shop .shop-card .card-price {
+  justify-content: flex-start !important;
+}
+.shop .products-filter {
+  flex-wrap: wrap;
+  color: #777777;
+  font-weight: 600;
+}
+.shop .filter-btn {
+  z-index: 20;
+  cursor: pointer;
+}
+.shop .results-number span {
+  color: #3577f0;
+}
+.shop .select-btn {
+  padding: 12px 16px;
+  background: #f7f7f7;
+  color: #292930;
+  border-radius: 6px;
+  display: flex;
+  min-width: 60px;
+}
+.shop .options {
+  position: absolute;
+  z-index: 20;
+  background: #ffffff;
+  width: 100%;
+  border-radius: 6px;
+  left: 1px;
+  border: 1px solid #f1f1f1;
+  margin-top: 3px;
+}
+.shop .options div {
+  padding: 10px;
+  color: #777777;
+  cursor: pointer;
+}
+.shop .options div:not(:last-child) {
+  border-bottom: 1px solid rgba(119, 119, 119, 0.2901960784);
+}
+.shop .options div:hover {
+  color: #3577f0;
+  background-color: #f9f9f9;
+}
+.shop .sort-products .select-btn {
+  min-width: 120px;
+}
+.shop .sort-products .options div {
+  padding: 10px 16px;
+}
+.shop .display .icon-holder {
+  position: relative;
+  z-index: 200;
+  cursor: pointer;
+  border: 1px solid #f1f1f1;
+  padding: 10px;
+  transition: 0.3s;
+  -webkit-transition: 0.3s;
+  -moz-transition: 0.3s;
+  -ms-transition: 0.3s;
+  -o-transition: 0.3s;
+}
+.shop .display .icon-holder:hover {
+  background-color: #ff497c;
+  color: #ffffff;
+  border-color: transparent;
+}
+.shop .display .icon-holder.active {
+  background-color: #292930;
+  color: #ffffff;
+  border-color: transparent;
+}
+.shop .searched-prod {
+  z-index: 8;
+  position: relative;
+}
+.shop .searched-prod .left {
+  max-width: 40%;
+}
+.shop .searched-prod .cart-icon {
+  font-size: 1.2rem !important;
+}
+.shop .searched-prod .right {
+  flex: 1;
+}
+.shop .searched-prod a {
+  margin: 15px 0;
+  display: block;
+  text-transform: capitalize;
+  color: #3577f0;
+  font-weight: 600;
+  transition: 0.3s;
+  -webkit-transition: 0.3s;
+  -moz-transition: 0.3s;
+  -ms-transition: 0.3s;
+  -o-transition: 0.3s;
+}
+.shop .searched-prod a:hover {
+  color: #ff497c;
+}
+.shop .searched-prod p {
+  margin-bottom: 20px;
+  color: #777777;
+}
+
+.pagination ul {
+  justify-content: center;
+}
+
+.click-listner {
+  width: 100%;
+  height: 100%;
+  left: 0;
+  top: 0;
+}
+
 .shop-card:hover img {
   scale: 1.2;
 }
@@ -1031,6 +1166,12 @@
 }
 .shop-card .img-container {
   overflow: hidden;
+  background-color: #f6f7fb;
+  border-radius: 6px;
+  -webkit-border-radius: 6px;
+  -moz-border-radius: 6px;
+  -ms-border-radius: 6px;
+  -o-border-radius: 6px;
 }
 .shop-card .img-container img {
   transition: 0.3s;
@@ -1038,7 +1179,6 @@
   -moz-transition: 0.3s;
   -ms-transition: 0.3s;
   -o-transition: 0.3s;
-  border-radius: 6px;
 }
 .shop-card .show-btns {
   display: flex;
@@ -1097,6 +1237,22 @@
 .shop-card .show-btns .cart-icon:hover {
   scale: 1.1;
 }
+.shop-card a {
+  color: #777777;
+  font-size: 1.2rem;
+  display: block;
+  margin: 30px 0 15px;
+  transition: 0.3s;
+  -webkit-transition: 0.3s;
+  -moz-transition: 0.3s;
+  -ms-transition: 0.3s;
+  -o-transition: 0.3s;
+  text-transform: capitalize;
+  font-weight: 600;
+}
+.shop-card a:hover {
+  color: #3577f0;
+}
 .shop-card .card-price {
   font-weight: bold;
   font-size: calc(1.3rem + 0.2vw);
@@ -1105,6 +1261,33 @@
 .shop-card .card-price .old-price {
   text-decoration: line-through;
   color: #777777;
+}
+
+.layout {
+  padding: 80px 0;
+  color: #292930;
+  background-color: #f7f7f7;
+  text-transform: capitalize;
+}
+@media (max-width: 767px) {
+  .layout {
+    padding: 50px 0;
+  }
+}
+.layout .flex > .flex {
+  position: relative;
+  z-index: 20;
+}
+.layout h1 {
+  margin: 0 0 15px;
+  font-weight: bold;
+  font-size: calc(2.2rem + 0.5vw);
+}
+.layout a {
+  color: #777777;
+}
+.layout a:hover {
+  color: #3577f0;
 }
 
 ul {
