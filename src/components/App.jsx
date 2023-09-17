@@ -1,12 +1,16 @@
 import { Route, Outlet, RouterProvider } from "react-router-dom";
 import { QueryClientProvider, QueryClient } from "@tanstack/react-query";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
-import { createHashRouter, createRoutesFromElements } from "react-router-dom";
+import {
+  createHashRouter,
+  createRoutesFromElements,
+  createBrowserRouter,
+} from "react-router-dom";
 import { fetchAllProducts } from "./react-query/FetchData";
 import Navbar from "./router/Navbar";
 import Home from "./home/Home";
 import Shop from "./shop/Shop";
-const router = createHashRouter(
+const router = createBrowserRouter(
   createRoutesFromElements(
     <Route path="" element={<Routes />}>
       <Route index element={<Home />} />
