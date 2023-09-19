@@ -43,9 +43,9 @@ function LandingSwiper() {
       speed={2000}
       modules={[Autoplay, Pagination, EffectFade]}
     >
-      {swiperData.map((el) => {
+      {swiperData.map((el, index) => {
         return (
-          <SwiperSlide key={el.text} className="flex gap-8">
+          <SwiperSlide key={el.text + index} className="flex gap-8">
             <div className="left  flex flex-col justify-center">
               <SwiperHead />
               <h1>{el.text}</h1>

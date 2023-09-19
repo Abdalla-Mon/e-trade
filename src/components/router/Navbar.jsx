@@ -7,6 +7,8 @@ import { useState } from "react";
 import SearchBar from "./SearchBar";
 import { AiOutlineHeart } from "react-icons/ai";
 import { BiUser, BiCart } from "react-icons/bi";
+import { useSelector } from "react-redux";
+import { motion, useMotionValueEvent, useScroll } from "framer-motion";
 export default function Navbar() {
   const [SearchBarPopup, setSearchBarPopup] = useState(false);
   return (
@@ -26,11 +28,9 @@ export default function Navbar() {
           </div>
         </div>
       </nav>
-      <nav className="lower-nav px-5 ">
-        <div className="container mx-auto">
-          <LowerNav />
-        </div>{" "}
-      </nav>
+
+      <LowerNav />
+
       {SearchBarPopup ? (
         <SearchBar setSearchBarPopup={setSearchBarPopup} />
       ) : null}
@@ -64,15 +64,24 @@ const icons = [
   <BiUser key={"user-icon"} />,
 ];
 function Icons() {
+  const cartSlice = useSelector((e) => e.cart);
+
   return (
     <div className="nav-icons flex">
-      {icons.map((e, i) => {
-        return (
-          <div className="nav-icon" key={i}>
-            {e}
-          </div>
-        );
-      })}
+      <div className="nav-icon love-icon relative">
+        <AiOutlineHeart key={"love-icon"} />
+        <span className="wish-count absolute">
+          {cartSlice.numOfWishlistItems}
+        </span>
+      </div>
+      <div className="nav-icon cart-icon relative">
+        <BiCart key={"cart-icon"} />
+        <span className="cart-count absolute">{cartSlice.numOfCartItems}</span>
+      </div>
+      <div className="nav-icon ">
+        <BiUser key={"user-icon"} />
+      </div>
+
       <NavItemsDrawer />
     </div>
   );
@@ -96,13 +105,38 @@ export function NavItems({ className }) {
   );
 }
 function LowerNav() {
+  const { scrollY } = useScroll();
+  const [animation, setAnimation] = useState(false);
+  useMotionValueEvent(scrollY, "change", (latest) => {
+    if (latest >= 1500) {
+      setAnimation(true);
+    } else {
+      setAnimation(false);
+    }
+  });
   return (
-    <div className="flex justify-between items-center">
-      <CatDrawer />
-      <div className="hidden tab:block">
-        <NavItems />
-      </div>
-      <Icons />
-    </div>
+    <motion.nav
+      className="lower-nav px-5 "
+      style={{ width: "100%" }}
+      animate={
+        animation
+          ? { position: "fixed", top: [-100, 0] }
+          : { position: "relative", top: [0, -200, -200, 0] }
+      }
+      transition={
+        !animation ? { position: { delay: 0.3 }, top: { duration: 0.6 } } : ""
+      }
+      // layout
+    >
+      <div className="container mx-auto">
+        <motion.div className="flex justify-between items-center">
+          <CatDrawer />
+          <div className="hidden tab:block">
+            <NavItems />
+          </div>
+          <Icons />
+        </motion.div>{" "}
+      </div>{" "}
+    </motion.nav>
   );
 }

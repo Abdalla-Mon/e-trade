@@ -30,7 +30,7 @@ function BestSellerCard(e) {
       <Link to={e.id}>
         <img src={e.img} alt={e.name} />
       </Link>
-      <AddToCart />
+      <AddToCart item={e} />
     </div>
   );
 }

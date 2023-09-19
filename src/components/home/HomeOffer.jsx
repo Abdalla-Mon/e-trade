@@ -34,8 +34,8 @@ function Left() {
       </div>
       <h1>Enhance Your Music Experience</h1>
       <div className="flex gap-2">
-        {timeData.map((e) => (
-          <Timer key={e.id} time={e.time} num={e.num} />
+        {timeData.map((e, index) => (
+          <Timer key={e.id + index} time={e.time} num={e.num} />
         ))}
       </div>
       <Link to="/shop">Check Now</Link>

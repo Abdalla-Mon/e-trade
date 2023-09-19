@@ -4,15 +4,7 @@
   .shop-container {
     padding: 80px 15px;
   }
-  .shop-card {
-    img {
-      width: 100%;
-    }
-    text-align: left !important;
-    .card-price {
-      justify-content: flex-start !important;
-    }
-  }
+
   .products-filter {
     flex-wrap: wrap;
 
@@ -22,6 +14,79 @@
   .filter-btn {
     z-index: 20;
     cursor: pointer;
+  }
+  .filter-section {
+    overflow: hidden;
+    height: fit-content;
+    position: absolute;
+    z-index: 205;
+    left: 0;
+    top: 70px;
+    width: 100%;
+    padding: 40px 30px;
+    text-transform: capitalize;
+    box-shadow: 0 0 3px 3px #0000001f;
+    border-radius: 8px;
+    background-color: $white-color;
+  }
+  .category-filter {
+    width: fit-content;
+    @media (max-width: 767px) {
+      width: 100%;
+      text-align: center;
+    }
+    li {
+      transition: 0.3s;
+      -webkit-transition: 0.3s;
+      -moz-transition: 0.3s;
+      -ms-transition: 0.3s;
+      -o-transition: 0.3s;
+      cursor: pointer;
+      padding: 6px 30px;
+      background-color: #f7f7f7;
+      margin-bottom: 5px;
+      &:hover {
+        color: #ffffff;
+        background-color: #878686;
+      }
+    }
+  }
+  .price-slider {
+    width: 80%;
+    margin: auto;
+    @media (max-width: 767px) {
+      width: 90%;
+      margin-top: 30px;
+    }
+    > span {
+      color: $primary-color;
+      > span {
+        color: $primary-color;
+      }
+    }
+    button {
+      width: fit-content;
+      padding: 12px 15px;
+      margin-top: 15px;
+      background-color: $secondary-color;
+      color: $white-color;
+      transition: 0.3s;
+      -webkit-transition: 0.3s;
+      -moz-transition: 0.3s;
+      -ms-transition: 0.3s;
+      -o-transition: 0.3s;
+      border-radius: 6px;
+      -webkit-border-radius: 6px;
+      -moz-border-radius: 6px;
+      -ms-border-radius: 6px;
+      -o-border-radius: 6px;
+    }
+  }
+  .cat-women-ul {
+    overflow: hidden;
+  }
+  .sub-cat {
+    margin-left: 30px;
   }
   .results-number {
     span {
@@ -35,6 +100,7 @@
     border-radius: 6px;
     display: flex;
     min-width: 60px;
+    z-index: 201;
   }
   .options {
     position: absolute;
@@ -42,10 +108,11 @@
     background: $white-color;
     width: 100%;
     border-radius: 6px;
+    overflow: hidden;
     left: 1px;
     border: 1px solid #f1f1f1;
     margin-top: 3px;
-
+    z-index: 202;
     div {
       padding: 10px;
       color: $body-color;
@@ -93,11 +160,45 @@
       }
     }
   }
+  .shop-card {
+    img {
+      width: 100%;
+    }
+    text-align: left !important;
+    .card-price {
+      justify-content: flex-start !important;
+    }
+  }
+
   .searched-prod {
+    @media (max-width: 767px) {
+      flex-direction: column;
+    }
     z-index: 8;
     position: relative;
     .left {
-      max-width: 40%;
+      width: 100%;
+      background-color: #f6f7fb;
+      border-radius: 6px;
+      -webkit-border-radius: 6px;
+      -moz-border-radius: 6px;
+      -ms-border-radius: 6px;
+      -o-border-radius: 6px;
+      overflow: hidden;
+      @media (min-width: 768px) {
+        width: 40%;
+      }
+      img {
+        width: 100%;
+        &:hover {
+          scale: 1.1;
+        }
+        transition: 0.3s;
+        -webkit-transition: 0.3s;
+        -moz-transition: 0.3s;
+        -ms-transition: 0.3s;
+        -o-transition: 0.3s;
+      }
     }
     .cart-icon {
       font-size: 1.2rem !important;
@@ -128,6 +229,7 @@
     h3 {
       margin-top: 5px;
       color: $heading-color;
+      font-weight: 600;
       .old-price {
         color: $body-color;
       }

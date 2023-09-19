@@ -3,8 +3,10 @@ import Box from "@mui/material/Box";
 import Drawer from "@mui/material/Drawer";
 import Divider from "@mui/material/Divider";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
+import { filterByCat } from "../../redux/filterSLice";
+import { useDispatch } from "react-redux";
 
 const categoryList = ["all", "men", "women", "electronic", "furniture"];
 const iconsList = [
@@ -26,7 +28,7 @@ export default function CatDrawer() {
     ) {
       return;
     }
-
+    console.log("clicked");
     setState({ ...state, [anchor]: open });
   };
 
@@ -38,7 +40,7 @@ export default function CatDrawer() {
         </div>
       </div>{" "}
       <Divider />
-      <CatUl toggleDrawer={toggleDrawer} anchor={anchor} />
+      <Categories toggleDrawer={toggleDrawer} anchor={anchor} />
     </Box>
   );
 
@@ -66,6 +68,97 @@ export default function CatDrawer() {
   );
 }
 
+function Categories({ toggleDrawer, anchor }) {
+  const [subCatState, SetSubCatState] = React.useState(false);
+  const categories = [
+    { catType: "mainCat", catName: "all" },
+    { catType: "cat", catName: "men" },
+    { catType: "cat", catName: "women" },
+    { catType: "cat", catName: "electronic" },
+    { catType: "cat", catName: "furniture" },
+  ];
+  const subCategories = [
+    { catType: "cat", catName: "women", name: "all" },
+    { catType: "subCat", catName: "makeup", name: "fashion" },
+    { catType: "subCat", catName: "jewellery", name: "accessories" },
+  ];
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
+  function handleClick(catName, catType) {
+    dispatch(filterByCat([catType, catName]));
+    document.querySelector(".cat-drawer .close-btn").click();
+    navigate("/shop");
+    // toggleDrawer(anchor, false);
+  }
+  return (
+    <ul className="cat-ul pt-4 ">
+      {categories.map((e, index) => {
+        return (
+          <>
+            {e.catName === "women" ? (
+              <>
+                <li
+                  className="cat-li women-li"
+                  onClick={() => {
+                    SetSubCatState((e) => !e);
+                    toggleDrawer(anchor, true);
+                  }}
+                  key={e.catName}
+                >
+                  <FontAwesomeIcon icon={iconsList[index]} />
+                  Women
+                </li>
+
+                <motion.ul
+                  className="women-ul"
+                  initial={{ height: 0 }}
+                  animate={
+                    subCatState ? { height: "fit-content" } : { height: 0 }
+                  }
+                >
+                  {subCategories.map((el) => {
+                    return (
+                      <>
+                        <NavLink
+                          to="/shop"
+                          key={el.catName}
+                          className="sub-cat"
+                          onClick={() => {
+                            handleClick(el.catName, el.catType);
+                            SetSubCatState((e) => !e);
+                          }}
+                        >
+                          {el.name || el.catName}
+                        </NavLink>{" "}
+                        {el.catName === "jewellery" ? null : <Divider />}
+                      </>
+                    );
+                  })}
+                </motion.ul>
+                <Divider />
+              </>
+            ) : (
+              <>
+                <NavLink
+                  to="/shop"
+                  className={"cat-li"}
+                  key={e.catName}
+                  onClick={() => {
+                    handleClick(e.catName, e.catType);
+                  }}
+                >
+                  <FontAwesomeIcon icon={iconsList[index]} />
+                  {e.catName}
+                </NavLink>
+                <Divider />
+              </>
+            )}
+          </>
+        );
+      })}
+    </ul>
+  );
+}
 function CatUl({ toggleDrawer, anchor }) {
   const [womenUl, setWomenUl] = React.useState(false);
 

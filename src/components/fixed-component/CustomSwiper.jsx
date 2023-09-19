@@ -49,8 +49,8 @@ export default function CustomSwiper({ data, num, swiperEle }) {
         modules={[Navigation]}
         className="custom-swiper"
       >
-        {data.map((el) => {
-          return <SwiperSlide key={el.key}>{swiperEle(el)}</SwiperSlide>;
+        {data.map((el, index) => {
+          return <SwiperSlide key={index}>{swiperEle(el)}</SwiperSlide>;
         })}
 
         <div className="navigation">

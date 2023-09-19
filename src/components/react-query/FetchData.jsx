@@ -5,47 +5,63 @@ function fetchData() {
   return axios.get("./db/products.json");
 }
 
-export function fetchAllProducts(filterType, filterName, sortType) {
+export function fetchAllProducts(
+  filterType,
+  filterName,
+  sortType,
+  minPrice,
+  maxPrice
+) {
   return useQuery({
     queryKey: ["searchProducts"],
     queryFn: fetchData,
+
     select: (data) => {
-      return filter(sortData(data.data, sortType), filterType, filterName);
+      return filter(
+        sortData(data.data, sortType),
+        filterType,
+        filterName,
+        minPrice,
+        maxPrice
+      );
     },
   });
 }
-function filter(data, filterType, filterName) {
+function filter(data, filterType, filterName, minPrice, maxPrice) {
+  if (minPrice) {
+    return data
+      .filter((e) => e[filterType] === filterName)
+      .filter((el) => {
+        return el.price >= minPrice && el.price <= maxPrice;
+      });
+  }
   return data.filter((e) => e[filterType] === filterName);
 }
 function sortData(data, type) {
   if (type === "Low to high price") {
-    return data.sort((a, b) => a.price - b.price);
+    return sortPrice(data);
   } else if (type === "High to low price") {
-    return data.sort((a, b) => b.price - a.price);
+    return sortPrice(data).reverse();
   } else if (type === "Z-A Sort") {
-    return data
-      .sort((a, b) => {
-        if (a.name < b.name) {
-          return -1;
-        }
-        if (a.name > b.name) {
-          return 1;
-        }
-        return 0;
-      })
-      .reverse();
+    return sortAlpha(data).reverse();
   } else if (type === "A-Z Sort") {
-    return data.sort((a, b) => {
-      if (a.name < b.name) {
-        return -1;
-      }
-      if (a.name > b.name) {
-        return 1;
-      }
-      return 0;
-    });
+    return sortAlpha(data);
   }
   return data.sort((a, b) => a.sortOrder - b.sortOrder);
+}
+function sortPrice(data) {
+  return data.sort((a, b) => a.price - b.price);
+}
+function sortAlpha(data) {
+  return data.sort((a, b) => {
+    if (a.name < b.name) {
+      return -1;
+    }
+    if (a.name > b.name) {
+      return 1;
+    }
+    return 0;
+  });
 }
 export function fetchSearchProducts(el) {
   return useQuery({

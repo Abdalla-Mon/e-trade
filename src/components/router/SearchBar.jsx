@@ -11,14 +11,9 @@ export default function SearchBar({ setSearchBarPopup }) {
   const deferrdTextInput = useDeferredValue(textInput.toLowerCase());
 
   const { data, isLoading, isFetching } = fetchSearchProducts(deferrdTextInput);
-  console.log(data);
-  console.log(isLoading);
-  console.log(isFetching);
+
   let slicedData = data?.slice(0, numOfProduct);
 
-  if (isLoading) {
-    return "loading";
-  }
   return (
     <motion.div
       className="searchbar"

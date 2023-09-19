@@ -1,4 +1,4 @@
-import { createContext, useContext, useState } from "react";
+import React, { createContext, useContext, useState } from "react";
 
 export const ClickAway = createContext(null);
 export default function ClickAwayProvider({ children }) {

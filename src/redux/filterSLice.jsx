@@ -5,6 +5,9 @@ const initialState = {
   catName: "all",
   sort: false,
   sortType: "Default",
+  minPrice: null,
+  maxPrice: null,
+  initialData: [],
 };
 
 const filterSlicer = createSlice({
@@ -18,8 +21,13 @@ const filterSlicer = createSlice({
     sortProducts: (state, action) => {
       state.sortType = action.payload;
     },
+    filterByPrice: (state, action) => {
+      state.minPrice = action.payload[0];
+      state.maxPrice = action.payload[1];
+    },
   },
 });
 
-export const { filterByCat, sortProducts } = filterSlicer.actions;
+export const { filterByCat, sortProducts, filterByPrice } =
+  filterSlicer.actions;
 export default filterSlicer.reducer;

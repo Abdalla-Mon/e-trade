@@ -1,34 +1,32 @@
 import { fetchAllProducts } from "../react-query/FetchData";
-import { filterByCat } from "../../redux/filterSLice";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import { createContext, useContext, useEffect, useState } from "react";
 
 import {
   PageLayout,
-  SingleProduct,
   ShopCard,
   ShopListProduct,
 } from "../fixed-component/FixedComponent";
 import { Pagination, Stack } from "@mui/material";
-import ProductsFIlter from "./Filter";
 import ClickAwayProvider from "./ClickAway";
+import { AnimatePresence, motion } from "framer-motion";
+import ProductsOptions from "./filter/Options";
+import { ProductsSkeleton } from "../fixed-component/ShopSkeleton";
 const FilterContext = createContext(null);
 
 export default function Shop() {
   const filterData = useSelector((e) => e.data);
-  const [[catType, catName], setFilter] = useState([
+
+  const { data, isLoading } = fetchAllProducts(
     filterData.catType,
     filterData.catName,
-  ]);
-  const { data, isLoading } = fetchAllProducts(
-    catType,
-    catName,
-    filterData.sortType
+    filterData.sortType,
+    filterData.minPrice,
+    filterData.maxPrice
   );
   const [list, setList] = useState(false);
   const [grid, setGrid] = useState(9);
   const [sliceNum, setSliceNum] = useState(0);
-
   let dataSliced = data?.slice(sliceNum, sliceNum + grid);
   return (
     <FilterContext.Provider value={{ grid, setGrid }}>
@@ -38,11 +36,11 @@ export default function Shop() {
           <div className="container mx-auto">
             <div className="shop-container flex flex-col gap-10">
               {isLoading ? (
-                "loading..."
+                <ProductsSkeleton />
               ) : (
                 <>
-                  <ProductsFIlter
-                    setFilter={setFilter}
+                  <ProductsOptions
+                    dataSliced={dataSliced}
                     data={data}
                     grid={grid}
                     setList={setList}
@@ -65,26 +63,49 @@ export default function Shop() {
 }
 function ShopProducts({ dataSliced, list }) {
   return (
-    <>
-      {list ? (
-        <div className="shop-products grid  gap-10">
-          {dataSliced.map((e) => {
-            return <ShopListProduct key={e.id} e={e} />;
-          })}
-        </div>
-      ) : (
-        <div className="shop-products grid tab:grid-cols-2 lap:grid-cols-3 pc:grid-cols-4 gap-10">
-          {dataSliced.map((e) => {
-            return ShopCard(e);
-          })}
-        </div>
-      )}
-    </>
+    <AnimatePresence mode="wait">
+      <motion.div
+        initial={{}}
+        animate={list ? { opacity: [0, 1] } : { opacity: [0.5, 1] }}
+        transition={{ duration: 1 }}
+      >
+        {dataSliced.length < 1 ? (
+          <div>No products match the filter</div>
+        ) : (
+          <>
+            {list ? (
+              <motion.div
+                className="shop-products grid  gap-10"
+                exit={{ opacity: [1, 0, 1] }}
+                transition={{ duration: 1 }}
+                layout
+              >
+                {dataSliced.map((e) => {
+                  return <ShopListProduct key={e.id} e={e} />;
+                })}
+              </motion.div>
+            ) : (
+              <motion.div
+                layout
+                className="shop-products grid tab:grid-cols-2 lap:grid-cols-3 pc:grid-cols-4 gap-10"
+              >
+                {dataSliced.map((e) => {
+                  return ShopCard(e);
+                })}
+              </motion.div>
+            )}
+          </>
+        )}
+      </motion.div>
+    </AnimatePresence>
   );
 }
 function ShopPagination({ filterData, setSliceNum, grid }) {
   const [page, setPage] = useState(1);
   const index = Math.ceil(filterData.length / grid);
+  useEffect(() => {
+    document.querySelectorAll(".pagination  li button")[1].click();
+  }, [index, filterData.length]);
   let paginationNum = 0;
   for (let i = 0; i < index; i++) {
     paginationNum++;
@@ -93,7 +114,6 @@ function ShopPagination({ filterData, setSliceNum, grid }) {
     setPage(value);
     setSliceNum((value - 1) * grid, value * grid);
   };
-
   return (
     <Stack spacing={2} className="pagination">
       <Pagination

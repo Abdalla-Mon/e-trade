@@ -32,8 +32,8 @@ function MonthArrivalCard(e) {
         {e.desc ? <span className="old-price">${e.price - e.desc}</span> : null}
       </h3>{" "}
       <div className="show-btns flex gap-1">
-        <AddToWhishList />
-        <AddToCart text={true} />
+        <AddToWhishList item={e} />
+        <AddToCart text={true} item={e} />
         <Link className="inspect-icon" to={"/" + e.id}>
           <FiEye />
         </Link>
