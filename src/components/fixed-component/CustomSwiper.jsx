@@ -2,8 +2,9 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import "swiper/css/navigation";
 import { BsArrowLeft, BsArrowRight } from "react-icons/bs";
-import { useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Navigation } from "swiper/modules";
+import { motion, useAnimate, useAnimationControls } from "framer-motion";
 export function CustomSwiperContainer({
   className,
   icon,
@@ -28,8 +29,17 @@ export function CustomSwiperContainer({
   );
 }
 export default function CustomSwiper({ data, num, swiperEle }) {
-  const nextRef = useRef(null);
-  const prevRef = useRef(null);
+  const [animation, setAnimation] = useState(false);
+  const controls = useAnimationControls();
+  const [scope, animate] = useAnimate();
+  useEffect(() => {
+    controls.start({
+      // x: ["100px", "-100px", "0px"],
+      opacity: [0, 1],
+      transition: { duration: 0.6 },
+    });
+    // return controls.stop();
+  }, [animation]);
   return (
     <>
       <Swiper
@@ -42,22 +52,32 @@ export default function CustomSwiper({ data, num, swiperEle }) {
         }}
         loop={true}
         navigation={{
-          // nextEl: nextRef.current,
-          // prevEl: prevRef.current,
           enabled: true,
         }}
         modules={[Navigation]}
         className="custom-swiper"
+        onSlideChange={() => {
+          setAnimation(!animation);
+        }}
       >
         {data.map((el, index) => {
-          return <SwiperSlide key={index}>{swiperEle(el)}</SwiperSlide>;
+          return (
+            <SwiperSlide key={index}>
+              <motion.div
+                // whileInView={() => setAnimation(!animation)}
+                animate={controls}
+              >
+                {swiperEle(el)}
+              </motion.div>
+            </SwiperSlide>
+          );
         })}
 
         <div className="navigation">
-          <span ref={nextRef} className="next-btn">
+          <span className="next-btn">
             <BsArrowRight />
           </span>
-          <span ref={prevRef} className="prev-btn">
+          <span className="prev-btn">
             <BsArrowLeft />
           </span>
         </div>

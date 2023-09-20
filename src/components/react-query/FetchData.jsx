@@ -1,4 +1,4 @@
-import { useQuery } from "@tanstack/react-query";
+import { useQuery, useQueryClient } from "@tanstack/react-query";
 import axios from "axios";
 
 function fetchData() {
@@ -13,7 +13,7 @@ export function fetchAllProducts(
   maxPrice
 ) {
   return useQuery({
-    queryKey: ["searchProducts"],
+    queryKey: ["AllProducts"],
     queryFn: fetchData,
 
     select: (data) => {
@@ -71,5 +71,32 @@ export function fetchSearchProducts(el) {
       return data.data.filter((e) => e.name.includes(el));
     },
     keepPreviousData: true,
+  });
+}
+export function fetchSingleProduct(id) {
+  return useQuery({
+    queryKey: ["sindleProduct"],
+    queryFn: fetchData,
+    select: (data) => {
+      return data.data.find((e) => e.id === id);
+    },
+    keepPreviousData: true,
+    // initialData: () => {
+    //   // Use a todo from the 'todos' query as the initial data for this todo query
+    //   return queryClient
+    //     .getQueryData("searchProducts")
+    //     ?.find((d) => d.id === productId);
+    // },
+  });
+}
+export function getRelatedProducts(el) {
+  return useQuery({
+    queryKey: ["sindleProduct"],
+    queryFn: fetchData,
+    select: (data) => {
+      return data.data.filter((e) => e.cat === el.cat);
+    },
+    keepPreviousData: true,
+    enabled: !!el,
   });
 }

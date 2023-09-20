@@ -1,4 +1,5 @@
 @use "../../variables/variables" as *;
+@forward "./singleProduct";
 .shop {
   min-height: 100vh;
   .shop-container {

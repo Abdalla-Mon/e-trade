@@ -4,9 +4,9 @@ import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 import { createHashRouter, createRoutesFromElements } from "react-router-dom";
 import Navbar from "./router/Navbar";
 import Home from "./home/Home";
-import Shop from "./shop/Shop";
 import React from "react";
 import ShopSkeleton from "./fixed-component/ShopSkeleton";
+import SingleProductPage from "./shop/singleProduct/SingleProduct";
 const LazyProducts = React.lazy(() => import("./shop/Shop"));
 const router = createHashRouter(
   createRoutesFromElements(
@@ -20,6 +20,8 @@ const router = createHashRouter(
           </React.Suspense>
         }
       />
+
+      <Route path="/shop/:productID" element={<SingleProductPage />} />
     </Route>
   )
 );

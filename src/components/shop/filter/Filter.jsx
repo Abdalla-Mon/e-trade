@@ -6,6 +6,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { filterByCat, filterByPrice } from "../../../redux/filterSLice";
 import { fetchSearchProducts } from "../../react-query/FetchData";
 import { Box, Slider } from "@mui/material";
+import { QueryCache, QueryClient, useQueryClient } from "@tanstack/react-query";
 /* eslint-disable react/display-name */
 export const FilterBtn = memo(() => {
   const clickFnc = useClickAway();
@@ -117,7 +118,8 @@ function Categroies() {
 function FilteringPrice() {
   const clickFnc = useClickAway();
   const filterData = useSelector((e) => e.data);
-  const { data } = fetchSearchProducts("");
+  const { data } = useQueryClient().getQueryData(["AllProducts"]);
+
   let prices = data.map((e) => e.price);
   let maxValue = Math.max(...prices);
   let minValue = Math.min(...prices);

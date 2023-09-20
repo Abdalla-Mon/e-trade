@@ -32,9 +32,13 @@
     }
   }
 }
+
 .custom-swiper {
   position: unset !important;
   .swiper-slide {
+    .shop-card {
+      align-items: center;
+    }
     a {
       color: $body-color;
       font-size: 1.2rem;
