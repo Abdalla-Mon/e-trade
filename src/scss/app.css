@@ -1061,7 +1061,7 @@
 
 .single-product-page {
   background-color: #f9f3f0;
-  padding-top: 60px 15px;
+  padding: 60px 15px 0;
 }
 .single-product-page .gallery .img-container {
   background-color: #f6f7fb;
