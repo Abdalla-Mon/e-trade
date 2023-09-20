@@ -117,7 +117,7 @@ export function ShopCard(e) {
           </Link>
         </div>
       </div>
-      <Link to={"/" + e.id}>{e.name}</Link>
+      <Link to={"/shop/" + e.id}>{e.name}</Link>
       <h3 className="card-price flex gap-3 justify-center mb-1">
         <span>${e.price}</span>
         {e.desc ? <span className="old-price">${e.price - e.desc}</span> : null}

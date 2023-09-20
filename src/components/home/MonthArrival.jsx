@@ -26,7 +26,7 @@ function MonthArrivalCard(e) {
       <div className="img-container relative">
         <img src={e.img} alt={e.id} />
       </div>
-      <Link to={"/" + e.id}>{e.name}</Link>
+      <Link to={"/shop/" + e.id}>{e.name}</Link>
       <h3 className="card-price flex gap-3 justify-center">
         <span>${e.price}</span>
         {e.desc ? <span className="old-price">${e.price - e.desc}</span> : null}
@@ -34,7 +34,7 @@ function MonthArrivalCard(e) {
       <div className="show-btns flex gap-1">
         <AddToWhishList item={e} />
         <AddToCart text={true} item={e} />
-        <Link className="inspect-icon" to={"/" + e.id}>
+        <Link className="inspect-icon" to={"/shop/" + e.id}>
           <FiEye />
         </Link>
       </div>

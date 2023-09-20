@@ -27,7 +27,7 @@ function BestSellerCard(e) {
       <h5>${e.price}</h5>
       <Rating name="read-only" value={4} readOnly />
 
-      <Link to={e.id}>
+      <Link to={"/shop/" + e.id}>
         <img src={e.img} alt={e.name} />
       </Link>
       <AddToCart item={e} />
