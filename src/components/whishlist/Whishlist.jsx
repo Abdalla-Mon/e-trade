@@ -1,5 +1,5 @@
 import { useDispatch, useSelector } from "react-redux";
-import { addToCart, addToWishList } from "../../redux/cartSlice";
+import { addToWishList } from "../../redux/cartSlice";
 import { AiOutlineClose } from "react-icons/ai";
 import { AddToCart, handleWishList } from "../fixed-component/FixedComponent";
 
@@ -20,7 +20,7 @@ export default function Whishlist() {
           <h4>Your Whish List</h4>
           <h6
             onClick={() => {
-              dispatch(addToWishList([[], 0]));
+              dispatch(addToWishList([[], -cartData.numOfWishlistItems]));
             }}
           >
             Clear your Wish List
@@ -80,7 +80,6 @@ function TableBody() {
 function TableTd({ e }) {
   const cartData = useSelector((e) => e.cart);
   const dispatch = useDispatch();
-  console.log(e);
 
   return (
     <tr>

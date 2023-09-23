@@ -1,6 +1,5 @@
 import { Route, Outlet, RouterProvider } from "react-router-dom";
 import { QueryClientProvider, QueryClient } from "@tanstack/react-query";
-import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 import { createHashRouter, createRoutesFromElements } from "react-router-dom";
 import Navbar from "./router/Navbar";
 import Home from "./home/Home";
@@ -9,6 +8,16 @@ import ShopSkeleton from "./fixed-component/ShopSkeleton";
 import SingleProductPage from "./shop/singleProduct/SingleProduct";
 import Cart from "./cart/Cart";
 import Whishlist from "./whishlist/Whishlist";
+import { SnackbarProvider } from "notistack";
+import { MaterialDesignContent } from "notistack";
+import styled from "@emotion/styled";
+
+const StyledMaterialDesignContent = styled(MaterialDesignContent)(() => ({
+  "&.notistack-MuiContent-success": {
+    backgroundColor: "#f6f7fb",
+    color: "#000000",
+  },
+}));
 const LazyProducts = React.lazy(() => import("./shop/Shop"));
 const router = createHashRouter(
   createRoutesFromElements(
@@ -35,18 +44,20 @@ function App() {
   return (
     <QueryClientProvider client={queryClient}>
       <RouterProvider router={router} />
-
-      <ReactQueryDevtools />
     </QueryClientProvider>
   );
 }
 function Routes() {
   return (
-    <>
+    <SnackbarProvider
+      Components={{
+        success: StyledMaterialDesignContent,
+      }}
+    >
       <Navbar />
       <Outlet />
       <footer />
-    </>
+    </SnackbarProvider>
   );
 }
 

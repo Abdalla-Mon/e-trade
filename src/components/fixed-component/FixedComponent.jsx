@@ -9,6 +9,7 @@ import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { addToCart, addToWishList } from "../../redux/cartSlice";
 import { motion } from "framer-motion";
+import { closeSnackbar, enqueueSnackbar } from "notistack";
 
 export class CartItem {
   constructor(item) {
@@ -24,7 +25,33 @@ export class CartItem {
     return this.item;
   }
 }
-
+const message = "Added to cart";
+const action = (snackbarId) => (
+  <>
+    <button
+      className="dismiss"
+      onClick={() => {
+        closeSnackbar(snackbarId);
+      }}
+    >
+      Dismiss
+    </button>
+    <Link to={"/cart"} className="snack-bar-cart">
+      View cart
+    </Link>
+  </>
+);
+function addToCartPopup() {
+  enqueueSnackbar(message, {
+    variant: "success",
+    autoHideDuration: 2000,
+    action,
+    anchorOrigin: {
+      vertical: "top",
+      horizontal: "left",
+    },
+  });
+}
 export function handleCart(cartItems, cartItem, quantityToAdd) {
   let isItemAlreadyInCart = cartItems
     .map((item) => item.id)
@@ -48,7 +75,7 @@ export function handleCart(cartItems, cartItem, quantityToAdd) {
 export function AddToCart({ text, item, quantity = 1 }) {
   const cartSlice = useSelector((state) => state.cart);
   const cartItems = cartSlice.cart.slice();
-  const cartItem = new CartItem(item);
+  const cartItem = new CartItem({ ...item });
   const dispatch = useDispatch();
   return (
     <div
@@ -56,6 +83,7 @@ export function AddToCart({ text, item, quantity = 1 }) {
       onClick={() => {
         const updatedCartItems = handleCart(cartItems, cartItem, quantity);
         dispatch(addToCart({ cartItems: updatedCartItems, quantity }));
+        addToCartPopup(item.id);
       }}
     >
       {text ? (
