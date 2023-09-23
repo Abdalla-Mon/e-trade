@@ -7,6 +7,8 @@ import Home from "./home/Home";
 import React from "react";
 import ShopSkeleton from "./fixed-component/ShopSkeleton";
 import SingleProductPage from "./shop/singleProduct/SingleProduct";
+import Cart from "./cart/Cart";
+import Whishlist from "./whishlist/Whishlist";
 const LazyProducts = React.lazy(() => import("./shop/Shop"));
 const router = createHashRouter(
   createRoutesFromElements(
@@ -20,6 +22,8 @@ const router = createHashRouter(
           </React.Suspense>
         }
       />
+      <Route path="cart" element={<Cart />} />
+      <Route path="wishlist" element={<Whishlist />} />
 
       <Route path="/shop/:productID" element={<SingleProductPage />} />
     </Route>

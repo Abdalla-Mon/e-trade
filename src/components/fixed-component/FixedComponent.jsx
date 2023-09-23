@@ -1,5 +1,5 @@
 import { Rating } from "@mui/material";
-import React, { useState } from "react";
+import React, { useRef, useState } from "react";
 import { AiOutlineCheck, AiOutlineHeart } from "react-icons/ai";
 import { BiSolidChevronRight } from "react-icons/bi";
 import { FaCartPlus } from "react-icons/fa";
@@ -9,6 +9,7 @@ import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { addToCart, addToWishList } from "../../redux/cartSlice";
 import { motion } from "framer-motion";
+
 export class CartItem {
   constructor(item) {
     this.item = item;
@@ -23,24 +24,29 @@ export class CartItem {
     return this.item;
   }
 }
-function handleCart(arrayOFItems, item, count) {
-  let currentId = arrayOFItems.map((e) => e.id).includes(item.item.id);
-  if (!currentId) {
-    item.increasQty(count);
-    arrayOFItems.push(item.result());
+
+export function handleCart(cartItems, cartItem, quantityToAdd) {
+  let isItemAlreadyInCart = cartItems
+    .map((item) => item.id)
+    .includes(cartItem.item.id);
+
+  if (!isItemAlreadyInCart) {
+    cartItem.increasQty(quantityToAdd);
+    cartItems.push(cartItem.result());
   } else {
-    arrayOFItems = arrayOFItems.map((e) => {
-      if (e.id === item.item.id) {
-        e = { ...e, qty: e.qty + count };
+    cartItems = cartItems.map((item) => {
+      if (item.id === cartItem.item.id) {
+        item = { ...item, qty: item.qty + quantityToAdd };
       }
-      return e;
+      return item;
     });
   }
-  return arrayOFItems;
+
+  return cartItems;
 }
 
-export function AddToCart({ text, item, count = 1 }) {
-  const cartSlice = useSelector((e) => e.cart);
+export function AddToCart({ text, item, quantity = 1 }) {
+  const cartSlice = useSelector((state) => state.cart);
   const cartItems = cartSlice.cart.slice();
   const cartItem = new CartItem(item);
   const dispatch = useDispatch();
@@ -48,7 +54,8 @@ export function AddToCart({ text, item, count = 1 }) {
     <div
       className="cart-icon flex item-center gap-2"
       onClick={() => {
-        dispatch(addToCart([handleCart(cartItems, cartItem, count), count]));
+        const updatedCartItems = handleCart(cartItems, cartItem, quantity);
+        dispatch(addToCart({ cartItems: updatedCartItems, quantity }));
       }}
     >
       {text ? (
@@ -61,9 +68,10 @@ export function AddToCart({ text, item, count = 1 }) {
     </div>
   );
 }
-function handleWishList(arrayOfItems, item, remove) {
+
+export function handleWishList(arrayOfItems, item, remove) {
   if (remove) {
-    arrayOfItems = arrayOfItems.map((e) => e.id !== item.id);
+    arrayOfItems = arrayOfItems.filter((e) => e.id !== item.id);
     return [arrayOfItems, -1];
   }
   let currentId = arrayOfItems.map((e) => e.id).includes(item.id);
@@ -72,19 +80,21 @@ function handleWishList(arrayOfItems, item, remove) {
   return [arrayOfItems, 1];
 }
 export function AddToWhishList({ item }) {
-  const [remove, setRemove] = useState(false);
   const cartSlice = useSelector((e) => e.cart);
+  const [added, setAdded] = useState(
+    cartSlice.wishList.some((e) => e.id === item.id)
+  );
   const wishListItems = cartSlice.wishList.slice();
   const dispatch = useDispatch();
   return (
     <div
       className="love-icon"
       onClick={() => {
-        dispatch(addToWishList(handleWishList(wishListItems, item, remove)));
-        setRemove(!remove);
+        dispatch(addToWishList(handleWishList(wishListItems, item, added)));
+        setAdded(!added);
       }}
     >
-      {remove ? (
+      {added ? (
         <motion.div
           animate={{ rotate: 360, opacity: 1 }}
           initial={{ opacity: 0, overflow: "hidden" }}
@@ -104,6 +114,14 @@ export function AddToWhishList({ item }) {
     </div>
   );
 }
+export function CardPrice({ e, additionalClass }) {
+  return (
+    <h3 className={"card-price flex gap-3  mb-1 " + additionalClass}>
+      <span>${e.price - (e.desc || 0)}</span>
+      {e.desc ? <span className="old-price">${e.price}</span> : null}
+    </h3>
+  );
+}
 export function ShopCard(e) {
   return (
     <div className="shop-card new-arrival-card flex flex-col justify-center text-center relative">
@@ -112,20 +130,32 @@ export function ShopCard(e) {
         <div className="show-btns flex gap-1">
           <AddToWhishList item={e} />
           <AddToCart text={true} item={e} />
-          <Link className="inspect-icon" to={"/shop/" + e.id}>
+          <Link
+            className="inspect-icon"
+            to={"/shop/" + e.id}
+            onClick={() => {
+              window.scrollTo({ top: 0, behavior: "smooth" });
+            }}
+          >
             <FiEye />
           </Link>
         </div>
       </div>
-      <Link to={"/shop/" + e.id}>{e.name}</Link>
-      <h3 className="card-price flex gap-3 justify-center mb-1">
-        <span>${e.price}</span>
-        {e.desc ? <span className="old-price">${e.price - e.desc}</span> : null}
-      </h3>
+      <Link
+        to={"/shop/" + e.id}
+        onClick={() => {
+          window.scrollTo({ top: 0, behavior: "smooth" });
+        }}
+      >
+        {e.name}
+      </Link>
+
+      <CardPrice e={e} additionalClass={" justify-center"} />
       <Rating name="read-only" value={4} readOnly />
     </div>
   );
 }
+
 export function ShopListProduct({ e }) {
   return (
     <div className="searched-prod items-center flex gap-8">
@@ -147,10 +177,7 @@ export function ShopListProduct({ e }) {
             est, perspiciatis sapiente sint.
           </p>
           <Rating name="read-only" value={4} readOnly />
-          <h3 className="card-price flex gap-3  mb-1">
-            <span>${e.price - (e.desc || 0)}</span>
-            {e.desc ? <span className="old-price">${e.price}</span> : null}
-          </h3>{" "}
+          <CardPrice e={e} />
         </div>
         <div className="icons flex gap-4 ">
           <AddToCart item={e} />
@@ -164,23 +191,24 @@ export function SingleProduct({ e }) {
   return (
     <div className="searched-prod items-center flex justify-between gap-8">
       <div className="left">
-        <img
-          src={e.img}
-          loading="lazy"
-          alt={e.name}
-          style={{ width: "200px" }}
-        />
+        <img src={e.img} loading="lazy" alt={e.name} width={"200px"} />
       </div>
       <div className="right tab:items-center flex gap-4 tab:justify-between tab:flex-row flex-col">
         <div className="">
           <Rating name="read-only" value={4} readOnly />
           <h4>
-            <Link to={"/shop/" + e.id}>{e.name}</Link>
+            <Link
+              to={"/shop/" + e.id}
+              onClick={() => {
+                document
+                  .querySelector(".searchbar-container .close-btn ")
+                  .click();
+              }}
+            >
+              {e.name}
+            </Link>
           </h4>
-          <h3 className="card-price flex gap-3  mb-1">
-            <span>${e.price - (e.desc || 0)}</span>
-            {e.desc ? <span className="old-price">${e.price}</span> : null}
-          </h3>{" "}
+          <CardPrice e={e} />
         </div>
         <div className="icons flex gap-4 tab:flex-col ">
           <AddToCart item={e} />

@@ -1,7 +1,7 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Divider, IconButton, InputBase, Paper } from "@mui/material";
 import CatDrawer from "./CatDrawer";
-import { NavLink } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import NavItemsDrawer from "./NavItemsDrawer";
 import { useState } from "react";
 import SearchBar from "./SearchBar";
@@ -69,14 +69,21 @@ function Icons() {
   return (
     <div className="nav-icons flex">
       <div className="nav-icon love-icon relative">
-        <AiOutlineHeart key={"love-icon"} />
-        <span className="wish-count absolute">
-          {cartSlice.numOfWishlistItems}
-        </span>
+        <Link to="/wishlist">
+          <AiOutlineHeart key={"love-icon"} />
+          <span className="wish-count absolute">
+            {cartSlice.numOfWishlistItems}
+          </span>
+        </Link>
       </div>
       <div className="nav-icon cart-icon relative">
-        <BiCart key={"cart-icon"} />
-        <span className="cart-count absolute">{cartSlice.numOfCartItems}</span>
+        <Link to="/cart">
+          {" "}
+          <BiCart key={"cart-icon"} />
+          <span className="cart-count absolute">
+            {cartSlice.numOfCartItems}
+          </span>
+        </Link>
       </div>
       <div className="nav-icon ">
         <BiUser key={"user-icon"} />
@@ -126,7 +133,6 @@ function LowerNav() {
       transition={
         !animation ? { position: { delay: 0.3 }, top: { duration: 0.6 } } : ""
       }
-      // layout
     >
       <div className="container mx-auto">
         <motion.div className="flex justify-between items-center">

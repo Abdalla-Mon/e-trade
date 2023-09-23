@@ -1,12 +1,16 @@
 import { Link } from "react-router-dom";
-import data from "../../srcDb/home.json";
 import { AddToCart } from "../fixed-component/FixedComponent";
 
 import { CustomSwiperContainer } from "../fixed-component/CustomSwiper";
 import { HiOutlineShoppingBag } from "react-icons/hi";
 import { Rating } from "@mui/material";
+import { getHomeData } from "../react-query/FetchData";
+function selector(data) {
+  return data.filter((e) => e.bestSeller);
+}
 export default function BestSeller() {
-  const bestSellerData = data.filter((e) => e.bestSeller);
+  const { data: bestSellerData, isLoading } = getHomeData(selector);
+  if (isLoading) return "loading";
   return (
     <CustomSwiperContainer
       data={bestSellerData}

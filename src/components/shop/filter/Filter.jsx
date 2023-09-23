@@ -4,12 +4,12 @@ import { motion } from "framer-motion";
 import { memo, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { filterByCat, filterByPrice } from "../../../redux/filterSLice";
-import { fetchSearchProducts } from "../../react-query/FetchData";
 import { Box, Slider } from "@mui/material";
-import { QueryCache, QueryClient, useQueryClient } from "@tanstack/react-query";
+import { useQueryClient } from "@tanstack/react-query";
 /* eslint-disable react/display-name */
 export const FilterBtn = memo(() => {
   const clickFnc = useClickAway();
+  const [filterState, setFilterState] = useState("All");
   return (
     <>
       <div
@@ -20,25 +20,27 @@ export const FilterBtn = memo(() => {
         }}
       >
         <BiFilter />
-        Filter
+        Filter : {filterState}
       </div>
-      {clickFnc.openFilter ? <FilteringSection /> : null}
+      {clickFnc.openFilter ? (
+        <FilteringSection setFilterState={setFilterState} />
+      ) : null}
     </>
   );
 });
-function FilteringSection() {
+function FilteringSection({ setFilterState }) {
   return (
     <motion.div
       className="filter-section flex gap-8 tab:gap-10 flex-col tab:flex-row"
       initial={{ height: 0 }}
       animate={{ height: "fit-content" }}
     >
-      <Categroies />
+      <Categroies setFilterState={setFilterState} />
       <FilteringPrice />
     </motion.div>
   );
 }
-function Categroies() {
+function Categroies({ setFilterState }) {
   const clickFnc = useClickAway();
 
   const [subCatState, SetSubCatState] = useState(false);
@@ -57,6 +59,7 @@ function Categroies() {
   const dispatch = useDispatch();
   function handleClick(catName, catType) {
     dispatch(filterByCat([catType, catName]));
+    setFilterState(catName.toUpperCase());
     clickFnc.handleFilterClick();
   }
 
@@ -145,7 +148,6 @@ function FilteringPrice() {
     } else {
       setValue1([value1[0], Math.max(newValue[1], value1[0] + minDistance)]);
     }
-    // console.log(document.querySelectorAll(".price-slider input span span"));
   };
 
   return (

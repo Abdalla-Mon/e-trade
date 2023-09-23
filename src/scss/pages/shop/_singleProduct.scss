@@ -4,6 +4,9 @@
 
   padding: 60px 15px 0;
   .gallery {
+    img {
+      width: 100%;
+    }
     .img-container {
       background-color: #f6f7fb;
       border-radius: 6px;
@@ -82,7 +85,7 @@
     }
   }
   .product-text {
-    padding-bottom: 40px;
+    // padding-bottom: 40px;
     h1 {
       font-weight: bold;
       text-transform: capitalize;
@@ -236,5 +239,13 @@
         }
       }
     }
+  }
+  .description {
+    color: $primary-color !important;
+  }
+}
+.related {
+  .icon {
+    background-color: $primary-light;
   }
 }

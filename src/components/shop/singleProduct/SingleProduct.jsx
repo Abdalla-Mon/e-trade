@@ -9,33 +9,37 @@ import { Divider, Rating } from "@mui/material";
 import {
   AddToCart,
   AddToWhishList,
+  ShopCard,
 } from "../../fixed-component/FixedComponent";
+import { CustomSwiperContainer } from "../../fixed-component/CustomSwiper";
+import { HiOutlineShoppingBag } from "react-icons/hi";
 
 export default function SingleProductPage() {
   const { productID } = useParams();
 
-  const { data, isLoading, isFetching } = fetchSingleProduct(productID);
+  const { data, isLoading } = fetchSingleProduct(productID);
 
-  const {
-    data: related,
-    isLoading: relatedLoading,
-    isFetching: relatedFetchin,
-  } = getRelatedProducts(data);
-  console.log(data);
   if (isLoading) {
     return <p>loading....</p>;
   }
 
   return (
-    <div className="single-product-page">
-      <div className="container mx-auto">
-        <div className="single-product flex flex-col lap:flex-row gap-8">
-          {" "}
-          <Gallery img={data.img} />
-          <ProductText e={data} />
+    <>
+      <div className="single-product-page">
+        <div className="container mx-auto">
+          <div className="single-product flex flex-col lap:flex-row gap-8">
+            {" "}
+            <Gallery img={data.img} />
+            <ProductText e={data} />
+          </div>
         </div>
       </div>
-    </div>
+      <div className="related">
+        <div className="container mx-auto">
+          <Related productData={data} />
+        </div>
+      </div>
+    </>
   );
 }
 function Gallery({ img }) {
@@ -93,6 +97,7 @@ function ProductText({ e }) {
       <Colors />
       <Sizes />
       <AddingToCart e={e} />
+      <Description />
     </div>
   );
 }
@@ -156,7 +161,7 @@ function AddingToCart({ e }) {
     <>
       <div className="cart-input flex gap-2">
         <Input setQty={setQty} qty={qty} />
-        <AddToCart text={true} count={qty} item={e} />
+        <AddToCart text={true} quantity={qty} item={e} />
         <AddToWhishList item={e} />
       </div>
     </>
@@ -185,5 +190,42 @@ function Input({ setQty, qty }) {
         +
       </div>
     </>
+  );
+}
+function Description() {
+  return (
+    <>
+      <h1 className="description mt-16 mb-11">Description</h1>
+      <h2>Specifications:</h2>
+
+      <p className="my-6">
+        We&apos;ve created a full-stack structure for our working workflow
+        processes, were from the funny the century initial all the made, have
+        spare to negatives. But the structure was from the funny the century
+        rather, initial all the made, have spare to negatives.
+      </p>
+      <h2>Care & Maintenance:</h2>
+      <p className="my-6">
+        Use warm water to describe us as a product team that creates amazing
+        UI/UX experiences, by crafting top-notch user experience.
+      </p>
+    </>
+  );
+}
+function Related({ productData }) {
+  const { data, isLoading } = getRelatedProducts(productData);
+
+  if (isLoading) return "loading";
+  return (
+    <div className="related">
+      <CustomSwiperContainer
+        data={data}
+        text={"Same category"}
+        swiperEle={ShopCard}
+        head={"Related products"}
+        icon={<HiOutlineShoppingBag />}
+        className={"related products"}
+      />
+    </div>
   );
 }

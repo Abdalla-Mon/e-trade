@@ -1,19 +1,19 @@
 import BestSeller from "./BestSeller";
 import HomeLanding from "./HomeLanding";
 import HomeOffer from "./HomeOffer";
-import MonthArrival from "./MonthArrival";
-import NewArrival from "./NewArrival";
+import WeeklyArrival from "./WeeklyArrival";
 import Newsletter from "./Newsletter";
 import Testimonials from "./Testimonials";
+import MonthlyArrival from "./MonthlyArrival";
 export default function Home() {
   return (
     <>
       <HomeLanding />
-      <NewArrival />
+      <WeeklyArrival />
       <BestSeller />
       <HomeOffer />
       <Testimonials />
-      <MonthArrival />
+      <MonthlyArrival />
       <Newsletter />
     </>
   );

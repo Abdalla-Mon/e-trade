@@ -4,15 +4,19 @@ import { FiEye } from "react-icons/fi";
 import data from "../../srcDb/home.json";
 import { CustomSwiperContainer } from "../fixed-component/CustomSwiper";
 import { HiOutlineShoppingBag } from "react-icons/hi";
+import { getHomeData } from "../react-query/FetchData";
+function selector(data) {
+  return data.filter((e) => e.prod);
+}
 
-const newArrivalData = data.filter((e) => e.prod);
-
-export default function MonthArrival() {
+export default function MonthlyArrival() {
+  const { data: monthlyArrivalData, isLoading } = getHomeData(selector);
+  if (isLoading) return "loading";
   return (
     <CustomSwiperContainer
-      data={newArrivalData}
+      data={monthlyArrivalData}
       text={"This Month's"}
-      swiperEle={MonthArrivalCard}
+      swiperEle={MonthlyArrivalCard}
       head={"New Arrivals"}
       icon={<HiOutlineShoppingBag />}
       className={"month-arrival"}
@@ -20,7 +24,7 @@ export default function MonthArrival() {
   );
 }
 
-function MonthArrivalCard(e) {
+export function MonthlyArrivalCard(e) {
   return (
     <div className="shop-card month-arrival flex flex-col justify-center text-center relative">
       <div className="img-container relative">

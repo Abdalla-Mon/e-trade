@@ -2,9 +2,10 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import "swiper/css/navigation";
 import { BsArrowLeft, BsArrowRight } from "react-icons/bs";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 import { Navigation } from "swiper/modules";
-import { motion, useAnimate, useAnimationControls } from "framer-motion";
+import { motion, useAnimationControls } from "framer-motion";
+
 export function CustomSwiperContainer({
   className,
   icon,
@@ -31,14 +32,11 @@ export function CustomSwiperContainer({
 export default function CustomSwiper({ data, num, swiperEle }) {
   const [animation, setAnimation] = useState(false);
   const controls = useAnimationControls();
-  const [scope, animate] = useAnimate();
   useEffect(() => {
     controls.start({
-      // x: ["100px", "-100px", "0px"],
       opacity: [0, 1],
       transition: { duration: 0.6 },
     });
-    // return controls.stop();
   }, [animation]);
   return (
     <>
@@ -68,6 +66,7 @@ export default function CustomSwiper({ data, num, swiperEle }) {
                 animate={controls}
               >
                 {swiperEle(el)}
+                {/* {swiperEle(el)} */}
               </motion.div>
             </SwiperSlide>
           );
