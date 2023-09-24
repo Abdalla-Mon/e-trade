@@ -1981,6 +1981,73 @@
   opacity: 1;
 }
 
+.contact {
+  padding: 60px 15px;
+}
+.contact h1 {
+  margin-top: 0;
+  color: #292930;
+  font-weight: bold;
+  margin-bottom: 15px;
+}
+.contact h2 {
+  margin-top: 0;
+  color: #292930;
+  font-size: calc(1.4rem + 0.5vw);
+  font-weight: bold;
+}
+.contact .left p {
+  margin-bottom: 40px;
+}
+.contact p {
+  color: #777777;
+}
+.contact label {
+  width: 100%;
+  height: 100%;
+  background: #ffffff;
+  padding: 12px;
+  border-radius: 8px;
+  border: 1px solid #cbd3d9;
+  display: block;
+}
+.contact label span {
+  position: absolute;
+  z-index: 1;
+  top: -8px;
+  left: 15px;
+  background: white;
+  color: #777777;
+  padding: 0 8px;
+}
+.contact .message-label {
+  height: 300px;
+  margin-top: 30px;
+}
+.contact input {
+  outline: none;
+  padding: 10px 5px;
+}
+.contact button {
+  background-color: #3577f0;
+  color: #ffffff;
+  padding: 25px 40px;
+  margin-top: 30px;
+  border-radius: 8px;
+  transition: 0.3s;
+  -webkit-transition: 0.3s;
+  -moz-transition: 0.3s;
+  -ms-transition: 0.3s;
+  -o-transition: 0.3s;
+  -webkit-border-radius: 8px;
+  -moz-border-radius: 8px;
+  -ms-border-radius: 8px;
+  -o-border-radius: 8px;
+}
+.contact button:hover {
+  scale: 1.1;
+}
+
 .shop-card:hover img {
   scale: 1.2;
 }
