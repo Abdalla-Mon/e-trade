@@ -1,5 +1,7 @@
 @use "../../variables/variables" as *;
 .upper-footer {
+  position: relative;
+
   border-top: 1px solid #f6f7fb;
   padding: 60px 15px 50px;
   h5 {
@@ -46,6 +48,7 @@
   }
 }
 .lower-footer {
+  position: relative;
   padding: 25px 0;
   border-top: 1px solid #f6f7fb;
   color: $body-color;
