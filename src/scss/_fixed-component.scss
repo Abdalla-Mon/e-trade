@@ -10,6 +10,7 @@
   }
   .img-container {
     overflow: hidden;
+    width: 100%;
     background-color: #f6f7fb;
     border-radius: 6px;
     -webkit-border-radius: 6px;
@@ -137,4 +138,18 @@
 }
 .snack-bar-cart {
   margin-left: 10px;
+}
+.custom-header {
+  .flex {
+    color: $primary-light;
+    font-weight: 600;
+    .icon {
+      padding: 6px;
+      border-radius: 50%;
+      background-color: $primary-light;
+    }
+    svg {
+      color: $white-color;
+    }
+  }
 }

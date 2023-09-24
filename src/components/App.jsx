@@ -11,6 +11,10 @@ import Whishlist from "./whishlist/Whishlist";
 import { SnackbarProvider } from "notistack";
 import { MaterialDesignContent } from "notistack";
 import styled from "@emotion/styled";
+import Footer from "./router/Footer";
+const LazyAbout = React.lazy(() => import("./about/About"));
+const LazyProducts = React.lazy(() => import("./shop/Shop"));
+const LazyContact = React.lazy(() => import("./contact/Contact"));
 
 const StyledMaterialDesignContent = styled(MaterialDesignContent)(() => ({
   "&.notistack-MuiContent-success": {
@@ -18,7 +22,6 @@ const StyledMaterialDesignContent = styled(MaterialDesignContent)(() => ({
     color: "#000000",
   },
 }));
-const LazyProducts = React.lazy(() => import("./shop/Shop"));
 const router = createHashRouter(
   createRoutesFromElements(
     <Route path="" element={<Routes />}>
@@ -33,7 +36,22 @@ const router = createHashRouter(
       />
       <Route path="cart" element={<Cart />} />
       <Route path="wishlist" element={<Whishlist />} />
-
+      <Route
+        path="about"
+        element={
+          <React.Suspense fallback={<p>loading</p>}>
+            <LazyAbout />
+          </React.Suspense>
+        }
+      />
+      <Route
+        path="contact"
+        element={
+          <React.Suspense fallback={<p>loading</p>}>
+            <LazyContact />
+          </React.Suspense>
+        }
+      />
       <Route path="/shop/:productID" element={<SingleProductPage />} />
     </Route>
   )
@@ -56,7 +74,7 @@ function Routes() {
     >
       <Navbar />
       <Outlet />
-      <footer />
+      <Footer />
     </SnackbarProvider>
   );
 }

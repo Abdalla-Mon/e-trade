@@ -1,7 +1,6 @@
 import { Link } from "react-router-dom";
 import { AddToCart, AddToWhishList } from "../fixed-component/FixedComponent";
 import { FiEye } from "react-icons/fi";
-import data from "../../srcDb/home.json";
 import { CustomSwiperContainer } from "../fixed-component/CustomSwiper";
 import { HiOutlineShoppingBag } from "react-icons/hi";
 import { getHomeData } from "../react-query/FetchData";

@@ -266,3 +266,14 @@ export function PageLayout({ head, links }) {
     </div>
   );
 }
+export function CustomHeader({ icon, text, head }) {
+  return (
+    <div className="custom-header">
+      <div className="flex gap-2 items-center">
+        <div className="icon">{icon}</div>
+        {text}
+      </div>
+      <h1> {head}</h1>
+    </div>
+  );
+}

@@ -18,19 +18,6 @@
   .container {
     position: relative;
   }
-  .custom-header {
-    .flex {
-      color: $primary-light;
-      font-weight: 600;
-      .icon {
-        padding: 6px;
-        border-radius: 50%;
-      }
-      svg {
-        color: $white-color;
-      }
-    }
-  }
 }
 
 .custom-swiper {
@@ -100,9 +87,9 @@
 
   .custom-header {
     .flex {
-      color: $primary-light;
+      color: $primary-light !important;
       .icon {
-        background-color: $primary-light;
+        background-color: $primary-light !important;
       }
     }
   }
@@ -113,10 +100,10 @@
 
   .custom-header {
     .flex {
-      color: $secondary-color;
+      color: $secondary-color !important;
 
       .icon {
-        background-color: $secondary-color;
+        background-color: $secondary-color !important;
       }
     }
   }
@@ -274,7 +261,7 @@
     padding: 20px 0;
   }
   .icon {
-    background-color: $primary-light;
+    background-color: $primary-light !important;
   }
   .img-container {
     background-color: $secondary-bg;

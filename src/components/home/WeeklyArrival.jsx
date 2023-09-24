@@ -1,5 +1,3 @@
-import { Link } from "react-router-dom";
-import data from "../../srcDb/home.json";
 import { CustomSwiperContainer } from "../fixed-component/CustomSwiper";
 import { HiOutlineShoppingBag } from "react-icons/hi";
 import { ShopCard } from "../fixed-component/FixedComponent";

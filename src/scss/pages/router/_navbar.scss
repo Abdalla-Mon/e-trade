@@ -305,7 +305,8 @@
 .nav-icons {
   height: 100%;
   align-items: center;
-  .nav-icon {
+  .nav-icon,
+  .nav-icon a {
     width: 45px;
     height: 45px;
     border-radius: 50%;
@@ -315,7 +316,6 @@
     color: $body-color;
     position: relative;
     z-index: 1;
-    // overflow: hidden;
     cursor: pointer;
     font-size: 1.2rem;
     &::before {

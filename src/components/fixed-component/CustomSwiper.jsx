@@ -5,7 +5,7 @@ import { BsArrowLeft, BsArrowRight } from "react-icons/bs";
 import { useEffect, useState } from "react";
 import { Navigation } from "swiper/modules";
 import { motion, useAnimationControls } from "framer-motion";
-
+import { CustomHeader } from "./FixedComponent";
 export function CustomSwiperContainer({
   className,
   icon,
@@ -17,13 +17,7 @@ export function CustomSwiperContainer({
   return (
     <div className={"custom-container " + className}>
       <div className="container mx-auto">
-        <div className="custom-header">
-          <div className="flex gap-2 items-center">
-            <div className="icon">{icon}</div>
-            {text}
-          </div>
-          <h1> {head}</h1>
-        </div>
+        <CustomHeader icon={icon} text={text} head={head} />
         <CustomSwiper num={40} data={data} swiperEle={swiperEle} />
       </div>
     </div>
