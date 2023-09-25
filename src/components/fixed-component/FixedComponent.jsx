@@ -162,7 +162,7 @@ export function ShopCard(e) {
             className="inspect-icon"
             to={"/shop/" + e.id}
             onClick={() => {
-              window.scrollTo({ top: 0, behavior: "smooth" });
+              window.scrollTo({ top: 0, behavior: "instant" });
             }}
           >
             <FiEye />
@@ -172,7 +172,7 @@ export function ShopCard(e) {
       <Link
         to={"/shop/" + e.id}
         onClick={() => {
-          window.scrollTo({ top: 0, behavior: "smooth" });
+          window.scrollTo({ top: 0, behavior: "instant" });
         }}
       >
         {e.name}
@@ -188,7 +188,12 @@ export function ShopListProduct({ e }) {
   return (
     <div className="searched-prod items-center flex gap-8">
       <div className="left">
-        <Link to={"/shop/" + e.id}>
+        <Link
+          to={"/shop/" + e.id}
+          onClick={() => {
+            window.scrollTo({ top: 0, behavior: "instant" });
+          }}
+        >
           <img src={e.img} loading="lazy" alt={e.name} />
         </Link>
       </div>
@@ -196,7 +201,14 @@ export function ShopListProduct({ e }) {
       <div className="right  flex gap-4  flex-col">
         <div className="">
           <h4>
-            <Link to={"/shop/" + e.id}>{e.name}</Link>
+            <Link
+              to={"/shop/" + e.id}
+              onClick={() => {
+                window.scrollTo({ top: 0, behavior: "instant" });
+              }}
+            >
+              {e.name}
+            </Link>
           </h4>
           <p>
             Lorem ipsum dolor sit amet consectetur adipisicing elit. Nihil

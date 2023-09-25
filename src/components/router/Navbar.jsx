@@ -68,7 +68,12 @@ function Icons() {
 
   return (
     <div className="nav-icons flex">
-      <div className="nav-icon love-icon relative">
+      <div
+        className="nav-icon love-icon relative"
+        onClick={() => {
+          window.scrollTo({ top: 0, behavior: "instant" });
+        }}
+      >
         <Link to="/wishlist">
           <AiOutlineHeart key={"love-icon"} />
           <span className="wish-count absolute">
@@ -76,7 +81,12 @@ function Icons() {
           </span>
         </Link>
       </div>
-      <div className="nav-icon cart-icon relative">
+      <div
+        className="nav-icon cart-icon relative"
+        onClick={() => {
+          window.scrollTo({ top: 0, behavior: "instant" });
+        }}
+      >
         <Link to="/cart">
           {" "}
           <BiCart key={"cart-icon"} />
@@ -93,24 +103,7 @@ function Icons() {
     </div>
   );
 }
-const navItems = ["home", "shop", "about", "contact"];
-export function NavItems({ className }) {
-  return (
-    <ul
-      className={
-        "nav-ul gap-4 tab:gap-6 flex  tab:flex-row lap:items-center flex-col"
-      }
-    >
-      {navItems.map((el) => {
-        return (
-          <NavLink key={el} to={el === "home" ? "" : el} className="nav-item">
-            {el}
-          </NavLink>
-        );
-      })}
-    </ul>
-  );
-}
+
 function LowerNav() {
   const { scrollY } = useScroll();
   const [animation, setAnimation] = useState(false);
@@ -144,5 +137,30 @@ function LowerNav() {
         </motion.div>{" "}
       </div>{" "}
     </motion.nav>
+  );
+}
+const navItems = ["home", "shop", "about", "contact"];
+export function NavItems({ className }) {
+  return (
+    <ul
+      className={
+        "nav-ul gap-4 tab:gap-6 flex  tab:flex-row lap:items-center flex-col"
+      }
+    >
+      {navItems.map((el) => {
+        return (
+          <NavLink
+            onClick={() => {
+              window.scrollTo({ top: 0, behavior: "instant" });
+            }}
+            key={el}
+            to={el === "home" ? "" : el}
+            className="nav-item"
+          >
+            {el}
+          </NavLink>
+        );
+      })}
+    </ul>
   );
 }

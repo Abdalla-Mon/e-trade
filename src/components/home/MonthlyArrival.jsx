@@ -37,7 +37,13 @@ export function MonthlyArrivalCard(e) {
       <div className="show-btns flex gap-1">
         <AddToWhishList item={e} />
         <AddToCart text={true} item={e} />
-        <Link className="inspect-icon" to={"/shop/" + e.id}>
+        <Link
+          className="inspect-icon"
+          to={"/shop/" + e.id}
+          onClick={() => {
+            window.scrollTo({ top: 0, behavior: "instant" });
+          }}
+        >
           <FiEye />
         </Link>
       </div>

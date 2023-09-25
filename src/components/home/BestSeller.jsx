@@ -25,13 +25,24 @@ export default function BestSeller() {
 function BestSellerCard(e) {
   return (
     <div className="best-seller-card ">
-      <Link to={e.id} className="title-link">
+      <Link
+        to={"/shop/" + e.id}
+        className="title-link"
+        onClick={() => {
+          window.scrollTo({ top: 0, behavior: "instant" });
+        }}
+      >
         {e.name}
       </Link>
       <h5>${e.price}</h5>
       <Rating name="read-only" value={4} readOnly />
 
-      <Link to={"/shop/" + e.id}>
+      <Link
+        to={"/shop/" + e.id}
+        onClick={() => {
+          window.scrollTo({ top: 0, behavior: "instant" });
+        }}
+      >
         <img src={e.img} alt={e.name} />
       </Link>
       <AddToCart item={e} />
