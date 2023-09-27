@@ -48,7 +48,7 @@ const list = (anchor, toggleDrawer) => (
     onKeyDown={toggleDrawer(anchor, false)}
     className="nav-items-drawer block tab:hidden"
   >
-    <div className="flex justify-end">
+    <div className="flex">
       <div className="close-btn">
         <FontAwesomeIcon icon="fa-solid fa-xmark" />
       </div>
