@@ -1,6 +1,7 @@
 import { PageLayout } from "../fixed-component/FixedComponent";
 
 export default function Contact() {
+  
   return (
     <>
       <PageLayout head={"Contact"} links={["home"]} />
