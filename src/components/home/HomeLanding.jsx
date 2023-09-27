@@ -23,9 +23,9 @@ export default function HomeLanding() {
   );
 }
 const swiperData = [
-  { text: "Bloosom Smart Watch", img: "./landing-page/land-1.png" },
-  { text: "Delux Brand Watch", img: "./landing-page/land-2.png" },
-  { text: "Bloosom Smart Watch", img: "./landing-page/land-1.png" },
+  { text: "Bloosom Smart Watch", img: "./landing-page/land-1.webp" },
+  { text: "Delux Brand Watch", img: "./landing-page/land-2.webp" },
+  { text: "Bloosom Smart Watch", img: "./landing-page/land-1.webp" },
 ];
 function LandingSwiper() {
   return (
@@ -83,7 +83,7 @@ function BagElement() {
   return (
     <>
       <div className="img-container">
-        <img src="./landing-page/bag.png" alt="bag" />
+        <img src="./landing-page/bag.webp" alt="bag" />
         <Link to="shop">Yanti Leather Bags</Link>
         <h3>$39.50</h3>
       </div>
@@ -93,22 +93,22 @@ function BagElement() {
 const serviceData = [
   {
     id: "service-1",
-    img: "./landing-page/service1.png",
+    img: "./landing-page/service1.webp",
     text: "Fast & Secure Delivery",
   },
   {
     id: "service-2",
-    img: "./landing-page/service2.png",
+    img: "./landing-page/service2.webp",
     text: "100% Guarantee On Product",
   },
   {
     id: "service-3",
-    img: "./landing-page/service3.png",
+    img: "./landing-page/service3.webp",
     text: "Next Level Pro Quality",
   },
   {
     id: "service-4",
-    img: "./landing-page/service4.png",
+    img: "./landing-page/service4.webp",
     text: "24 Hour Return Policy",
   },
 ];

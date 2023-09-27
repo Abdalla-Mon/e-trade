@@ -1,7 +1,7 @@
 [
   {
     "id": "accessory-14",
-    "img": "./accessory-products/accessory-14.png",
+    "img": "./accessory-products/accessory-14.webp",
     "name": "diamond jewellery-11",
     "price": 95,
     "qty": 0,
@@ -14,7 +14,7 @@
   },
   {
     "id": "accessory-15",
-    "img": "./accessory-products/accessory-15.png",
+    "img": "./accessory-products/accessory-15.webp",
     "name": "diamond jewellery-12",
     "price": 75,
     "qty": 0,
@@ -27,7 +27,7 @@
   },
   {
     "id": "accessory-16",
-    "img": "./accessory-products/accessory-16.png",
+    "img": "./accessory-products/accessory-16.webp",
     "name": "diamond jewellery-13",
     "price": 100,
     "qty": 0,
@@ -38,7 +38,7 @@
   },
   {
     "id": "accessory-17",
-    "img": "./accessory-products/accessory-17.png",
+    "img": "./accessory-products/accessory-17.webp",
     "name": "diamond jewellery-14",
     "price": 85,
     "qty": 0,
@@ -50,7 +50,7 @@
   },
   {
     "id": "electronic-1",
-    "img": "./electronics-products/electronic-1.png",
+    "img": "./electronics-products/electronic-1.webp",
     "name": "electronic-1",
     "price": 500,
     "qty": 0,
@@ -62,7 +62,7 @@
 
   {
     "id": "electronic-5",
-    "img": "./electronics-products/electronic-5.png",
+    "img": "./electronics-products/electronic-5.webp",
     "name": "electronic-5",
     "price": 110,
     "qty": 0,
@@ -75,7 +75,7 @@
 
   {
     "id": "fashion-3",
-    "img": "./fashion-products/fashion-3.png",
+    "img": "./fashion-products/fashion-3.webp",
     "name": "clothes-3",
     "price": 65,
     "qty": 0,
@@ -89,7 +89,7 @@
 
   {
     "id": "fashion-8",
-    "img": "./fashion-products/fashion-8.png",
+    "img": "./fashion-products/fashion-8.webp",
     "name": "clothes-8",
     "price": 100,
     "qty": 0,
@@ -101,7 +101,7 @@
   },
   {
     "id": "fashion-9",
-    "img": "./fashion-products/fashion-9.png",
+    "img": "./fashion-products/fashion-9.webp",
     "name": "clothes-9",
     "price": 70,
     "qty": 0,
@@ -113,7 +113,7 @@
   },
   {
     "id": "fashion-10",
-    "img": "./fashion-products/fashion-10.png",
+    "img": "./fashion-products/fashion-10.webp",
     "name": "clothes-10",
     "price": 75,
     "qty": 0,
@@ -125,7 +125,7 @@
   },
   {
     "id": "fashion-11",
-    "img": "./fashion-products/fashion-11.png",
+    "img": "./fashion-products/fashion-11.webp",
     "name": "clothes-11",
     "price": 80,
     "qty": 0,
@@ -136,7 +136,7 @@
   },
   {
     "id": "fashion-12",
-    "img": "./fashion-products/fashion-12.png",
+    "img": "./fashion-products/fashion-12.webp",
     "name": "clothes-12",
     "price": 90,
     "qty": 0,
@@ -148,7 +148,7 @@
   },
   {
     "id": "fashion-13",
-    "img": "./fashion-products/fashion-13.png",
+    "img": "./fashion-products/fashion-13.webp",
     "name": "clothes-13",
     "price": 85,
     "qty": 0,
@@ -160,7 +160,7 @@
   },
   {
     "id": "fashion-14",
-    "img": "./fashion-products/fashion-14.png",
+    "img": "./fashion-products/fashion-14.webp",
     "name": "clothes-14",
     "price": 85,
     "qty": 0,
@@ -171,7 +171,7 @@
   },
   {
     "id": "fashion-15",
-    "img": "./fashion-products/fashion-15.png",
+    "img": "./fashion-products/fashion-15.webp",
     "name": "clothes-15",
     "price": 100,
     "qty": 0,

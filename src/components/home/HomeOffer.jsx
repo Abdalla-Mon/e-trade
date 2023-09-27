@@ -53,7 +53,7 @@ function Timer({ num, time }) {
 function Right() {
   return (
     <div className="img-container">
-      <img src="./landing-page/headphone.png" alt="headphone-img" />
+      <img src="./landing-page/headphone.webp" alt="headphone-img" />
     </div>
   );
 }

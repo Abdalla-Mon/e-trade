@@ -5,47 +5,47 @@ export default function Testimonials() {
     {
       head: "Head of idea",
       text: "Abdalla Refaat",
-      img: "./landing-page/avatar-1.png",
+      img: "./landing-page/avatar-1.webp",
     },
     {
       head: "Head of idea",
       text: "Abdalla Refaat",
-      img: "./landing-page/avatar-2.png",
+      img: "./landing-page/avatar-2.webp",
     },
     {
       head: "Head of idea",
       text: "Abdalla Refaat",
-      img: "./landing-page/avatar-3.png",
+      img: "./landing-page/avatar-3.webp",
     },
     {
       head: "Head of idea",
       text: "Abdalla Refaat",
-      img: "./landing-page/avatar-1.png",
+      img: "./landing-page/avatar-1.webp",
     },
     {
       head: "Head of idea",
       text: "Abdalla Refaat",
-      img: "./landing-page/avatar-2.png",
+      img: "./landing-page/avatar-2.webp",
     },
     {
       head: "Head of idea",
       text: "Abdalla Refaat",
-      img: "./landing-page/avatar-3.png",
+      img: "./landing-page/avatar-3.webp",
     },
     {
       head: "Head of idea",
       text: "Abdalla Refaat",
-      img: "./landing-page/avatar-1.png",
+      img: "./landing-page/avatar-1.webp",
     },
     {
       head: "Head of idea",
       text: "Abdalla Refaat",
-      img: "./landing-page/avatar-2.png",
+      img: "./landing-page/avatar-2.webp",
     },
     {
       head: "Head of idea",
       text: "Abdalla Refaat",
-      img: "./landing-page/avatar-3.png",
+      img: "./landing-page/avatar-3.webp",
     },
   ];
   return (
