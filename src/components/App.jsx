@@ -12,6 +12,7 @@ import { SnackbarProvider } from "notistack";
 import { MaterialDesignContent } from "notistack";
 import styled from "@emotion/styled";
 import Footer from "./router/Footer";
+import CheckOut from "./checkout/Checkout";
 const LazyAbout = React.lazy(() => import("./about/About"));
 const LazyProducts = React.lazy(() => import("./shop/Shop"));
 const LazyContact = React.lazy(() => import("./contact/Contact"));
@@ -35,6 +36,7 @@ const router = createHashRouter(
         }
       />
       <Route path="cart" element={<Cart />} />
+      <Route path="checkout" element={<CheckOut />} />
       <Route path="wishlist" element={<Whishlist />} />
       <Route
         path="about"

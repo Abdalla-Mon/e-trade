@@ -1,6 +1,9 @@
 @use "../../variables/variables" as *;
+@forward "./checkout";
 .cart {
   padding: 60px 15px;
+  min-height: 100vh;
+
   .cart-header {
     margin-bottom: 40px;
     h4 {

@@ -24,6 +24,11 @@ const cartSlice = createSlice({
       addToLocal("wishList", state.wishList);
       addToLocal("numOfWishlistItems", state.numOfWishlistItems);
     },
+    clearCart: (state) => {
+      (state.cart = []), (state.numOfCartItems = 0);
+      addToLocal("cartItems", state.cart);
+      addToLocal("cartItemsQuantity", state.numOfCartItems);
+    },
   },
 });
 
@@ -37,5 +42,6 @@ export const {
 
   handleCart,
   handleWishList,
+  clearCart,
 } = cartSlice.actions;
 export default cartSlice.reducer;

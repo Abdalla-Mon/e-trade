@@ -2,7 +2,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { addToCart } from "../../redux/cartSlice";
 import { AiOutlineClose } from "react-icons/ai";
 import { CartItem, handleCart } from "../fixed-component/FixedComponent";
-import { useEffect, useState } from "react";
+import { useState } from "react";
+import { Link } from "react-router-dom";
 export default function Cart() {
   const cartData = useSelector((e) => e.cart);
   const dispatch = useDispatch();
@@ -175,7 +176,9 @@ function CartTotal() {
         <div className="left">Total</div>
         <div className="right">${totalPrice}</div>
       </div>
-      <button>Process to checkout</button>
+      <button>
+        <Link to="/checkout">Process to checkout</Link>
+      </button>
     </div>
   );
 }
