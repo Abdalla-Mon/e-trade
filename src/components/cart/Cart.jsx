@@ -177,7 +177,14 @@ function CartTotal() {
         <div className="right">${totalPrice}</div>
       </div>
       <button>
-        <Link to="/checkout">Process to checkout</Link>
+        <Link
+          to="/checkout"
+          onClick={() => {
+            window.scrollTo({ top: 0, behavior: "instant" });
+          }}
+        >
+          Process to checkout
+        </Link>
       </button>
     </div>
   );

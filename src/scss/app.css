@@ -2016,6 +2016,9 @@
 }
 .cart .cart-total button {
   width: 100%;
+}
+.cart .cart-total button a {
+  width: 100%;
   padding: 20px 12px;
   background: #3577f0;
   color: #ffffff;
@@ -2026,8 +2029,9 @@
   -moz-transition: 0.3s;
   -ms-transition: 0.3s;
   -o-transition: 0.3s;
+  display: block;
 }
-.cart .cart-total button:hover {
+.cart .cart-total button a:hover {
   scale: 1.1;
 }
 .cart .cart-icon {

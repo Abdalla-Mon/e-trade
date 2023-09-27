@@ -17,7 +17,10 @@ export default function Navbar() {
         <div className="container mx-auto">
           <div className="flex justify-between p-5 pb-3">
             <div className="img-container flex items-center">
-              <img src="./logo.png" alt="logo" />
+              <Link to="/">
+                {" "}
+                <img src="./logo.png" alt="logo" />
+              </Link>
             </div>
             <div
               className="fake-search-bar w-3/6"

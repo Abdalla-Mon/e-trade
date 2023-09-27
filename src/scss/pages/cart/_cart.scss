@@ -162,6 +162,9 @@
     }
     button {
       width: 100%;
+    }
+    button a {
+      width: 100%;
       padding: 20px 12px;
       background: $primary-color;
       color: $white-color;
@@ -172,6 +175,9 @@
       -moz-transition: 0.3s;
       -ms-transition: 0.3s;
       -o-transition: 0.3s;
+
+      display: block;
+
       &:hover {
         scale: 1.1;
       }

@@ -19,8 +19,8 @@ function ToolTip() {
         <FontAwesomeIcon icon="fa-solid fa-exclamation" />
       </div>
       <div className="right-signed  ">
-        Already have an account? <a > Sign in </a> for faster
-        checkout experience.
+        Already have an account? <a> Sign in </a> for faster checkout
+        experience.
       </div>
     </div>
   );
@@ -314,17 +314,13 @@ export function Inputs({ e, id, className, pattern, type, register, errors }) {
         }
       >
         <motion.h5
-          initial={
-            className === "tab:w-2/6 expDate"
-              ? { top: 0, fontSize: "14px" }
-              : { top: 10, fontSize: "18px" }
-          }
-          animate={
-            !zoom && className !== "tab:w-2/6 expDate"
-              ? { top: 10, fontSize: "18px" }
-              : { top: 0, fontSize: "14px" }
-          }
-          transition={{ type: "just", duration: 0 }}
+          initial={{ top: 0, fontSize: "14px" }}
+          // animate={
+          //   !zoom && className !== "tab:w-2/6 expDate"
+          //     ? { top: 10, fontSize: "18px" }
+          //     : { top: 0, fontSize: "14px" }
+          // }
+          // transition={{ type: "just", duration: 0 }}
         >
           {e}
         </motion.h5>
