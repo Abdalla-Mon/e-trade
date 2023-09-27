@@ -79,8 +79,8 @@ function Categories({ toggleDrawer, anchor }) {
   ];
   const subCategories = [
     { catType: "cat", catName: "women", name: "all" },
-    { catType: "subCat", catName: "makeup", name: "fashion" },
-    { catType: "subCat", catName: "jewellery", name: "accessories" },
+    { catType: "subCat", catName: "makeup", name: "makeup" },
+    { catType: "subCat", catName: "jewellery", name: "jewellery" },
   ];
   const navigate = useNavigate();
   const dispatch = useDispatch();

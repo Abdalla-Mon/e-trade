@@ -9,7 +9,7 @@ import { useQueryClient } from "@tanstack/react-query";
 /* eslint-disable react/display-name */
 export const FilterBtn = memo(() => {
   const clickFnc = useClickAway();
-  const [filterState, setFilterState] = useState("All");
+  const filterData = useSelector((e) => e.data).catName;
   return (
     <>
       <div
@@ -20,27 +20,25 @@ export const FilterBtn = memo(() => {
         }}
       >
         <BiFilter />
-        Filter : {filterState}
+        Filter : {filterData.toUpperCase()}
       </div>
-      {clickFnc.openFilter ? (
-        <FilteringSection setFilterState={setFilterState} />
-      ) : null}
+      {clickFnc.openFilter ? <FilteringSection /> : null}
     </>
   );
 });
-function FilteringSection({ setFilterState }) {
+function FilteringSection() {
   return (
     <motion.div
       className="filter-section flex gap-8 tab:gap-10 flex-col tab:flex-row"
       initial={{ height: 0 }}
       animate={{ height: "fit-content" }}
     >
-      <Categroies setFilterState={setFilterState} />
+      <Categroies />
       <FilteringPrice />
     </motion.div>
   );
 }
-function Categroies({ setFilterState }) {
+function Categroies() {
   const clickFnc = useClickAway();
 
   const [subCatState, SetSubCatState] = useState(false);
@@ -53,13 +51,12 @@ function Categroies({ setFilterState }) {
   ];
   const subCategories = [
     { catType: "cat", catName: "women", name: "all" },
-    { catType: "subCat", catName: "makeup", name: "fashion" },
-    { catType: "subCat", catName: "jewellery", name: "accessories" },
+    { catType: "subCat", catName: "makeup", name: "makeup" },
+    { catType: "subCat", catName: "jewellery", name: "jewellery" },
   ];
   const dispatch = useDispatch();
   function handleClick(catName, catType) {
     dispatch(filterByCat([catType, catName]));
-    setFilterState(catName.toUpperCase());
     clickFnc.handleFilterClick();
   }
 

@@ -23,7 +23,7 @@ function AboutLanding() {
       <div className="container mx-auto">
         <div className="flex flex-col lap:flex-row gap-10 lap:items-center">
           <div className="img-container lap:w-3/6">
-            <img src="./about/about-landing.jpg" alt="about-landing" />
+            <img src="./about/about-landing.webp" alt="about-landing" />
           </div>
           <div className="right lap:w-3/6">
             <CustomHeader
@@ -55,19 +55,19 @@ function OurJourney() {
   const ourjourneyData = [
     {
       id: "j-1",
-      img: "./about/shape-01.png",
+      img: "./about/shape-01.webp",
       head: "40,000+ Happy Customer",
       text: "Empower your sales teams with industry tailored solutions that support.",
     },
     {
       id: "j-2",
-      img: "./about/shape-02.png",
+      img: "./about/shape-02.webp",
       head: "16 Years of Experiences",
       text: "Empower your sales teams with industry tailored solutions that support.",
     },
     {
       id: "j-3",
-      img: "./about/shape-03.png",
+      img: "./about/shape-03.webp",
       head: "12 Awards & Trophies Won",
       text: "Empower your sales teams with industry tailored solutions that support.",
     },
@@ -97,14 +97,14 @@ function OurJourneyCard({ e }) {
 }
 function OurTeam() {
   let data = [
-    { text: "Desinger", head: "Abdalla Refaat", img: "./about/team-01.png" },
-    { text: "Developer", head: "Mohamed Refaat", img: "./about/team-02.png" },
-    { text: "Desinger", head: "Abdalla Refaat", img: "./about/team-03.png" },
-    { text: "Developer", head: "Mohamed Refaat", img: "./about/team-04.png" },
-    { text: "Desinger", head: "Abdalla Refaat", img: "./about/team-01.png" },
-    { text: "Developer", head: "Mohamed Refaat", img: "./about/team-02.png" },
-    { text: "Desinger", head: "Abdalla Refaat", img: "./about/team-03.png" },
-    { text: "Developer", head: "Mohamed Refaat", img: "./about/team-04.png" },
+    { text: "Desinger", head: "Abdalla Refaat", img: "./about/team-01.webp" },
+    { text: "Developer", head: "Mohamed Refaat", img: "./about/team-02.webp" },
+    { text: "Desinger", head: "Abdalla Refaat", img: "./about/team-03.webp" },
+    { text: "Developer", head: "Mohamed Refaat", img: "./about/team-04.webp" },
+    { text: "Desinger", head: "Abdalla Refaat", img: "./about/team-01.webp" },
+    { text: "Developer", head: "Mohamed Refaat", img: "./about/team-02.webp" },
+    { text: "Desinger", head: "Abdalla Refaat", img: "./about/team-03.webp" },
+    { text: "Developer", head: "Mohamed Refaat", img: "./about/team-04.webp" },
   ];
   return (
     <CustomSwiperContainer
@@ -135,12 +135,12 @@ function Features() {
       <div className="container mx-auto flex flex-col gap-12">
         <Feature
           className={"lap:flex-row feature-1"}
-          img={"./about/feature-01.png"}
+          img={"./about/feature-01.webp"}
           index={1}
         />
         <Feature
           className={"lap:flex-row-reverse feature-2"}
-          img={"./about/feature-02.jpg"}
+          img={"./about/feature-02.webp"}
           index={2}
         />
       </div>{" "}
