@@ -313,18 +313,7 @@ export function Inputs({ e, id, className, pattern, type, register, errors }) {
             : { borderColor: "#ffffff" }
         }
       >
-        <motion.h5
-          initial={{ top: 0, fontSize: "14px" }}
-          // animate={
-          //   !zoom && className !== "tab:w-2/6 expDate"
-          //     ? { top: 10, fontSize: "18px" }
-          //     : { top: 0, fontSize: "14px" }
-          // }
-          // transition={{ type: "just", duration: 0 }}
-        >
-          {e}
-        </motion.h5>
-        {/* {input} */}
+        <motion.h5 initial={{ top: 0, fontSize: "14px" }}>{e}</motion.h5>
         <motion.input
           id={id}
           type={type}
