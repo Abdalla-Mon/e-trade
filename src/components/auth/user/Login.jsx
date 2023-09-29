@@ -7,9 +7,7 @@ export default function Login() {
   const { formState, register, handleSubmit } = useForm();
   const { errors } = formState;
   const signFnc = authFnc();
-  console.log(auth);
   function submit(e) {
-    console.log(e);
     // signUp()
     signFnc.login(e.sign_email, e.sign_password);
   }

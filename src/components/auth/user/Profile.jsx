@@ -16,8 +16,6 @@ export default function Profile() {
   if (!authFnc().logined) {
     return <Navigate to={"/login"} replace={true} />;
   }
-  console.log(authFnc().logined);
-  console.log(auth);
   const profileObject = {
     dashboard: {
       title: "Dashboard",
