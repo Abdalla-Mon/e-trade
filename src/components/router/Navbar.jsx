@@ -9,6 +9,7 @@ import { AiOutlineHeart } from "react-icons/ai";
 import { BiUser, BiCart } from "react-icons/bi";
 import { useSelector } from "react-redux";
 import { motion, useMotionValueEvent, useScroll } from "framer-motion";
+import { auth } from "../../firebase/firebase_config";
 export default function Navbar() {
   const [SearchBarPopup, setSearchBarPopup] = useState(false);
   return (
@@ -61,11 +62,6 @@ function FakeSearchBar() {
   );
 }
 
-const icons = [
-  <AiOutlineHeart key={"love-icon"} />,
-  <BiCart key={"cart-icon"} />,
-  <BiUser key={"user-icon"} />,
-];
 function Icons() {
   const cartSlice = useSelector((e) => e.cart);
 
@@ -98,15 +94,26 @@ function Icons() {
           </span>
         </Link>
       </div>
-      <div className="nav-icon ">
-        <BiUser key={"user-icon"} />
-      </div>
+      <ProfileLink />
 
       <NavItemsDrawer />
     </div>
   );
 }
-
+function ProfileLink() {
+  return (
+    <div
+      className="nav-icon "
+      onClick={() => {
+        console.log(auth.currentUser);
+      }}
+    >
+      <Link to={auth.currentUser ? "/profile" : "/login"}>
+        <BiUser key={"user-icon"} />
+      </Link>
+    </div>
+  );
+}
 function LowerNav() {
   const { scrollY } = useScroll();
   const [animation, setAnimation] = useState(false);
