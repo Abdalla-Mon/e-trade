@@ -2,7 +2,7 @@ import { Link, Navigate } from "react-router-dom";
 import { Input } from "../../fixed-component/Input";
 import { useForm } from "react-hook-form";
 import { authFnc } from "../AuthProvider";
-import { auth } from "../../../firebaseConfig/firebase_config";
+import { auth } from "../../../firebaseConfig/firebaseConfig";
 export default function Login() {
   const { formState, register, handleSubmit } = useForm();
   const { errors } = formState;

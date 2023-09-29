@@ -1,5 +1,5 @@
 import { Navigate } from "react-router-dom";
-import { auth } from "../../../firebaseConfig/firebase_config";
+import { auth } from "../../../firebaseConfig/firebaseConfig";
 import { authFnc } from "../AuthProvider";
 import { signOut } from "firebase/auth";
 import { useState } from "react";

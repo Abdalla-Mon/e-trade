@@ -1,7 +1,6 @@
 import { createContext, useContext, useState } from "react";
-import { auth } from "../../firebaseConfig/firebase_config";
+import { auth } from "../../firebaseConfig/firebaseConfig";
 import {
-  signOut,
   signInWithEmailAndPassword,
   createUserWithEmailAndPassword,
   updateProfile,

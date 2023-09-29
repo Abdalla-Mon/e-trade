@@ -9,7 +9,7 @@ import { AiOutlineHeart } from "react-icons/ai";
 import { BiUser, BiCart } from "react-icons/bi";
 import { useSelector } from "react-redux";
 import { motion, useMotionValueEvent, useScroll } from "framer-motion";
-import { auth } from "../../firebase/firebase_config";
+import { auth } from "../../firebaseConfig/firebaseConfig";
 export default function Navbar() {
   const [SearchBarPopup, setSearchBarPopup] = useState(false);
   return (
