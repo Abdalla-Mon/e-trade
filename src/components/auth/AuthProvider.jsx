@@ -1,5 +1,5 @@
 import { createContext, useContext, useState } from "react";
-import { auth } from "../../firebase/firebase_config";
+import { auth } from "../../firebaseConfig/firebase_config";
 import {
   signOut,
   signInWithEmailAndPassword,
