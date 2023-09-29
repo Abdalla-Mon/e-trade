@@ -8,7 +8,6 @@ export default function SignUp() {
   const { formState, register, handleSubmit } = useForm();
   const { errors } = formState;
   const signFnc = authFnc();
-  console.log(auth.currentUser);
   function submit(e) {
     signFnc.signUp(e.sign_email, e.sign_password, e.sign_userName);
   }
@@ -84,7 +83,8 @@ export default function SignUp() {
                 }}
               />
               <button>Sign Up</button>
-              {signFnc?.signupError?.slice(22, signFnc.signupError.length - 2)}
+              <p className="error">{signFnc?.signupError}</p>
+              {/* {signFnc?.signupError?.slice(22, signFnc.signupError.length - 2)} */}
             </div>
           </div>
         </form>

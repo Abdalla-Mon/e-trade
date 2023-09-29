@@ -62,7 +62,8 @@ export default function Login() {
               />
               <button>Log in</button>
               <p className="error">
-                {signFnc?.loginError?.slice(22, signFnc.loginError.length - 2)}
+                {signFnc?.loginError}
+                {/* {signFnc?.loginError?.slice(22, signFnc.loginError.length - 2)} */}
               </p>
             </div>
           </div>
