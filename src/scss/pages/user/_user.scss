@@ -58,6 +58,9 @@
   .container > .flex {
     height: calc(100vh - 260px);
     justify-content: center;
+    @media (max-width: 767px) {
+      align-items: center;
+    }
   }
   .profile-nav {
     padding: 40px 25px;
