@@ -2388,6 +2388,11 @@
   height: calc(100vh - 260px);
   justify-content: center;
 }
+@media (max-width: 767px) {
+  .profile .container > .flex {
+    align-items: center;
+  }
+}
 .profile .profile-nav {
   padding: 40px 25px;
   border: 1px solid #cbd3d9;
