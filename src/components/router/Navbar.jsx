@@ -118,7 +118,7 @@ function LowerNav() {
   const { scrollY } = useScroll();
   const [animation, setAnimation] = useState(false);
   useMotionValueEvent(scrollY, "change", (latest) => {
-    if (latest >= 1000) {
+    if (latest >= 600) {
       setAnimation(true);
     } else {
       setAnimation(false);
