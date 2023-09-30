@@ -7,7 +7,8 @@ import { NavLink, useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
 import { filterByCat } from "../../redux/filterSLice";
 import { useDispatch } from "react-redux";
-
+import { doc, getDoc, setDoc } from "firebase/firestore";
+import { db } from "../../firebaseConfig/firebaseConfig";
 const categoryList = ["all", "men", "women", "electronic", "furniture"];
 const iconsList = [
   "fa-solid fa-mars",
@@ -69,28 +70,34 @@ export default function CatDrawer() {
 function Categories({ toggleDrawer, anchor }) {
   const [subCatState, SetSubCatState] = React.useState(false);
   const allProduct = { catType: "mainCat", catName: "all" };
-  const categories = [
+  const [categories, setCategories] = React.useState([
     { catType: "cat", catName: "men" },
     {
       catType: "cat",
       catName: "women",
-      subCategories: {
-        data: [
-          { catType: "subCat", catName: "makeup", name: "makeup" },
-          { catType: "subCat", catName: "jewellery", name: "jewellery" },
-        ],
-      },
+      subCategories: [
+        { catType: "subCat", catName: "makeup", name: "makeup" },
+        { catType: "subCat", catName: "jewellery", name: "jewellery" },
+      ],
     },
     { catType: "cat", catName: "electronic" },
     { catType: "cat", catName: "furniture" },
-  ];
+  ]);
+
+  React.useEffect(() => {
+    async function getCategories() {
+      const catRef = doc(db, "Data", "categories");
+      const catDocument = await getDoc(catRef);
+      setCategories(catDocument.data().categories);
+    }
+    getCategories();
+  }, []);
   const navigate = useNavigate();
   const dispatch = useDispatch();
   function handleClick(catName, catType) {
     dispatch(filterByCat([catType, catName]));
     document.querySelector(".cat-drawer .close-btn").click();
-    navigate("/shop");
-    // toggleDrawer(anchor, false);
+    // navigate("/shop");
   }
   return (
     <ul className="cat-ul pt-4 ">
@@ -141,7 +148,7 @@ function Categories({ toggleDrawer, anchor }) {
                     All
                   </NavLink>{" "}
                   <Divider />
-                  {e.subCategories.data.map((el) => {
+                  {e.subCategories.map((el) => {
                     return (
                       <>
                         <NavLink

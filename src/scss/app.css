@@ -1118,6 +1118,9 @@
   background-color: #f9f3f0;
   padding: 60px 15px 0;
 }
+.single-product-page .single-product {
+  padding-bottom: 40px;
+}
 .single-product-page .gallery img {
   width: 100%;
 }
@@ -2307,6 +2310,9 @@
 .contact input {
   outline: none;
   padding: 10px 5px;
+  margin: 0 !important;
+  width: 100%;
+  height: 100%;
 }
 .contact button {
   background-color: #3577f0;
@@ -2326,7 +2332,7 @@
   -o-border-radius: 8px;
 }
 .contact button:hover {
-  scale: 1.1;
+  background-color: #ff497c;
 }
 
 .sign-up {

@@ -9,7 +9,6 @@ function selector(data) {
   return data.filter((e) => e.bestSeller);
 }
 export default function BestSeller() {
-  console.log(1);
   const { data: bestSellerData, isLoading } = getHomeData(selector);
   if (isLoading) return "loading";
   return (

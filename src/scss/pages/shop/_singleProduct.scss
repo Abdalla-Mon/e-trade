@@ -1,8 +1,10 @@
 @use "../../variables/variables" as *;
 .single-product-page {
   background-color: $teritary-bg;
-
   padding: 60px 15px 0;
+  .single-product {
+    padding-bottom: 40px;
+  }
   .gallery {
     img {
       width: 100%;

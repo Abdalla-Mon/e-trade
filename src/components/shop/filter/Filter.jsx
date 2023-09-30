@@ -1,11 +1,13 @@
 import { BiFilter } from "react-icons/bi";
 import { useClickAway } from "../ClickAway";
 import { motion } from "framer-motion";
-import { memo, useState } from "react";
+import { memo, useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { filterByCat, filterByPrice } from "../../../redux/filterSLice";
 import { Box, Slider } from "@mui/material";
 import { useQueryClient } from "@tanstack/react-query";
+import { doc, getDoc } from "firebase/firestore";
+import { db } from "../../../firebaseConfig/firebaseConfig";
 /* eslint-disable react/display-name */
 export const FilterBtn = memo(() => {
   const clickFnc = useClickAway();
@@ -43,22 +45,27 @@ function Categroies() {
 
   const [subCatState, SetSubCatState] = useState(false);
   const allProduct = { catType: "mainCat", catName: "all" };
-  const categories = [
+  const [categories, setCategories] = useState([
     { catType: "cat", catName: "men" },
     {
       catType: "cat",
       catName: "women",
-      subCategories: {
-        data: [
-          { catType: "subCat", catName: "makeup", name: "makeup" },
-          { catType: "subCat", catName: "jewellery", name: "jewellery" },
-        ],
-      },
+      subCategories: [
+        { catType: "subCat", catName: "makeup", name: "makeup" },
+        { catType: "subCat", catName: "jewellery", name: "jewellery" },
+      ],
     },
     { catType: "cat", catName: "electronic" },
     { catType: "cat", catName: "furniture" },
-  ];
-
+  ]);
+  useEffect(() => {
+    async function getCategories() {
+      const catRef = doc(db, "Data", "categories");
+      const catDocument = await getDoc(catRef);
+      setCategories(catDocument.data().categories);
+    }
+    getCategories();
+  }, []);
   const dispatch = useDispatch();
   function handleClick(catName, catType) {
     dispatch(filterByCat([catType, catName]));
@@ -106,7 +113,7 @@ function Categroies() {
                       all
                     </li>
                     <>
-                      {e.subCategories.data.map((el) => {
+                      {e.subCategories.map((el) => {
                         return (
                           <li
                             key={el.catName}
