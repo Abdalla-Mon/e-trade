@@ -27,6 +27,7 @@ export default function Shop() {
   const [list, setList] = useState(false);
   const [grid, setGrid] = useState(9);
   const [sliceNum, setSliceNum] = useState(0);
+
   let dataSliced = data?.slice(sliceNum, sliceNum + grid);
   return (
     <FilterContext.Provider value={{ grid, setGrid }}>

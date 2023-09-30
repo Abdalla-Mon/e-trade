@@ -1,11 +1,11 @@
 import { getAuth } from "firebase/auth";
 import { initializeApp } from "firebase/app";
-// import firebase from "firebase/compat/app";
-// import "firebase/compat/auth";
+import { getFirestore } from "firebase/firestore";
 
 const firebaseConfig = {
   apiKey: "AIzaSyDlxWr8LumdR2gcA9NYBjWPRsrxHvFaQXo",
   authDomain: "auth-tutorial-e5ae4.firebaseapp.com",
+  databaseURL: "https://auth-tutorial-e5ae4-default-rtdb.firebaseio.com",
   projectId: "auth-tutorial-e5ae4",
   storageBucket: "auth-tutorial-e5ae4.appspot.com",
   messagingSenderId: "4208272209",
@@ -16,4 +16,4 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 
 export const auth = getAuth(app);
-// export const auth = firebase.auth();
+export const db = getFirestore(app);

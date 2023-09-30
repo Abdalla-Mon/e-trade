@@ -1,11 +1,29 @@
 import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
+import { doc, getDoc } from "firebase/firestore";
+import { db } from "../../firebaseConfig/firebaseConfig";
 
-function fetchData() {
-  return axios.get("./db/products.json");
+async function fetchData() {
+  try {
+    const docRef = doc(db, "Data", "shop_data");
+    const data = await getDoc(docRef);
+    return data.data();
+  } catch (e) {
+    console.log(e);
+    return axios.get("./db/products.json");
+  }
+  // return axios.get("./db/products.json");
 }
-function fetchHomeData() {
-  return axios.get("./db/home.json");
+async function fetchHomeData() {
+  try {
+    const docRef = doc(db, "Data", "home_page");
+    const data = await getDoc(docRef);
+    console.log(data.data());
+    return data.data();
+  } catch (e) {
+    console.log(e);
+    return axios.get("./db/home.json");
+  }
 }
 
 export function getHomeData(selector) {
@@ -13,6 +31,8 @@ export function getHomeData(selector) {
     queryKey: ["homeData"],
     queryFn: fetchHomeData,
     select: (data) => {
+      console.log(data);
+
       return selector(data.data);
     },
     keepPreviousData: true,
@@ -31,6 +51,8 @@ export function fetchAllProducts(
     queryFn: fetchData,
 
     select: (data) => {
+      console.log(data);
+
       const sortedData = sortData(data.data, sortType);
       const filteredData = filter(
         sortedData,
