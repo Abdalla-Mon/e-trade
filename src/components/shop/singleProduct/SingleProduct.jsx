@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { useParams } from "react-router-dom";
 import {
   fetchSingleProduct,
@@ -13,6 +13,7 @@ import {
 } from "../../fixed-component/FixedComponent";
 import { CustomSwiperContainer } from "../../fixed-component/CustomSwiper";
 import { HiOutlineShoppingBag } from "react-icons/hi";
+import AppLoader from "../../fixed-component/Apploader";
 
 export default function SingleProductPage() {
   const { productID } = useParams();
@@ -20,7 +21,7 @@ export default function SingleProductPage() {
   const { data, isLoading } = fetchSingleProduct(productID);
 
   if (isLoading) {
-    return <p>loading....</p>;
+    return <AppLoader />;
   }
 
   return (

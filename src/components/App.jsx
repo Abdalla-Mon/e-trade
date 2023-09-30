@@ -51,7 +51,7 @@ const router = createHashRouter(
         <Route
           path="about"
           element={
-            <React.Suspense fallback={<p>loading</p>}>
+            <React.Suspense fallback={<AppLoader />}>
               <LazyAbout />
             </React.Suspense>
           }
@@ -59,7 +59,7 @@ const router = createHashRouter(
         <Route
           path="contact"
           element={
-            <React.Suspense fallback={<p>loading</p>}>
+            <React.Suspense fallback={<AppLoader />}>
               <LazyContact />
             </React.Suspense>
           }

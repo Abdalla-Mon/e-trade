@@ -158,6 +158,8 @@
     "newArrival": true,
     "prod": true,
     "desc": 10,
+    "mainCat": "all",
+
     "home": true
   },
   {
@@ -172,6 +174,7 @@
     "newArrival": true,
     "prod": true,
     "desc": 5,
+    "mainCat": "all",
     "home": true
   },
   {
@@ -184,6 +187,7 @@
     "subCat": "jewellery",
     "sortOrder": 29,
     "newArrival": true,
+    "mainCat": "all",
     "home": true
   },
   {
@@ -196,6 +200,7 @@
     "subCat": "jewellery",
     "sortOrder": 218,
     "newArrival": true,
+    "mainCat": "all",
     "desc": 25,
     "home": true
   },
@@ -436,6 +441,7 @@
     "subCat": "clothes",
     "sortOrder": 8,
     "bestSeller": true,
+    "mainCat": "all",
     "desc": 10,
     "home": true
   },
@@ -449,6 +455,7 @@
     "subCat": "clothes",
     "sortOrder": 19,
     "bestSeller": true,
+    "mainCat": "all",
     "prod": true,
     "home": true
   },
@@ -462,6 +469,7 @@
     "subCat": "clothes",
     "sortOrder": 22,
     "bestSeller": true,
+    "mainCat": "all",
     "prod": true,
     "home": true
   },
@@ -473,6 +481,7 @@
     "qty": 0,
     "cat": "men",
     "subCat": "clothes",
+    "mainCat": "all",
     "sortOrder": 115,
     "bestSeller": true,
     "home": true
@@ -487,6 +496,7 @@
     "subCat": "clothes",
     "sortOrder": 222,
     "bestSeller": true,
+    "mainCat": "all",
     "desc": 10,
     "home": true
   },
@@ -500,6 +510,7 @@
     "subCat": "clothes",
     "sortOrder": 151,
     "bestSeller": true,
+    "mainCat": "all",
     "prod": true,
     "home": true
   },
@@ -513,6 +524,7 @@
     "subCat": "clothes",
     "sortOrder": 10,
     "bestSeller": true,
+    "mainCat": "all",
     "home": true
   },
   {
@@ -525,6 +537,7 @@
     "subCat": "clothes",
     "sortOrder": 23,
     "bestSeller": true,
+    "mainCat": "all",
     "prod": true,
     "desc": 15,
     "home": true

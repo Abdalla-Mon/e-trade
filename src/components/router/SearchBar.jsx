@@ -10,8 +10,7 @@ export default function SearchBar({ setSearchBarPopup }) {
   const [numOfProduct, setNumOfProduct] = useState(2);
   const deferrdTextInput = useDeferredValue(textInput.toLowerCase());
 
-  const { data, isLoading, isFetching } = fetchSearchProducts(deferrdTextInput);
-
+  const { data, isLoading } = fetchSearchProducts(deferrdTextInput);
   let slicedData = data?.slice(0, numOfProduct);
 
   return (

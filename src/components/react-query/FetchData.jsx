@@ -7,29 +7,22 @@ async function fetchData() {
   try {
     const docRef = doc(db, "Data", "shop_data");
     const data = await getDoc(docRef);
+    if (data.data().data.length < 10 || !data.data().data) {
+      return axios.get("./db/products.json");
+    }
+
     return data.data();
   } catch (e) {
     console.log(e);
     return axios.get("./db/products.json");
   }
 }
-// async function fetchHomeData() {
-//   try {
-//     const docRef = doc(db, "Data", "shop_data");
-//     const data = await getDoc(docRef);
-//     return data.data();
-//   } catch (e) {
-//     console.log(e);
-//     return axios.get("./db/home.json");
-//   }
-// }
 
 export function getHomeData(selector) {
   return useQuery({
     queryKey: ["homeData"],
     queryFn: fetchData,
     select: (data) => {
-      console.log(data);
       let homeData = data.data.filter((e) => e.home);
       return selector(homeData);
     },
@@ -49,8 +42,6 @@ export function fetchAllProducts(
     queryFn: fetchData,
 
     select: (data) => {
-      console.log(data);
-
       const sortedData = sortData(data.data, sortType);
       const filteredData = filter(
         sortedData,

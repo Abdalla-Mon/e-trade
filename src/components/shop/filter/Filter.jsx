@@ -42,18 +42,23 @@ function Categroies() {
   const clickFnc = useClickAway();
 
   const [subCatState, SetSubCatState] = useState(false);
+  const allProduct = { catType: "mainCat", catName: "all" };
   const categories = [
-    { catType: "mainCat", catName: "all" },
     { catType: "cat", catName: "men" },
-    { catType: "cat", catName: "women" },
+    {
+      catType: "cat",
+      catName: "women",
+      subCategories: {
+        data: [
+          { catType: "subCat", catName: "makeup", name: "makeup" },
+          { catType: "subCat", catName: "jewellery", name: "jewellery" },
+        ],
+      },
+    },
     { catType: "cat", catName: "electronic" },
     { catType: "cat", catName: "furniture" },
   ];
-  const subCategories = [
-    { catType: "cat", catName: "women", name: "all" },
-    { catType: "subCat", catName: "makeup", name: "makeup" },
-    { catType: "subCat", catName: "jewellery", name: "jewellery" },
-  ];
+
   const dispatch = useDispatch();
   function handleClick(catName, catType) {
     dispatch(filterByCat([catType, catName]));
@@ -62,56 +67,76 @@ function Categroies() {
 
   return (
     <ul className="category-filter">
-      {categories.map((e) => {
-        return (
-          <>
-            {e.catName === "women" ? (
-              <>
+      <li
+        onClick={() => {
+          handleClick(allProduct.catName, allProduct.catType);
+        }}
+      >
+        {allProduct.catName}
+      </li>
+      <>
+        {categories.map((e) => {
+          return (
+            <>
+              {e.subCategories ? (
+                <>
+                  <li
+                    onClick={() => {
+                      SetSubCatState((e) => !e);
+                    }}
+                    key={e.catName}
+                  >
+                    Women{" "}
+                  </li>
+                  <motion.ul
+                    className="cat-women-ul"
+                    initial={{ height: 0 }}
+                    animate={
+                      subCatState ? { height: "fit-content" } : { height: 0 }
+                    }
+                  >
+                    <li
+                      key={e.catName}
+                      className="sub-cat"
+                      onClick={() => {
+                        handleClick(e.catName, e.catType);
+                        SetSubCatState((e) => !e);
+                      }}
+                    >
+                      all
+                    </li>
+                    <>
+                      {e.subCategories.data.map((el) => {
+                        return (
+                          <li
+                            key={el.catName}
+                            className="sub-cat"
+                            onClick={() => {
+                              handleClick(el.catName, el.catType);
+                              SetSubCatState((e) => !e);
+                            }}
+                          >
+                            {el.catName}
+                          </li>
+                        );
+                      })}{" "}
+                    </>
+                  </motion.ul>
+                </>
+              ) : (
                 <li
-                  onClick={() => {
-                    SetSubCatState((e) => !e);
-                  }}
                   key={e.catName}
+                  onClick={() => {
+                    handleClick(e.catName, e.catType);
+                  }}
                 >
-                  Women{" "}
+                  {e.catName}
                 </li>
-
-                <motion.ul
-                  className="cat-women-ul"
-                  initial={{ height: 0 }}
-                  animate={
-                    subCatState ? { height: "fit-content" } : { height: 0 }
-                  }
-                >
-                  {subCategories.map((el) => {
-                    return (
-                      <li
-                        key={el.catName}
-                        className="sub-cat"
-                        onClick={() => {
-                          handleClick(el.catName, el.catType);
-                          SetSubCatState((e) => !e);
-                        }}
-                      >
-                        {el.name || el.catName}
-                      </li>
-                    );
-                  })}
-                </motion.ul>
-              </>
-            ) : (
-              <li
-                key={e.catName}
-                onClick={() => {
-                  handleClick(e.catName, e.catType);
-                }}
-              >
-                {e.catName}
-              </li>
-            )}
-          </>
-        );
-      })}
+              )}
+            </>
+          );
+        })}
+      </>
     </ul>
   );
 }

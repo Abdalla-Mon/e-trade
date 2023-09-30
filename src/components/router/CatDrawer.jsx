@@ -10,7 +10,6 @@ import { useDispatch } from "react-redux";
 
 const categoryList = ["all", "men", "women", "electronic", "furniture"];
 const iconsList = [
-  "fa-solid fa-shop",
   "fa-solid fa-mars",
   "fa-solid fa-venus",
   "fa-solid fa-desktop",
@@ -28,7 +27,6 @@ export default function CatDrawer() {
     ) {
       return;
     }
-    console.log("clicked");
     setState({ ...state, [anchor]: open });
   };
 
@@ -70,17 +68,21 @@ export default function CatDrawer() {
 
 function Categories({ toggleDrawer, anchor }) {
   const [subCatState, SetSubCatState] = React.useState(false);
+  const allProduct = { catType: "mainCat", catName: "all" };
   const categories = [
-    { catType: "mainCat", catName: "all" },
     { catType: "cat", catName: "men" },
-    { catType: "cat", catName: "women" },
+    {
+      catType: "cat",
+      catName: "women",
+      subCategories: {
+        data: [
+          { catType: "subCat", catName: "makeup", name: "makeup" },
+          { catType: "subCat", catName: "jewellery", name: "jewellery" },
+        ],
+      },
+    },
     { catType: "cat", catName: "electronic" },
     { catType: "cat", catName: "furniture" },
-  ];
-  const subCategories = [
-    { catType: "cat", catName: "women", name: "all" },
-    { catType: "subCat", catName: "makeup", name: "makeup" },
-    { catType: "subCat", catName: "jewellery", name: "jewellery" },
   ];
   const navigate = useNavigate();
   const dispatch = useDispatch();
@@ -92,10 +94,21 @@ function Categories({ toggleDrawer, anchor }) {
   }
   return (
     <ul className="cat-ul pt-4 ">
+      <NavLink
+        to="/shop"
+        className={"cat-li"}
+        onClick={() => {
+          handleClick(allProduct.catName, allProduct.catType);
+        }}
+      >
+        <FontAwesomeIcon icon={"fa-solid fa-shop"} />
+        {allProduct.catName}
+      </NavLink>
+      <Divider />
       {categories.map((e, index) => {
         return (
           <>
-            {e.catName === "women" ? (
+            {e.subCategories ? (
               <>
                 <li
                   className="cat-li women-li"
@@ -106,7 +119,7 @@ function Categories({ toggleDrawer, anchor }) {
                   key={e.catName}
                 >
                   <FontAwesomeIcon icon={iconsList[index]} />
-                  Women
+                  {e.catName}
                 </li>
 
                 <motion.ul
@@ -116,7 +129,19 @@ function Categories({ toggleDrawer, anchor }) {
                     subCatState ? { height: "fit-content" } : { height: 0 }
                   }
                 >
-                  {subCategories.map((el) => {
+                  <NavLink
+                    to="/shop"
+                    key={e.catName}
+                    className="sub-cat"
+                    onClick={() => {
+                      handleClick(e.catName, e.catType);
+                      SetSubCatState((e) => !e);
+                    }}
+                  >
+                    All
+                  </NavLink>{" "}
+                  <Divider />
+                  {e.subCategories.data.map((el) => {
                     return (
                       <>
                         <NavLink
@@ -128,7 +153,7 @@ function Categories({ toggleDrawer, anchor }) {
                             SetSubCatState((e) => !e);
                           }}
                         >
-                          {el.name || el.catName}
+                          {el.catName}
                         </NavLink>{" "}
                         {el.catName === "jewellery" ? null : <Divider />}
                       </>
