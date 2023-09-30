@@ -12,28 +12,26 @@ async function fetchData() {
     console.log(e);
     return axios.get("./db/products.json");
   }
-  // return axios.get("./db/products.json");
 }
-async function fetchHomeData() {
-  try {
-    const docRef = doc(db, "Data", "home_page");
-    const data = await getDoc(docRef);
-    console.log(data.data());
-    return data.data();
-  } catch (e) {
-    console.log(e);
-    return axios.get("./db/home.json");
-  }
-}
+// async function fetchHomeData() {
+//   try {
+//     const docRef = doc(db, "Data", "shop_data");
+//     const data = await getDoc(docRef);
+//     return data.data();
+//   } catch (e) {
+//     console.log(e);
+//     return axios.get("./db/home.json");
+//   }
+// }
 
 export function getHomeData(selector) {
   return useQuery({
     queryKey: ["homeData"],
-    queryFn: fetchHomeData,
+    queryFn: fetchData,
     select: (data) => {
       console.log(data);
-
-      return selector(data.data);
+      let homeData = data.data.filter((e) => e.home);
+      return selector(homeData);
     },
     keepPreviousData: true,
   });

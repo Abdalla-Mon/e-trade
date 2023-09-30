@@ -155,7 +155,10 @@
     "cat": "women",
     "subCat": "jewellery",
     "sortOrder": 217,
-    "mainCat": "all"
+    "newArrival": true,
+    "prod": true,
+    "desc": 10,
+    "home": true
   },
   {
     "id": "accessory-15",
@@ -166,7 +169,10 @@
     "cat": "women",
     "subCat": "jewellery",
     "sortOrder": 19,
-    "mainCat": "all"
+    "newArrival": true,
+    "prod": true,
+    "desc": 5,
+    "home": true
   },
   {
     "id": "accessory-16",
@@ -177,8 +183,8 @@
     "cat": "women",
     "subCat": "jewellery",
     "sortOrder": 29,
-    "mainCat": "all",
-    "desc": 15
+    "newArrival": true,
+    "home": true
   },
   {
     "id": "accessory-17",
@@ -189,7 +195,9 @@
     "cat": "women",
     "subCat": "jewellery",
     "sortOrder": 218,
-    "mainCat": "all"
+    "newArrival": true,
+    "desc": 25,
+    "home": true
   },
   {
     "id": "electronic-1",
@@ -200,7 +208,9 @@
     "cat": "electronic",
     "sortOrder": 100,
     "mainCat": "all",
-    "desc": 80
+    "desc": 80,
+    "prod": true,
+    "home": true
   },
   {
     "id": "electronic-2",
@@ -243,7 +253,10 @@
     "qty": 0,
     "cat": "electronic",
     "sortOrder": 201,
-    "mainCat": "all"
+    "mainCat": "all",
+    "newArrival": true,
+    "prod": true,
+    "home": true
   },
   {
     "id": "electronic-6",
@@ -372,7 +385,11 @@
     "cat": "men",
     "subCat": "clothes",
     "sortOrder": 7,
-    "mainCat": "all"
+    "mainCat": "all",
+    "newArrival": true,
+    "prod": true,
+    "desc": 5,
+    "home": true
   },
 
   {
@@ -418,8 +435,9 @@
     "cat": "men",
     "subCat": "clothes",
     "sortOrder": 8,
-    "mainCat": "all",
-    "desc": 15
+    "bestSeller": true,
+    "desc": 10,
+    "home": true
   },
   {
     "id": "fashion-9",
@@ -430,7 +448,9 @@
     "cat": "men",
     "subCat": "clothes",
     "sortOrder": 19,
-    "mainCat": "all"
+    "bestSeller": true,
+    "prod": true,
+    "home": true
   },
   {
     "id": "fashion-10",
@@ -441,7 +461,9 @@
     "cat": "men",
     "subCat": "clothes",
     "sortOrder": 22,
-    "mainCat": "all"
+    "bestSeller": true,
+    "prod": true,
+    "home": true
   },
   {
     "id": "fashion-11",
@@ -452,7 +474,8 @@
     "cat": "men",
     "subCat": "clothes",
     "sortOrder": 115,
-    "mainCat": "all"
+    "bestSeller": true,
+    "home": true
   },
   {
     "id": "fashion-12",
@@ -463,7 +486,9 @@
     "cat": "men",
     "subCat": "clothes",
     "sortOrder": 222,
-    "mainCat": "all"
+    "bestSeller": true,
+    "desc": 10,
+    "home": true
   },
   {
     "id": "fashion-13",
@@ -474,7 +499,9 @@
     "cat": "men",
     "subCat": "clothes",
     "sortOrder": 151,
-    "mainCat": "all"
+    "bestSeller": true,
+    "prod": true,
+    "home": true
   },
   {
     "id": "fashion-14",
@@ -485,7 +512,8 @@
     "cat": "men",
     "subCat": "clothes",
     "sortOrder": 10,
-    "mainCat": "all"
+    "bestSeller": true,
+    "home": true
   },
   {
     "id": "fashion-15",
@@ -496,7 +524,10 @@
     "cat": "men",
     "subCat": "clothes",
     "sortOrder": 23,
-    "mainCat": "all"
+    "bestSeller": true,
+    "prod": true,
+    "desc": 15,
+    "home": true
   },
   {
     "id": "furniture-1",
