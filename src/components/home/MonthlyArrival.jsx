@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
-import { AddToCart, AddToWhishList } from "../fixed-component/FixedComponent";
+
+import { AddToCart, AddToWhishList } from "../fixed-component/cardBtns";
 import { FiEye } from "react-icons/fi";
 import { CustomSwiperContainer } from "../fixed-component/CustomSwiper";
 import { HiOutlineShoppingBag } from "react-icons/hi";

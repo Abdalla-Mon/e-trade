@@ -18,6 +18,10 @@ import Login from "./auth/user/Login";
 import SignUp from "./auth/user/SignUp";
 import Profile from "./auth/user/Profile";
 import AppLoader from "./fixed-component/Apploader";
+import { auth, db } from "../firebaseConfig/firebaseConfig";
+import { doc, getDoc } from "firebase/firestore";
+import { useDispatch } from "react-redux";
+import { addToCart, addToWishList } from "../redux/cartSlice";
 const LazyAbout = React.lazy(() => import("./about/About"));
 const LazyProducts = React.lazy(() => import("./shop/Shop"));
 const LazyContact = React.lazy(() => import("./contact/Contact"));
@@ -28,6 +32,32 @@ const StyledMaterialDesignContent = styled(MaterialDesignContent)(() => ({
     color: "#000000",
   },
 }));
+async function getData(dispatch) {
+  try {
+    if (!auth.currentUser) {
+      return;
+    }
+    const cartRef = doc(db, "cart", auth.currentUser.uid);
+    const cartSnap = await getDoc(cartRef);
+    const wishListRef = doc(db, "love", auth.currentUser.uid);
+    const wishListSnap = await getDoc(wishListRef);
+    if (cartSnap.data() === undefined) {
+      dispatch(addToCart({ cartItems: [] }));
+    } else {
+      dispatch(addToCart({ cartItems: cartSnap.data().data }));
+    }
+    if (wishListSnap.data() === undefined) {
+      dispatch(addToWishList([[]]));
+    } else {
+      dispatch(addToWishList([wishListSnap.data().data]));
+    }
+    return;
+  } catch {
+    dispatch(addToWishList([[]]));
+    dispatch(addToCart({ cartItems: [] }));
+    return;
+  }
+}
 const router = createHashRouter(
   createRoutesFromElements(
     <>
@@ -72,6 +102,11 @@ const router = createHashRouter(
 
 const queryClient = new QueryClient();
 function App() {
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    getData(dispatch);
+  }, []);
   return (
     <QueryClientProvider client={queryClient}>
       <AuthProvider>
@@ -82,8 +117,12 @@ function App() {
 }
 function Routes() {
   const [loader, setLoader] = useState(true);
+
+  const dispatch = useDispatch();
   useEffect(() => {
     setLoader(false);
+
+    getData(dispatch);
   }, []);
   return (
     <>

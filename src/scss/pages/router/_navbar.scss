@@ -9,12 +9,11 @@
   top: 0;
   height: -webkit-fill-available;
   width: 100%;
-  z-index: 10000;
+  z-index: 1000;
   display: flex;
   justify-content: center;
   align-items: center;
   padding: 20px;
-  overflow-y: scroll;
   background-color: #00000052;
   .remove {
     position: absolute;
@@ -153,6 +152,8 @@
     -o-transition: 0.3s;
     transition-property: background-color;
     cursor: pointer;
+    width: fit-content;
+    margin-left: auto;
     &:hover {
       border-color: transparent;
       background-color: $primary-color;

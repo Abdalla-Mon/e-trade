@@ -1,7 +1,7 @@
 import { useDispatch, useSelector } from "react-redux";
 import { addToWishList } from "../../redux/cartSlice";
 import { AiOutlineClose } from "react-icons/ai";
-import { AddToCart, handleWishList } from "../fixed-component/FixedComponent";
+import { AddToCart, handleWishList } from "../fixed-component/CardBtns";
 
 export default function Whishlist() {
   const cartData = useSelector((e) => e.cart);
@@ -98,9 +98,11 @@ function TableTd({ e }) {
       </td>
       <td className="product-name">{e.name}</td>
       <td className="product-price">${e.price - (e.desc || 0)}</td>
-      <td className="product-quantity ">In Stock</td>
+      <td className="product-quantity ">
+        {e.stock ? "In Stock" : "Out of Stock"}
+      </td>
       <td className="product-subtotal">
-        <AddToCart item={e} text={true} />
+        {e.stock ? <AddToCart item={e} text={true} /> : null}
       </td>
     </tr>
   );

@@ -178,6 +178,17 @@
         color: $white-color;
       }
     }
+    .out-of-stock {
+      background-color: transparent;
+      top: 5px;
+      font-size: 1.1rem;
+      font-weight: 600;
+      border: none;
+      &:hover {
+        background-color: transparent;
+        color: $heading-color;
+      }
+    }
   }
 }
 .testi-container {

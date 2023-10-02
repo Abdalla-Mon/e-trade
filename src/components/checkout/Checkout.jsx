@@ -5,6 +5,8 @@ import Right from "./RightCheckout";
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { clearCart } from "../../redux/cartSlice";
+import { doc, getDoc, setDoc } from "firebase/firestore";
+import { auth, db } from "../../firebaseConfig/firebaseConfig";
 export const SubTotal = createContext("");
 export default function CheckOut() {
   const cartData = useSelector((e) => e.cart);
@@ -67,7 +69,25 @@ function Review() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const ref = useRef(5);
+  const data = useSelector((e) => e.cart);
+
   useEffect(() => {
+    const docRef = doc(db, "orders", auth.currentUser.uid);
+    async function getData() {
+      const cartSnap = await getDoc(docRef);
+      if (cartSnap.data() === undefined) {
+        return [];
+      }
+      return cartSnap.data().data;
+    }
+    async function updatingData() {
+      let da = await getData();
+      let object = { data: data.cart, date: new Date() };
+      da.push(object);
+      const docData = await setDoc(docRef, { data: da });
+      return docData;
+    }
+    updatingData();
     let intervel = window.setInterval(() => {
       if (ref.current < 1) {
         window.clearInterval(intervel);

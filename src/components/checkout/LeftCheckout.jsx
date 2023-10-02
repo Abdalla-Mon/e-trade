@@ -1,30 +1,15 @@
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { Link } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 
 export default function Left({ register, errors }) {
   return (
     <>
-      <ToolTip />
       <BillingAddres register={register} errors={errors} />
       <Payment register={register} errors={errors} />
     </>
   );
 }
-function ToolTip() {
-  return (
-    <div className="checkout-signed flex gap-3 ">
-      <div className="icon">
-        <FontAwesomeIcon icon="fa-solid fa-exclamation" />
-      </div>
-      <div className="right-signed  ">
-        Already have an account? <a> Sign in </a> for faster checkout
-        experience.
-      </div>
-    </div>
-  );
-}
+
 function BillingAddres({ register, errors }) {
   return (
     <div className="billing-address">

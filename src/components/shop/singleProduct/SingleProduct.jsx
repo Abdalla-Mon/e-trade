@@ -6,11 +6,8 @@ import {
 } from "../../react-query/FetchData";
 import { BsCheck2 } from "react-icons/bs";
 import { Divider, Rating } from "@mui/material";
-import {
-  AddToCart,
-  AddToWhishList,
-  ShopCard,
-} from "../../fixed-component/FixedComponent";
+import { ShopCard } from "../../fixed-component/FixedComponent";
+import { AddToCart, AddToWhishList } from "../../fixed-component/CardBtns";
 import { CustomSwiperContainer } from "../../fixed-component/CustomSwiper";
 import { HiOutlineShoppingBag } from "react-icons/hi";
 import AppLoader from "../../fixed-component/Apploader";
@@ -83,8 +80,17 @@ function ProductText({ e }) {
       <Rating name="read-only" value={4} readOnly className="mt-7 mb-6" />
       <Divider />
       <h6 className="flex gap-3 mt-7 mb-1">
-        <BsCheck2 />
-        In stock
+        {e.stock ? (
+          <>
+            {" "}
+            <BsCheck2 />
+            In stock
+          </>
+        ) : (
+          <>
+            <span style={{ padding: "0 4px" }}>x</span>Out of stock
+          </>
+        )}
       </h6>
       <h6 className="flex gap-3 mb-7">
         <BsCheck2 />

@@ -166,6 +166,16 @@
     -moz-border-radius: 6px;
     -ms-border-radius: 6px;
     -o-border-radius: 6px;
+    p {
+      position: absolute;
+      right: 10px;
+      top: 50%;
+      transform: translateY(-50%);
+      text-transform: capitalize;
+      font-weight: 600;
+      color: $primary-color;
+      cursor: pointer;
+    }
     input {
       outline: none;
       padding: 6px 6px 6px 8px;

@@ -92,7 +92,6 @@ function Categories({ toggleDrawer, anchor }) {
     }
     getCategories();
   }, []);
-  const navigate = useNavigate();
   const dispatch = useDispatch();
   function handleClick(catName, catType) {
     dispatch(filterByCat([catType, catName]));

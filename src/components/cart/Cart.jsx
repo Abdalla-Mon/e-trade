@@ -1,7 +1,7 @@
 import { useDispatch, useSelector } from "react-redux";
 import { addToCart } from "../../redux/cartSlice";
 import { AiOutlineClose } from "react-icons/ai";
-import { CartItem, handleCart } from "../fixed-component/FixedComponent";
+import { CartItem, handleCart } from "../fixed-component/CardBtns";
 import { useState } from "react";
 import { Link } from "react-router-dom";
 export default function Cart() {

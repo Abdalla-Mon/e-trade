@@ -102,12 +102,7 @@ function Icons() {
 }
 function ProfileLink() {
   return (
-    <div
-      className="nav-icon "
-      onClick={() => {
-        console.log(auth.currentUser);
-      }}
-    >
+    <div className="nav-icon " onClick={() => {}}>
       <Link to={auth.currentUser ? "/profile" : "/login"}>
         <BiUser key={"user-icon"} />
       </Link>
