@@ -64,11 +64,11 @@ export default function CheckOut() {
   );
 }
 function Review() {
-  const [timer, setTimer] = useState(5);
+  const [timer, setTimer] = useState(3);
   const { formData } = useContext(SubTotal);
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const ref = useRef(5);
+  const ref = useRef(3);
   const data = useSelector((e) => e.cart);
 
   useEffect(() => {
@@ -82,16 +82,16 @@ function Review() {
     }
     async function updatingData() {
       let da = await getData();
-      let object = { data: data.cart, date: new Date() };
+      let object = { data: data.cart, date: new Date(), formDetails: formData };
       da.push(object);
       const docData = await setDoc(docRef, { data: da });
       return docData;
     }
-    updatingData();
     let intervel = window.setInterval(() => {
       if (ref.current < 1) {
-        window.clearInterval(intervel);
+        updatingData();
         dispatch(clearCart());
+        window.clearInterval(intervel);
         navigate("/");
       } else {
         setTimer((e) => e - 1);
@@ -104,7 +104,7 @@ function Review() {
     <div className="review">
       <div className="container mx-auto">
         <div className="review-data">
-          <h1>Order Done </h1>
+          <h1>Order Done in {timer} seconds </h1>
           <h2>
             Redirecting you to home after <span>{timer}</span>
             seconds
