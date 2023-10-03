@@ -2528,6 +2528,7 @@
 
 .profile .pagination ul {
   justify-content: flex-end;
+  background-color: #f7f7f7;
 }
 .profile .pagination ul li {
   display: none;

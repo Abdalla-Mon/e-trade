@@ -166,7 +166,7 @@ function TablePaginationDemo({ setSliceNum, length }) {
   }
   const handleChange = (event, value) => {
     setPage(value);
-    setSliceNum((value - 1) * grid, value * grid);
+    setSliceNum((value - 1) * 4, value * 4);
   };
   return (
     <Stack spacing={2} className="pagination">
