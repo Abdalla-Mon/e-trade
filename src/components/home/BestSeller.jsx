@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
-import { AddToCart } from "../fixed-component/cardBtns";
-
+// import { AddToCart } from "../fixed-component/cardBtns";
+import { AddToCart } from "../fixed-component/CardBtns";
 import { CustomSwiperContainer } from "../fixed-component/CustomSwiper";
 import { HiOutlineShoppingBag } from "react-icons/hi";
 import { Rating } from "@mui/material";
