@@ -2499,7 +2499,7 @@
   height: -moz-fit-content;
   height: fit-content;
   margin-bottom: auto;
-  height: 100%;
+  height: fit-content;
   max-height: 85%;
 }
 .profile .profile-data .profile-orders::-webkit-scrollbar {
