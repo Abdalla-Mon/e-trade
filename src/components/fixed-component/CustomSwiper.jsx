@@ -2,7 +2,7 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import "swiper/css/navigation";
 import { BsArrowLeft, BsArrowRight } from "react-icons/bs";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { Navigation } from "swiper/modules";
 import { motion, useAnimationControls } from "framer-motion";
 import { CustomHeader } from "./FixedComponent";

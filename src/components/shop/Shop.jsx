@@ -12,9 +12,6 @@ import ClickAwayProvider from "./ClickAway";
 import { AnimatePresence, motion } from "framer-motion";
 import ProductsOptions from "./filter/Options";
 import { ProductsSkeleton } from "../fixed-component/ShopSkeleton";
-import { doc, getDoc, setDoc } from "firebase/firestore";
-import { db } from "../../firebaseConfig/firebaseConfig";
-import axios from "axios";
 const FilterContext = createContext(null);
 
 export default function Shop() {
