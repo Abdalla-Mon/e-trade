@@ -2492,6 +2492,7 @@
   overflow: auto;
   height: -moz-fit-content;
   height: fit-content;
+  margin-bottom: auto;
 }
 .profile .profile-data::-webkit-scrollbar {
   width: 50px;
