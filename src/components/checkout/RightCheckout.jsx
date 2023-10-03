@@ -1,5 +1,6 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { useSelector } from "react-redux";
+import { SubTotal } from "./Checkout";
 
 export default function Right() {
   const [shipping, setShipping] = useState(0);
@@ -65,13 +66,26 @@ function Shipping({ setShipping }) {
       <label
         className="check-label gap-4"
         onClick={() => {
-          setShipping(10);
+          setShipping(35);
           setChecked(false);
         }}
       >
         <input type="radio" name="setshipping" id="express-check" />
         <div>
-          <span className="block">$10 - Express delivery</span>
+          <span className="block"> Local: $35.00</span>
+          <p>Shipment may take 2-3 business days</p>
+        </div>
+      </label>
+      <label
+        className="check-label gap-4"
+        onClick={() => {
+          setShipping(12);
+          setChecked(false);
+        }}
+      >
+        <input type="radio" name="setshipping" id="express-check" />
+        <div>
+          <span className="block"> Flat rate: $12.00</span>
           <p>Shipment may take 2-3 business days</p>
         </div>
       </label>
@@ -79,16 +93,7 @@ function Shipping({ setShipping }) {
   );
 }
 function TotalPrice({ shipping }) {
-  const cartData = useSelector((e) => e.cart);
-  let price = cartData.cart
-    .map((e) => {
-      if (e.desc) {
-        return (+e.price - e.desc || 0) * e.qty;
-      } else {
-        return +e.price * e.qty;
-      }
-    })
-    .reduce((acc, curr) => acc + curr);
+  let { price, setPrice } = useContext(SubTotal);
   const subTotal = price;
   return (
     <>
@@ -116,7 +121,15 @@ function TotalPrice({ shipping }) {
               window.scrollTo({ top: 0, behavior: "instant" });
             }}
           >
-            <button type="submit"> Place Order</button>
+            <button
+              type="submit"
+              onClick={() => {
+                setPrice(+price + +shipping);
+              }}
+            >
+              {" "}
+              Place Order
+            </button>
           </div>
         </div>
       ) : null}

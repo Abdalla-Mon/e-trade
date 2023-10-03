@@ -2431,6 +2431,8 @@
   -moz-border-radius: 6px;
   -ms-border-radius: 6px;
   -o-border-radius: 6px;
+  height: -moz-fit-content;
+  height: fit-content;
 }
 @media (max-width: 767px) {
   .profile .profile-nav ul {
@@ -2449,6 +2451,9 @@
     width: calc(100% - 30px);
     border-radius: 50px;
   }
+  .profile .profile-nav span {
+    display: none;
+  }
 }
 .profile .profile-nav .profile-li {
   color: #777777;
@@ -2463,7 +2468,7 @@
   -o-border-radius: 6px;
 }
 .profile .profile-nav .profile-li:hover, .profile .profile-nav .profile-li.active {
-  background-color: #f7f7f7;
+  background-color: #f6f7fb;
   color: #3577f0;
 }
 .profile .profile-nav .profile-li svg {
@@ -2482,9 +2487,26 @@
     -o-border-radius: 16px;
   }
 }
+.profile .profile-data {
+  width: 100%;
+  overflow: auto;
+  height: -moz-fit-content;
+  height: fit-content;
+}
+.profile .profile-data::-webkit-scrollbar {
+  width: 50px;
+}
+.profile .profile-data::-webkit-scrollbar-track {
+  box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+}
+.profile .profile-data::-webkit-scrollbar-thumb {
+  background-color: #3577f0;
+  outline: 1px solid #f9f3f0;
+}
 .profile .profile-data h1 {
   color: #292930;
   font-weight: bold;
+  margin: 0 0 12px;
 }
 .profile .profile-data > div {
   margin-bottom: 15px;
@@ -2493,6 +2515,102 @@
 }
 .profile .profile-data > div span {
   color: #ff497c;
+}
+
+.profile .orders {
+  width: 100%;
+  min-width: 500px;
+}
+.profile .orders thead tr {
+  background-color: #f6f7fb;
+  color: #292930;
+  font-weight: 600;
+}
+.profile .orders tbody tr {
+  border-bottom: 2px solid #f6f7fb;
+}
+.profile .orders tbody tr .order {
+  color: #ff497c;
+}
+.profile .orders tbody .date span {
+  color: #777777;
+}
+.profile .orders tbody .status {
+  color: #3577f0;
+  text-transform: capitalize;
+}
+.profile .orders td,
+.profile .orders th {
+  padding: 20px 15px;
+  text-align: left;
+}
+.profile .orders td.details {
+  cursor: pointer;
+  color: #777777;
+  text-decoration: underline;
+}
+.profile .orders td.details:hover {
+  color: #3577f0;
+}
+.profile .order-container {
+  width: 100%;
+  height: 100%;
+  left: 0;
+  top: 0;
+  background: rgba(0, 0, 0, 0.7215686275);
+  padding: 30px;
+  z-index: 50000000;
+  overflow-y: auto;
+}
+@media (max-width: 767px) {
+  .profile .order-container {
+    padding: 15px;
+  }
+}
+.profile .order-container .order-details {
+  position: relative;
+  background-color: white;
+  z-index: 1;
+  padding: 20px;
+  border-radius: 6px;
+  -webkit-border-radius: 6px;
+  -moz-border-radius: 6px;
+  -ms-border-radius: 6px;
+  -o-border-radius: 6px;
+}
+.profile .order-container .order-details h4 {
+  font-weight: bold;
+  color: #292930;
+  margin-bottom: 20px;
+}
+.profile .order-container .close-event {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  left: 0;
+  top: 0;
+  z-index: -1;
+}
+.profile .order-container .close-btn {
+  top: -10px;
+  right: -10px;
+}
+.profile .order-container .order-details-container > div {
+  margin-bottom: 20px;
+  color: #777777;
+}
+.profile .order-container .order-details-container > div span {
+  color: #292930;
+  font-weight: 600;
+}
+.profile .order-container::-webkit-scrollbar {
+  width: 0;
+}
+.profile .order-container img {
+  width: 150px;
+}
+.profile .item-table {
+  width: 100%;
 }
 
 .shop-card:hover img {

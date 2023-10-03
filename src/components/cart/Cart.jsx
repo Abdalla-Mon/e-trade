@@ -160,7 +160,6 @@ function CartTotal() {
     })
     .reduce((acc, curr) => acc + curr);
   let totalPrice = price + shipping;
-  window.localStorage.setItem("total-price", totalPrice);
   return (
     <div className="order-summery">
       <h3>Order Summary</h3>

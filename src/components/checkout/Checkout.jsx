@@ -17,7 +17,7 @@ export default function CheckOut() {
       </div>
     );
   }
-  let price = cartData.cart
+  let priceState = cartData.cart
     .map((e) => {
       if (e.desc) {
         return (+e.price - e.desc || 0) * e.qty;
@@ -26,6 +26,8 @@ export default function CheckOut() {
       }
     })
     .reduce((acc, curr) => acc + curr);
+  const [price, setPrice] = useState(priceState || 0);
+
   const form = useForm();
   const [formData, setFormData] = useState([]);
   const [review, setReview] = useState(false);
@@ -37,7 +39,7 @@ export default function CheckOut() {
   }
 
   return (
-    <SubTotal.Provider value={{ formData, review }}>
+    <SubTotal.Provider value={{ formData, review, price, setPrice }}>
       <section className="checkout">
         <section className="checkout-content">
           {review ? <Review /> : null}
@@ -63,41 +65,56 @@ export default function CheckOut() {
     </SubTotal.Provider>
   );
 }
+async function getUserPrevOrders() {
+  const docRef = doc(db, "orders", auth.currentUser?.uid);
+  const cartSnap = await getDoc(docRef);
+  if (cartSnap.data() === undefined) {
+    return [];
+  }
+  return cartSnap.data().data;
+}
+async function getOrderNumberAndSetNewOne() {
+  const orderRef = doc(db, "orderNumber", "orderNumber");
+  const orderNumber = await getDoc(orderRef);
+  const newOrderNumber = orderNumber.data().number + 1;
+  const newOrder = await setDoc(orderRef, { number: newOrderNumber });
+  return newOrderNumber;
+}
+async function updatingData(data, formData, price) {
+  const docRef = doc(db, "orders", auth.currentUser?.uid);
+
+  let userPrevOrders = await getUserPrevOrders();
+  let newOrderNumber = await getOrderNumberAndSetNewOne();
+  let object = {
+    data: data.cart,
+    date: new Date(),
+    formDetails: formData,
+    status: "Processing",
+    totalPrice: price,
+    orderNumber: newOrderNumber,
+  };
+  userPrevOrders.push(object);
+  const docData = await setDoc(docRef, { data: userPrevOrders });
+  return docData;
+}
+function clearCartData(dispatch, intervel, navigate) {
+  dispatch(clearCart());
+  window.clearInterval(intervel);
+  navigate("/");
+}
 function Review() {
   const [timer, setTimer] = useState(3);
-  const { formData } = useContext(SubTotal);
+  const { formData, price } = useContext(SubTotal);
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const ref = useRef(3);
   const data = useSelector((e) => e.cart);
 
   useEffect(() => {
-    const docRef = doc(db, "orders", auth.currentUser.uid);
-    async function getData() {
-      const cartSnap = await getDoc(docRef);
-      if (cartSnap.data() === undefined) {
-        return [];
-      }
-      return cartSnap.data().data;
-    }
-    async function updatingData() {
-      let da = await getData();
-      let object = {
-        data: data.cart,
-        date: new Date(),
-        formDetails: formData,
-        status: "on progress",
-      };
-      da.push(object);
-      const docData = await setDoc(docRef, { data: da });
-      return docData;
-    }
     let intervel = window.setInterval(() => {
       if (ref.current < 1) {
-        updatingData();
-        dispatch(clearCart());
-        window.clearInterval(intervel);
-        navigate("/");
+        updatingData(data, formData, price);
+        clearCartData(dispatch, intervel, navigate);
       } else {
         setTimer((e) => e - 1);
         ref.current--;

@@ -1,11 +1,12 @@
 import { Navigate } from "react-router-dom";
-import { auth } from "../../../firebaseConfig/firebaseConfig";
+import { auth, db } from "../../../firebaseConfig/firebaseConfig";
 import { authFnc } from "../AuthProvider";
 import { signOut } from "firebase/auth";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { BiSolidShoppingBag, BiSolidUserDetail } from "react-icons/bi";
 import { FiLogOut } from "react-icons/fi";
-
+import { doc, getDoc } from "firebase/firestore";
+import { motion } from "framer-motion";
 export default function Profile() {
   const [state, setState] = useState("orders");
 
@@ -25,7 +26,7 @@ export default function Profile() {
   return (
     <div className="profile">
       <div className="container mx-auto">
-        <div className="flex gap-10 flex-col-reverse tab:flex-row  tab:items-center">
+        <div className="flex gap-10 flex-col-reverse tab:flex-row ">
           <div className="profile-nav tab:w-2/6">
             <ProfileNav setState={setState} />
           </div>
@@ -82,11 +83,166 @@ function ProfileNav({ setState }) {
     </>
   );
 }
+function Orders() {
+  const [orders, setOrders] = useState([]);
+  useEffect(() => {
+    async function getUserOrders() {
+      try {
+        const docRef = doc(db, "orders", auth.currentUser.uid);
+        const userOrder = await getDoc(docRef);
+        if (userOrder === undefined) {
+          setOrders([]);
+          return;
+        }
+        setOrders(userOrder.data().data);
+      } catch {
+        setOrders;
+      }
+    }
+    getUserOrders();
+
+    console.log(orders);
+  }, [orders.length]);
+  return (
+    <>
+      {orders.length < 1 && "No orders"}
+      {orders.length > 0 && (
+        <table className="orders">
+          <TableHead />
+          <tbody>
+            {orders.map((order) => {
+              return <TableBody order={order} key={order.orderNumber} />;
+            })}
+          </tbody>
+        </table>
+      )}
+    </>
+  );
+}
+function TableHead() {
+  return (
+    <thead>
+      <tr>
+        <th className="order">Order</th>
+        <th className="date">Date</th>
+        <th className="status">Status</th>
+        <th className="total">Total</th>
+        <th className="details"></th>
+      </tr>
+    </thead>
+  );
+}
+function TableBody({ order }) {
+  const timestampInMilliseconds =
+    order.date.seconds * 1000 + order.date.nanoseconds / 1000000;
+
+  const date = new Date(timestampInMilliseconds);
+  let dateDetails = date.toLocaleDateString();
+  let timeDetails = date.toLocaleTimeString();
+  let itemsQuantity = 0;
+  for (let i = 0; i < order.data.length; i++) {
+    itemsQuantity += order.data[i].qty;
+  }
+  const [details, setDetails] = useState(false);
+  return (
+    <>
+      <tr className="single-order">
+        <td className="order">#{order.orderNumber}</td>
+        <td className="date">
+          <span>{dateDetails}</span>, At: {timeDetails}
+        </td>
+        <td className="status">{order.status}</td>
+        <td className="total">
+          ${order.totalPrice} for {itemsQuantity} items
+        </td>
+        <td className="details" onClick={() => setDetails(true)}>
+          Details
+        </td>{" "}
+      </tr>
+      {details && <Details order={order} setDetails={setDetails} />}
+    </>
+  );
+}
+function Details({ order, setDetails }) {
+  return (
+    <div className="order-container fixed">
+      <div className="close-event" onClick={() => setDetails(false)}></div>
+      <motion.div
+        layout
+        className="order-details flex flex-col-reverse gap-8 tab:flex-row"
+      >
+        <div className="close-btn absolute" onClick={() => setDetails(false)}>
+          X
+        </div>
+        <div className="order-details-container tab:w-3/5">
+          <h4>Order Details</h4>
+          <div>
+            {" "}
+            <span>Name :</span>
+            {order.formDetails.pafirstName} {order.formDetails.pasecondName}
+          </div>
+          <div>
+            {" "}
+            <span>Derlivering to :</span>
+            {order.formDetails.paaddress}, {order.formDetails.pacity}
+          </div>
+          <div>
+            {" "}
+            <span>Card Number :</span>
+            {order.formDetails.creditcard.slice(-4)}****
+          </div>
+          <div>
+            {" "}
+            <span>Order Status :</span>
+            {order.status}
+          </div>
+          <div>
+            {" "}
+            <span>Total Price :</span>${order.totalPrice}
+          </div>
+        </div>
+        <div className="table-container tab:w-2/5">
+          <h4>Order Summery</h4>
+          <table className="item-table">
+            <thead>
+              <tr>
+                <th className="img-container">Product</th>
+                <th className="qty">Quantity</th>
+                <th className="total-price">Total Price</th>
+              </tr>
+            </thead>
+            <tbody>
+              {order.data.map((e, index) => (
+                <ItemDetails item={e} key={index} />
+              ))}
+            </tbody>
+          </table>
+        </div>
+      </motion.div>
+    </div>
+  );
+}
+function ItemDetails({ item }) {
+  return (
+    <tr className="items-details">
+      <td className="img-container">
+        <img src={item.img} alt="item image" />
+      </td>
+      <td className="qty">
+        {item.qty} * ${item.price - (item.desc || 0)}
+      </td>
+      <td className="total-price">
+        ${item.qty * (item.price - (item.desc || 0))}
+      </td>
+    </tr>
+  );
+}
 function ProfileData({ state, data }) {
   const currentObject = data[state];
   return (
     <>
       <h1>{currentObject.title}</h1>
+      {currentObject.title === "Orders" ? <Orders /> : null}
       {currentObject.userName && (
         <div className="email">
           UserName : <span>{currentObject.userName}</span>
