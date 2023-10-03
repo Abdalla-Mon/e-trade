@@ -122,8 +122,6 @@ function Orders() {
       }
     }
     getUserOrders();
-
-    console.log(orders);
   }, [orders.length]);
   return (
     <>
@@ -189,7 +187,11 @@ function TableBody({ order }) {
 }
 function Details({ order, setDetails }) {
   return (
-    <motion.div layout className="order-container fixed">
+    <motion.div
+      initial={{ scale: 0 }}
+      animate={{ scale: [0, 0.5, 1] }}
+      className="order-container fixed"
+    >
       <div className="close-event" onClick={() => setDetails(false)}></div>
       <div className="order-details flex flex-col-reverse gap-8 tab:flex-row">
         <div className="close-btn absolute" onClick={() => setDetails(false)}>
