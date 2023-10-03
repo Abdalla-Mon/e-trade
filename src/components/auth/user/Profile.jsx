@@ -165,12 +165,9 @@ function TableBody({ order }) {
 }
 function Details({ order, setDetails }) {
   return (
-    <div className="order-container fixed">
+    <motion.div layout className="order-container fixed">
       <div className="close-event" onClick={() => setDetails(false)}></div>
-      <motion.div
-        layout
-        className="order-details flex flex-col-reverse gap-8 tab:flex-row"
-      >
+      <div className="order-details flex flex-col-reverse gap-8 tab:flex-row">
         <div className="close-btn absolute" onClick={() => setDetails(false)}>
           X
         </div>
@@ -218,8 +215,8 @@ function Details({ order, setDetails }) {
             </tbody>
           </table>
         </div>
-      </motion.div>
-    </div>
+      </div>
+    </motion.div>
   );
 }
 function ItemDetails({ item }) {

@@ -2557,7 +2557,7 @@
   height: 100%;
   left: 0;
   top: 0;
-  background: rgba(0, 0, 0, 0.7215686275);
+  background: rgba(0, 0, 0, 0.3215686275);
   padding: 30px;
   z-index: 50000000;
   overflow-y: auto;
@@ -2577,6 +2577,7 @@
   -moz-border-radius: 6px;
   -ms-border-radius: 6px;
   -o-border-radius: 6px;
+  min-height: 100%;
 }
 .profile .order-container .order-details h4 {
   font-weight: bold;
