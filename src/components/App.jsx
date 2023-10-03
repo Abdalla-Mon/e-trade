@@ -32,7 +32,7 @@ const StyledMaterialDesignContent = styled(MaterialDesignContent)(() => ({
     color: "#000000",
   },
 }));
-async function getData(dispatch) {
+async function getUserCartAnsWishData(dispatch) {
   try {
     if (!auth.currentUser) {
       return;
@@ -105,7 +105,7 @@ function App() {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    getData(dispatch);
+    getUserCartAnsWishData(dispatch);
   }, []);
   return (
     <QueryClientProvider client={queryClient}>
@@ -122,7 +122,7 @@ function Routes() {
   useEffect(() => {
     setLoader(false);
 
-    getData(dispatch);
+    getUserCartAnsWishData(dispatch);
   }, []);
   return (
     <>
