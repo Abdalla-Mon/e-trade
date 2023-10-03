@@ -2425,6 +2425,7 @@
 }
 .profile .profile-nav {
   padding: 40px 25px;
+  background: white;
   border: 1px solid #cbd3d9;
   border-radius: 6px;
   -webkit-border-radius: 6px;
@@ -2489,18 +2490,24 @@
 }
 .profile .profile-data {
   width: 100%;
+  height: 100%;
+}
+.profile .profile-data .profile-orders {
+  width: 100%;
   overflow: auto;
   height: -moz-fit-content;
   height: fit-content;
   margin-bottom: auto;
+  height: 100%;
+  max-height: 90%;
 }
-.profile .profile-data::-webkit-scrollbar {
-  width: 50px;
+.profile .profile-data .profile-orders::-webkit-scrollbar {
+  width: 20px;
 }
-.profile .profile-data::-webkit-scrollbar-track {
+.profile .profile-data .profile-orders::-webkit-scrollbar-track {
   box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
 }
-.profile .profile-data::-webkit-scrollbar-thumb {
+.profile .profile-data .profile-orders::-webkit-scrollbar-thumb {
   background-color: #3577f0;
   outline: 1px solid #f9f3f0;
 }

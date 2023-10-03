@@ -83,6 +83,28 @@ function ProfileNav({ setState }) {
     </>
   );
 }
+function ProfileData({ state, data }) {
+  const currentObject = data[state];
+  return (
+    <>
+      {currentObject.title === "Orders" ? null : (
+        <h1> {currentObject.title}</h1>
+      )}
+      {currentObject.title === "Orders" ? <Orders /> : null}
+      {currentObject.userName && (
+        <div className="email">
+          UserName : <span>{currentObject.userName}</span>
+        </div>
+      )}
+      {currentObject.email && (
+        <div className="email">
+          Email : <span>{currentObject.email}</span>
+        </div>
+      )}
+    </>
+  );
+}
+
 function Orders() {
   const [orders, setOrders] = useState([]);
   useEffect(() => {
@@ -107,14 +129,16 @@ function Orders() {
     <>
       {orders.length < 1 && "No orders"}
       {orders.length > 0 && (
-        <table className="orders">
-          <TableHead />
-          <tbody>
-            {orders.map((order) => {
-              return <TableBody order={order} key={order.orderNumber} />;
-            })}
-          </tbody>
-        </table>
+        <div className="profile-orders">
+          <table className="orders">
+            <TableHead />
+            <tbody>
+              {orders.map((order) => {
+                return <TableBody order={order} key={order.orderNumber} />;
+              })}
+            </tbody>
+          </table>{" "}
+        </div>
       )}
     </>
   );
@@ -232,24 +256,5 @@ function ItemDetails({ item }) {
         ${item.qty * (item.price - (item.desc || 0))}
       </td>
     </tr>
-  );
-}
-function ProfileData({ state, data }) {
-  const currentObject = data[state];
-  return (
-    <>
-      <h1>{currentObject.title}</h1>
-      {currentObject.title === "Orders" ? <Orders /> : null}
-      {currentObject.userName && (
-        <div className="email">
-          UserName : <span>{currentObject.userName}</span>
-        </div>
-      )}
-      {currentObject.email && (
-        <div className="email">
-          Email : <span>{currentObject.email}</span>
-        </div>
-      )}
-    </>
   );
 }
