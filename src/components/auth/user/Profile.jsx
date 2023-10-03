@@ -7,6 +7,10 @@ import { BiSolidShoppingBag, BiSolidUserDetail } from "react-icons/bi";
 import { FiLogOut } from "react-icons/fi";
 import { doc, getDoc } from "firebase/firestore";
 import { motion } from "framer-motion";
+import * as React from "react";
+import TablePagination from "@mui/material/TablePagination";
+import { Pagination, Stack } from "@mui/material";
+
 export default function Profile() {
   const [state, setState] = useState("orders");
 
@@ -107,6 +111,10 @@ function ProfileData({ state, data }) {
 
 function Orders() {
   const [orders, setOrders] = useState([]);
+  const [sliceNum, setSliceNum] = useState(0);
+  // const [grid, setGrid] = useState(4);
+  let dataSliced = orders?.slice(sliceNum, sliceNum + 4);
+
   useEffect(() => {
     async function getUserOrders() {
       try {
@@ -127,18 +135,48 @@ function Orders() {
     <>
       {orders.length < 1 && "No orders"}
       {orders.length > 0 && (
-        <div className="profile-orders">
-          <table className="orders">
-            <TableHead />
-            <tbody>
-              {orders.map((order) => {
-                return <TableBody order={order} key={order.orderNumber} />;
-              })}
-            </tbody>
-          </table>{" "}
-        </div>
+        <>
+          <div className="profile-orders">
+            <table className="orders">
+              <TableHead />
+              <tbody>
+                {dataSliced.map((order) => {
+                  return <TableBody order={order} key={order.orderNumber} />;
+                })}
+              </tbody>
+            </table>{" "}
+          </div>
+          <TablePaginationDemo
+            setSliceNum={setSliceNum}
+            length={orders.length}
+          />
+        </>
       )}
     </>
+  );
+}
+
+function TablePaginationDemo({ setSliceNum, length }) {
+  const [page, setPage] = useState(1);
+  const index = Math.ceil(length / 4);
+
+  let paginationNum = 0;
+  for (let i = 0; i < index; i++) {
+    paginationNum++;
+  }
+  const handleChange = (event, value) => {
+    setPage(value);
+    setSliceNum((value - 1) * grid, value * grid);
+  };
+  return (
+    <Stack spacing={2} className="pagination">
+      <Pagination
+        size="large"
+        count={paginationNum}
+        page={page}
+        onChange={handleChange}
+      />
+    </Stack>
   );
 }
 function TableHead() {
@@ -197,33 +235,7 @@ function Details({ order, setDetails }) {
         <div className="close-btn absolute" onClick={() => setDetails(false)}>
           X
         </div>
-        <div className="order-details-container tab:w-3/5">
-          <h4>Order Details</h4>
-          <div>
-            {" "}
-            <span>Name :</span>
-            {order.formDetails.pafirstName} {order.formDetails.pasecondName}
-          </div>
-          <div>
-            {" "}
-            <span>Derlivering to :</span>
-            {order.formDetails.paaddress}, {order.formDetails.pacity}
-          </div>
-          <div>
-            {" "}
-            <span>Card Number :</span>
-            {order.formDetails.creditcard.slice(-4)}****
-          </div>
-          <div>
-            {" "}
-            <span>Order Status :</span>
-            {order.status}
-          </div>
-          <div>
-            {" "}
-            <span>Total Price :</span>${order.totalPrice}
-          </div>
-        </div>
+        <OrderDetail order={order} />
         <div className="table-container tab:w-2/5">
           <h4>Order Summery</h4>
           <table className="item-table">
@@ -243,6 +255,37 @@ function Details({ order, setDetails }) {
         </div>
       </div>
     </motion.div>
+  );
+}
+function OrderDetail({ order }) {
+  return (
+    <div className="order-details-container tab:w-3/5">
+      <h4>Order Details</h4>
+      <div>
+        {" "}
+        <span>Name :</span>
+        {order.formDetails.pafirstName} {order.formDetails.pasecondName}
+      </div>
+      <div>
+        {" "}
+        <span>Derlivering to :</span>
+        {order.formDetails.paaddress}, {order.formDetails.pacity}
+      </div>
+      <div>
+        {" "}
+        <span>Card Number :</span>
+        {order.formDetails.creditcard.slice(-4)}****
+      </div>
+      <div>
+        {" "}
+        <span>Order Status :</span>
+        {order.status}
+      </div>
+      <div>
+        {" "}
+        <span>Total Price :</span>${order.totalPrice}
+      </div>
+    </div>
   );
 }
 function ItemDetails({ item }) {
