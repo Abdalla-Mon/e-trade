@@ -1,11 +1,38 @@
-import { Rating } from "@mui/material";
-import React from "react";
+import { CircularProgress, Rating } from "@mui/material";
+import React, { useEffect, useRef, useState } from "react";
 import { BiSolidChevronRight } from "react-icons/bi";
 import { FiEye } from "react-icons/fi";
 import { Link } from "react-router-dom";
-
+import { motion } from "framer-motion";
 import { AddToCart, AddToWhishList } from "./CardBtns";
-
+export function Img({ img, width }) {
+  const [loading, setLoading] = useState(false);
+  const ref = useRef();
+  useEffect(() => {
+    if (ref?.current?.height > 0) {
+      setLoading(false);
+    } else {
+      setLoading(true);
+    }
+  }, [ref?.current?.height]);
+  return (
+    <>
+      <motion.img
+        ref={ref}
+        src={img.src}
+        alt={img.alt}
+        loading="lazy"
+        width={width && "200px"}
+        onLoad={() => setLoading(false)}
+      />
+      {loading && (
+        <div className="img-loader">
+          <CircularProgress color="inherit" />
+        </div>
+      )}
+    </>
+  );
+}
 export function CardPrice({ e, additionalClass }) {
   return (
     <h3 className={"card-price flex gap-3  mb-1 " + additionalClass}>
@@ -18,7 +45,8 @@ export function ShopCard(e) {
   return (
     <div className="shop-card new-arrival-card flex flex-col justify-center text-center relative">
       <div className="img-container relative">
-        <img src={e.img} alt={e.id} loading="lazy" />
+        <Img img={{ src: e.img, alt: e.id }} key={e.id} />
+        {/* <img src={e.img} alt={e.id} loading="lazy" /> */}
         <div className="show-btns flex gap-1">
           <AddToWhishList item={e} />
           <AddToCart text={true} item={e} />
@@ -58,7 +86,9 @@ export function ShopListProduct({ e }) {
             window.scrollTo({ top: 0, behavior: "instant" });
           }}
         >
-          <img src={e.img} loading="lazy" alt={e.name} />
+          <Img img={{ src: e.img, alt: e.name }} key={e.name} />
+
+          {/* <img src={e.img} loading="lazy" alt={e.name} /> */}
         </Link>
       </div>
 
@@ -95,7 +125,7 @@ export function SingleProduct({ e }) {
   return (
     <div className="searched-prod items-center flex justify-between gap-8">
       <div className="left">
-        <img src={e.img} loading="lazy" alt={e.name} width={"200px"} />
+        <Img img={{ src: e.img, alt: e.name }} key={e.name} width={true} />
       </div>
       <div className="right tab:items-center flex gap-4 tab:justify-between tab:flex-row flex-col">
         <div className="">

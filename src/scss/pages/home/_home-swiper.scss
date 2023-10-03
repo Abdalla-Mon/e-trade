@@ -22,6 +22,10 @@
 
 .custom-swiper {
   position: unset !important;
+  .img-container,
+  .img-loader {
+    min-height: 250px;
+  }
   .swiper-slide {
     .shop-card {
       align-items: center;

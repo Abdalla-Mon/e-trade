@@ -113,7 +113,7 @@ function Orders() {
   const [orders, setOrders] = useState([]);
   const [sliceNum, setSliceNum] = useState(0);
   // const [grid, setGrid] = useState(4);
-  let dataSliced = orders?.slice(sliceNum, sliceNum + 4);
+  let dataSliced = orders?.reverse().slice(sliceNum, sliceNum + 4);
 
   useEffect(() => {
     async function getUserOrders() {

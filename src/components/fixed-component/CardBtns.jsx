@@ -126,12 +126,12 @@ export function AddToCart({ text, item, quantity = 1 }) {
             {" "}
             <div
               className={
-                item.stokc
+                item.stock
                   ? "cart-icon flex item-center gap-2"
                   : "cart-icon out-of-stock flex item-center gap-2"
               }
             >
-              {item.stock === true ? (
+              {item.stock ? (
                 <>
                   {" "}
                   {text ? (
