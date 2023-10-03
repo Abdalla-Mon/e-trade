@@ -1563,6 +1563,10 @@
 .shop .searched-prod .cart-icon {
   font-size: 1.2rem !important;
 }
+.shop .searched-prod .cart-icon,
+.shop .searched-prod .love-icon {
+  margin-left: 0;
+}
 .shop .searched-prod .right {
   flex: 1;
 }

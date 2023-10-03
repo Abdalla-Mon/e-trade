@@ -26,12 +26,12 @@ export function CustomSwiperContainer({
 export default function CustomSwiper({ data, num, swiperEle }) {
   const [animation, setAnimation] = useState(false);
   const controls = useAnimationControls();
-  useEffect(() => {
-    controls.start({
-      opacity: [0, 1],
-      transition: { duration: 0.6 },
-    });
-  }, [animation]);
+  // useEffect(() => {
+  //   controls.start({
+  //     opacity: [0, 1],
+  //     transition: { duration: 0.6 },
+  //   });
+  // }, [animation]);
   return (
     <>
       <Swiper
@@ -49,7 +49,7 @@ export default function CustomSwiper({ data, num, swiperEle }) {
         modules={[Navigation]}
         className="custom-swiper"
         onSlideChange={() => {
-          setAnimation(!animation);
+          // setAnimation(!animation);
         }}
       >
         {data.map((el, index) => {
