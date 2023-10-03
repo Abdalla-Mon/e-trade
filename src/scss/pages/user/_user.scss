@@ -79,7 +79,7 @@
     @media (max-width: 767px) {
       display: flex;
       justify-content: center;
-      padding: 20px 15px;
+      padding: 6px 0;
       position: absolute;
       bottom: 20px;
       left: 15px;
@@ -109,11 +109,13 @@
       }
       @media (max-width: 767px) {
         flex-direction: column;
-        padding: 6px;
+        padding: 12px;
         font-size: 0.9rem;
-        span {
-          display: none;
-        }
+        border-radius: 50px;
+        -webkit-border-radius: 16px;
+        -moz-border-radius: 16px;
+        -ms-border-radius: 16px;
+        -o-border-radius: 16px;
       }
     }
   }

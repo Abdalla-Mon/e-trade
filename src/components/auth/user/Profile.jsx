@@ -3,23 +3,16 @@ import { auth } from "../../../firebaseConfig/firebaseConfig";
 import { authFnc } from "../AuthProvider";
 import { signOut } from "firebase/auth";
 import { useState } from "react";
-import {
-  BiSolidDashboard,
-  BiSolidShoppingBag,
-  BiSolidUserDetail,
-} from "react-icons/bi";
+import { BiSolidShoppingBag, BiSolidUserDetail } from "react-icons/bi";
 import { FiLogOut } from "react-icons/fi";
 
 export default function Profile() {
-  const [state, setState] = useState("dashboard");
+  const [state, setState] = useState("orders");
 
   if (!authFnc().logined) {
     return <Navigate to={"/login"} replace={true} />;
   }
   const profileObject = {
-    dashboard: {
-      title: "Dashboard",
-    },
     orders: {
       title: "Orders",
     },
@@ -58,16 +51,7 @@ function ProfileNav({ setState }) {
     <>
       <ul className="flex  flex-row tab:flex-col gap-3 tab:gap-5">
         <li
-          className="profile-li active flex gap-2 items-center"
-          onClick={(e) => {
-            setState("dashboard");
-            handleClick(e.target);
-          }}
-        >
-          <BiSolidDashboard /> <span>Dashboard</span>
-        </li>
-        <li
-          className="profile-li flex gap-3 items-center"
+          className="profile-li active flex gap-3 items-center"
           onClick={(e) => {
             setState("orders");
             handleClick(e.target);

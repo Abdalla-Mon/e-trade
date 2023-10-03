@@ -9,7 +9,7 @@ export default function Whishlist() {
   if (cartData.wishList.length === 0) {
     return (
       <div className="cart text-center">
-        <h1>Empty Whish List</h1>
+        <h1>Empty Wish List</h1>
       </div>
     );
   }
@@ -17,7 +17,7 @@ export default function Whishlist() {
     <div className="cart">
       <div className="container mx-auto">
         <div className="flex cart-header justify-between">
-          <h4>Your Whish List</h4>
+          <h4>Your Wish List</h4>
           <h6
             onClick={() => {
               dispatch(addToWishList([[], -cartData.numOfWishlistItems]));

@@ -82,7 +82,12 @@ function Review() {
     }
     async function updatingData() {
       let da = await getData();
-      let object = { data: data.cart, date: new Date(), formDetails: formData };
+      let object = {
+        data: data.cart,
+        date: new Date(),
+        formDetails: formData,
+        status: "on progress",
+      };
       da.push(object);
       const docData = await setDoc(docRef, { data: da });
       return docData;
