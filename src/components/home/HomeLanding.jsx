@@ -6,7 +6,6 @@ import "swiper/css/effect-fade";
 import { Autoplay, Pagination, EffectFade } from "swiper/modules";
 import { BsWatch, BsArrowRight } from "react-icons/bs";
 import { Link } from "react-router-dom";
-import CustomSwiper from "../fixed-component/CustomSwiper";
 export default function HomeLanding() {
   return (
     <div className="home-landing">
@@ -82,7 +81,7 @@ function GoToShop() {
 function BagElement() {
   return (
     <>
-      <div className="img-container">
+      <div >
         <img src="./landing-page/bag.webp" alt="bag" />
         <Link to="shop">Yanti Leather Bags</Link>
         <h3>$39.50</h3>

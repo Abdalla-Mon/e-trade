@@ -2387,6 +2387,7 @@
 .sign-up .container h1 {
   color: #292930;
   font-weight: bold;
+  margin-top: 5px;
 }
 .sign-up .container h4 {
   color: #292930;
@@ -2405,11 +2406,11 @@
   color: #ffffff;
   background-color: #3577f0;
   padding: 16px;
-  border-radius: 50px;
-  -webkit-border-radius: 50px;
-  -moz-border-radius: 50px;
-  -ms-border-radius: 50px;
-  -o-border-radius: 50px;
+  border-radius: 8px;
+  -webkit-border-radius: 8px;
+  -moz-border-radius: 8px;
+  -ms-border-radius: 8px;
+  -o-border-radius: 8px;
 }
 .sign-up .error {
   color: red;
@@ -2638,6 +2639,58 @@
 }
 .profile .item-table {
   width: 100%;
+}
+
+.login .reset-link {
+  color: #777777;
+  font-weight: 600;
+  margin-top: -12px;
+}
+.login button {
+  margin-top: -12px;
+}
+
+.reset .logo {
+  margin-bottom: 10px !important;
+}
+.reset .logo .icon {
+  padding: 15px;
+  border: 1px solid #cbd3d9;
+  color: #3577f0;
+  transition: 0.3s;
+  -webkit-transition: 0.3s;
+  -moz-transition: 0.3s;
+  -ms-transition: 0.3s;
+  -o-transition: 0.3s;
+  position: relative;
+  z-index: 1;
+  border-radius: 6px;
+  overflow: hidden;
+}
+.reset .logo .icon::before {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  width: 0%;
+  height: 100%;
+  background-color: #3577f0;
+  left: 0;
+  top: 0;
+  transition: 0.3s;
+  -webkit-transition: 0.3s;
+  -moz-transition: 0.3s;
+  -ms-transition: 0.3s;
+  -o-transition: 0.3s;
+}
+.reset .logo .icon:hover {
+  color: white;
+}
+.reset .logo .icon:hover::before {
+  width: 100%;
+}
+.reset .reset-text {
+  color: #777777 !important;
+  margin-bottom: 15px !important;
 }
 
 .shop-card:hover img {
