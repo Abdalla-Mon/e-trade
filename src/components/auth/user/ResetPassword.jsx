@@ -1,23 +1,23 @@
 import { Link, Navigate } from "react-router-dom";
 import { Input } from "../../fixed-component/Input";
-import { useForm } from "react-hook-form";
 import { authFnc } from "../AuthProvider";
+import { useForm } from "react-hook-form";
 import { auth } from "../../../firebaseConfig/firebaseConfig";
-import { supabase } from "../../../firebaseConfig/supBase";
-export default function Login() {
+
+export default function ResetPassword() {
   const { formState, register, handleSubmit } = useForm();
   const { errors } = formState;
   const signFnc = authFnc();
 
   function submit(e) {
     // signUp()
-    signFnc.login(e.sign_email, e.sign_password);
+    signFnc.reset(e.sign_email);
   }
   if (authFnc().logined) {
     return <Navigate to={"/profile"} replace={true} />;
   }
   return (
-    <div className="login sign-up">
+    <div className="login sign-up reset">
       <div className="lap:flex gap-6 ">
         <div className="left hidden lap:block lap:w-2/5"></div>
         <form
@@ -25,13 +25,17 @@ export default function Login() {
           noValidate
           onSubmit={handleSubmit(submit)}
         >
-          <div className="container mx-auto">
+          <div className="container mx-auto items-start">
             <div className="logo">
               <Link to="/">
                 <img src="./logo.png" alt="logo" />
               </Link>
             </div>
-            <h1>Welcome to E Trade</h1>
+            <h1>Forgot Password?</h1>
+            <h4>
+              Enter the email address you used when you joined and we&apos;ll
+              send you instructions to reset your password.
+            </h4>
             <h4>
               Not a member? <Link to="/signup">Sign Up </Link>
             </h4>
@@ -49,24 +53,12 @@ export default function Login() {
                   },
                 }}
               />
-              <Input
-                id={"sign_password"}
-                type={"password"}
-                e={"Password"}
-                register={register}
-                errors={errors}
-                pattern={{
-                  required: {
-                    value: true,
-                    message: "Please enter your password",
-                  },
-                }}
-              />
-              <Link to="/reset_password" className="reset-link">
-                Forgot password?
+
+              <button>Reset Password</button>
+              <Link to="/login" className="login-link">
+                Login
               </Link>
-              <button>Log in</button>
-              <p className="error">{signFnc?.loginError}</p>
+              <p className="error">{signFnc?.resetError}</p>
             </div>
           </div>
         </form>

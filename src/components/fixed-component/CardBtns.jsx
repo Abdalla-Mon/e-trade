@@ -158,6 +158,7 @@ export function AddToCart({ text, item, quantity = 1 }) {
                 cartItem,
                 quantity
               );
+
               dispatch(addToCart({ cartItems: updatedCartItems, quantity }));
               addToCartPopup(item.id);
             }

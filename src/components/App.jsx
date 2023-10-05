@@ -22,6 +22,7 @@ import { auth, db } from "../firebaseConfig/firebaseConfig";
 import { doc, getDoc } from "firebase/firestore";
 import { useDispatch } from "react-redux";
 import { addToCart, addToWishList } from "../redux/cartSlice";
+import ResetPassword from "./auth/user/ResetPassword";
 const LazyAbout = React.lazy(() => import("./about/About"));
 const LazyProducts = React.lazy(() => import("./shop/Shop"));
 const LazyContact = React.lazy(() => import("./contact/Contact"));
@@ -63,6 +64,7 @@ const router = createHashRouter(
     <>
       <Route path="login" element={<Login />} />
       <Route path="signUp" element={<SignUp />} />
+      <Route path="reset_password" element={<ResetPassword />} />
       <Route path="" element={<Routes />}>
         <Route index element={<Home />} />
         <Route

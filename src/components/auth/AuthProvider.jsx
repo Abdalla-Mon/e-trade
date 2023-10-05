@@ -5,6 +5,7 @@ import {
   createUserWithEmailAndPassword,
   updateProfile,
   onAuthStateChanged,
+  sendPasswordResetEmail,
 } from "firebase/auth";
 const AuthContext = createContext(null);
 
@@ -12,6 +13,7 @@ export default function AuthProvider({ children }) {
   const [loginError, setError] = useState(null);
   const [signupError, setSignupError] = useState(null);
   const [logined, setlogined] = useState(null);
+  const [resetError, setResetError] = useState(null);
   onAuthStateChanged(auth, (currentUser) => {
     if (currentUser) {
       setlogined(true);
@@ -52,7 +54,14 @@ export default function AuthProvider({ children }) {
       setError(error.message);
     }
   };
-
+  const reset = async (resetEmail) => {
+    try {
+      const user = await sendPasswordResetEmail(auth, resetEmail);
+      setResetError(null);
+    } catch (error) {
+      setResetError(error.message);
+    }
+  };
   return (
     <AuthContext.Provider
       value={{
@@ -61,6 +70,8 @@ export default function AuthProvider({ children }) {
         loginError,
         signupError,
         logined,
+        reset,
+        resetError,
       }}
     >
       {children}
