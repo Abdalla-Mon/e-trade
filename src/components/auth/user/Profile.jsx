@@ -8,14 +8,17 @@ import { FiLogOut } from "react-icons/fi";
 import { doc, getDoc } from "firebase/firestore";
 import { motion } from "framer-motion";
 import { Pagination, Stack } from "@mui/material";
-
+export   async function logout() {
+  await signOut(auth);
+}
 export default function Profile() {
   const [state, setState] = useState("orders");
-if(auth?.currentUser?.email==="admin@etrade.com"){
-  return <Navigate to="/dashboard" replace={true} />
-}
+
   if (!authFnc().logined) {
     return <Navigate to={"/login"} replace={true} />;
+  }
+  if(auth?.currentUser?.email==="admin@etrade.com"){
+    return <Navigate to="/dashboard" replace={true} />
   }
   const profileObject = {
     orders: {
@@ -49,9 +52,6 @@ function handleClick(el) {
   el.classList.add("active");
 }
 function ProfileNav({ setState }) {
-  async function logout() {
-    await signOut(auth);
-  }
   return (
     <>
       <ul className="flex  flex-row tab:flex-col gap-3 tab:gap-5">
