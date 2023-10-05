@@ -2645,9 +2645,10 @@
   color: #777777;
   font-weight: 600;
   margin-top: -12px;
+  text-decoration: underline;
 }
 .login button {
-  margin-top: -12px;
+  margin-top: -10px;
 }
 
 .reset .logo {
@@ -2690,7 +2691,9 @@
 }
 .reset .reset-text {
   color: #777777 !important;
-  margin-bottom: 15px !important;
+  margin-bottom: 20px !important;
+  text-align: center;
+  line-height: 1.6;
 }
 
 .shop-card:hover img {
