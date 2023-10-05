@@ -21,16 +21,17 @@ export default function DashDrawer() {
     };
   
     return (
-      <div className="nav-drawer-btn dash-drawer-btn">
+      <div className="nav-drawer-btn dash-drawer-btn pc:hidden">
         {["left"].map((anchor) => (
           <React.Fragment key={anchor}>
             <div className="nav-icon" onClick={toggleDrawer(anchor, true)}>
-              <FontAwesomeIcon icon="fa-solid fa-bars" className="" />
+              <FontAwesomeIcon icon="fa-solid fa-bars"  />
             </div>
             <Drawer
               anchor={anchor}
               open={state[anchor]}
               onClose={toggleDrawer(anchor, false)}
+              className="pc:hidden"
             >
               {list(anchor, toggleDrawer)}
             </Drawer>
@@ -45,27 +46,35 @@ export default function DashDrawer() {
       role="presentation"
       onClick={toggleDrawer(anchor, false)}
       onKeyDown={toggleDrawer(anchor, false)}
-      className="nav-items-drawer dash-items-drawer block"
+      className="nav-items-drawer dash-items-drawer block pc:hidden"
     >
-      <LeftDashBoard children={<>
-      
-        <div className="flex justify-end">
-        <div className="close-btn">
-          <FontAwesomeIcon icon="fa-solid fa-xmark" />
-        </div>
-      </div>
-      <Divider />
-      </>}/>
+      <LeftDashBoard children={<CloseBtn />}/>
       {/* <NavItems /> */}
     </Box>
   );
-  
-  function LeftDashBoard({children}){
+  function CloseBtn(){
     return(
-        <div className="left-dash "
-    >
+        <>
+      
+      <div className="flex justify-between">
+        <div className="logo">
+            <img src="./logo.png" />
+        </div>
+      <div className="close-btn">
+        <FontAwesomeIcon icon="fa-solid fa-xmark" />
+      </div>
+    </div>
+    <Divider />
+    </>
+    )
+  }
+  function LeftDashBoard({children,className}){
+    return(
+        <div className={"left-dash "+className}>
          {children}
-      nav
+         <div className="logo hidden pc:block">
+            <img src="./logo.png" />
+        </div>
         </div>
     )
   }
