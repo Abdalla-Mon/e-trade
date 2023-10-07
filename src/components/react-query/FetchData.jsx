@@ -1,9 +1,9 @@
 import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
-import { doc, getDoc } from "firebase/firestore";
+import { doc, getDoc, setDoc } from "firebase/firestore";
 import { db } from "../../firebaseConfig/firebaseConfig";
 
-async function fetchData() {
+export async function fetchData() {
   try {
     const docRef = doc(db, "Data", "shop_data");
     const data = await getDoc(docRef);
@@ -13,8 +13,12 @@ async function fetchData() {
 
     return data.data();
   } catch (e) {
-    console.log(e);
-    return axios.get("./db/products.json");
+    const data = await axios.get("./db/products.json");
+    const docData = await setDoc(doc(db, "Data", "shop_data"), {
+      data: data.data,
+    });
+
+    return data;
   }
 }
 
@@ -42,6 +46,10 @@ export function fetchAllProducts(
     queryFn: fetchData,
 
     select: (data) => {
+      if (filterType === "fromDash") {
+        const sortedData = sortData(data.data, "default");
+        return sortedData;
+      }
       const sortedData = sortData(data.data, sortType);
       const filteredData = filter(
         sortedData,

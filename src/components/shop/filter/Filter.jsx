@@ -151,8 +151,7 @@ function FilteringPrice() {
   const clickFnc = useClickAway();
   const filterData = useSelector((e) => e.data);
   const { data } = useQueryClient().getQueryData(["AllProducts"]);
-
-  let prices = data.map((e) => e.price);
+  let prices = data?.map((e) => e.price);
   let maxValue = Math.max(...prices);
   let minValue = Math.min(...prices);
   function valuetext(value) {
@@ -185,29 +184,35 @@ function FilteringPrice() {
       className="price-slider flex flex-col tab:flex-row gap-10"
     >
       <h2>Filter price range :</h2>
-      <Slider
-        getAriaLabel={() => "Minimum distance"}
-        value={value1}
-        onChange={handleChange1}
-        valueLabelDisplay="on"
-        getAriaValueText={valuetext}
-        disableSwap
-        max={maxValue}
-        min={minValue}
-        onChangeCommitted={() => {
-          dispatch(filterByPrice(value1));
-        }}
-        sx={{ flex: 1 }}
-      />
-      <button
-        className="hidden"
-        onClick={() => {
-          dispatch(filterByPrice(value1));
-          clickFnc.handleFilterClick();
-        }}
-      >
-        Filter Price
-      </button>
+      {!data ? (
+        <div>Loading</div>
+      ) : (
+        <>
+          <Slider
+            getAriaLabel={() => "Minimum distance"}
+            value={value1}
+            onChange={handleChange1}
+            valueLabelDisplay="on"
+            getAriaValueText={valuetext}
+            disableSwap
+            max={maxValue}
+            min={minValue}
+            onChangeCommitted={() => {
+              dispatch(filterByPrice(value1));
+            }}
+            sx={{ flex: 1 }}
+          />
+          <button
+            className="hidden"
+            onClick={() => {
+              dispatch(filterByPrice(value1));
+              clickFnc.handleFilterClick();
+            }}
+          >
+            Filter Price
+          </button>
+        </>
+      )}
     </Box>
   );
 }

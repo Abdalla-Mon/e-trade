@@ -10,7 +10,7 @@ import { BsFillGrid3X3GapFill, BsList } from "react-icons/bs";
 export function ProductSPerPage() {
   const data = [9, 12, 15, 18];
   const clickFnc = useClickAway();
-  const { grid, setGrid } = useFilterContext();
+  const { setGrid } = useFilterContext();
 
   return (
     <>

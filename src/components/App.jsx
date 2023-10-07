@@ -23,7 +23,8 @@ import { doc, getDoc } from "firebase/firestore";
 import { useDispatch } from "react-redux";
 import { addToCart, addToWishList } from "../redux/cartSlice";
 import ResetPassword from "./auth/user/ResetPassword";
-import Dashboard from "./dashboard/Dashboard";
+import DashNav from "./dashboard/Dashboard";
+import ProductsList from "./dashboard/ProductsList";
 const LazyAbout = React.lazy(() => import("./about/About"));
 const LazyProducts = React.lazy(() => import("./shop/Shop"));
 const LazyContact = React.lazy(() => import("./contact/Contact"));
@@ -63,7 +64,12 @@ async function getUserCartAnsWishData(dispatch) {
 const router = createHashRouter(
   createRoutesFromElements(
     <>
-    <Route path="dashboard" element={<Dashboard />}></Route>
+      <Route path="dashboard/*" element={<DashRoutes />}>
+        <Route index element={<ProductsList />} />
+        <Route path="add_product" element={<p>add product</p>} />
+        <Route path="categories" element={<p>cats</p>} />
+        <Route path="orders" element={<p>orders</p>} />
+      </Route>
       <Route path="login" element={<Login />} />
       <Route path="signUp" element={<SignUp />} />
       <Route path="reset_password" element={<ResetPassword />} />
@@ -142,6 +148,27 @@ function Routes() {
           <Outlet />
           <Footer />
         </SnackbarProvider>
+      )}
+    </>
+  );
+}
+function DashRoutes() {
+  const [loader, setLoader] = useState(true);
+
+  const dispatch = useDispatch();
+  useEffect(() => {
+    setLoader(false);
+
+    getUserCartAnsWishData(dispatch);
+  }, []);
+  return (
+    <>
+      {loader ? (
+        <AppLoader />
+      ) : (
+        <>
+          <DashNav />
+        </>
       )}
     </>
   );

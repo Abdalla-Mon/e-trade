@@ -13,6 +13,7 @@ export default function ClickAwayProvider({ children }) {
   };
   const handleSortClick = () => {
     setSortState((prev) => !prev);
+    console.log(1);
   };
 
   const handleClickAway = () => {

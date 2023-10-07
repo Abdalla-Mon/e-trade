@@ -8,7 +8,7 @@ import { FiLogOut } from "react-icons/fi";
 import { doc, getDoc } from "firebase/firestore";
 import { motion } from "framer-motion";
 import { Pagination, Stack } from "@mui/material";
-export   async function logout() {
+export async function logout() {
   await signOut(auth);
 }
 export default function Profile() {
@@ -17,8 +17,8 @@ export default function Profile() {
   if (!authFnc().logined) {
     return <Navigate to={"/login"} replace={true} />;
   }
-  if(auth?.currentUser?.email==="admin@etrade.com"){
-    return <Navigate to="/dashboard" replace={true} />
+  if (auth?.currentUser?.email === "admin@etrade.com") {
+    return <Navigate to="/dashboard" replace={true} />;
   }
   const profileObject = {
     orders: {

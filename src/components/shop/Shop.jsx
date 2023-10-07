@@ -1,6 +1,7 @@
+/* eslint-disable react/display-name */
 import { fetchAllProducts } from "../react-query/FetchData";
 import { useSelector } from "react-redux";
-import { createContext, useContext, useEffect, useState } from "react";
+import { createContext, memo, useContext, useEffect, useState } from "react";
 
 import {
   PageLayout,
@@ -102,7 +103,7 @@ function ShopProducts({ dataSliced, list }) {
     </AnimatePresence>
   );
 }
-function ShopPagination({ filterData, setSliceNum, grid }) {
+const ShopPagination = memo(({ filterData, setSliceNum, grid }) => {
   const [page, setPage] = useState(1);
   const index = Math.ceil(filterData.length / grid);
   useEffect(() => {
@@ -126,7 +127,7 @@ function ShopPagination({ filterData, setSliceNum, grid }) {
       />
     </Stack>
   );
-}
+});
 export function useFilterContext() {
   return useContext(FilterContext);
 }
