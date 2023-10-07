@@ -2706,7 +2706,6 @@
   height: 100vh;
   width: 300px;
   padding: 20px;
-  box-shadow: 0 0.125rem 0.25rem rgba(165, 163, 174, 0.3);
 }
 .left-dash .drawer-items {
   padding: 20px 0;
@@ -2769,6 +2768,7 @@
 }
 .dash-content .dash-search {
   margin-bottom: 15px;
+  flex-wrap: wrap;
 }
 .dash-content .search-input {
   padding: 12px;
@@ -2875,6 +2875,78 @@
 }
 .dash-content .table-container .pagintaion button:hover {
   background-color: #eee;
+}
+.dash-content .dash-single-product {
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.4901960784);
+  z-index: 1000;
+  padding: 20px;
+}
+.dash-content .dash-single-product .remove-div {
+  z-index: -1;
+  width: 100%;
+  height: 100%;
+}
+.dash-content .dash-single-product form {
+  background-color: white;
+  height: -moz-fit-content;
+  height: fit-content;
+  position: absolute;
+  left: 15px;
+  top: 50%;
+  transform: translateY(-50%);
+  right: 15px;
+}
+.dash-content .dash-single-product form .close-btn {
+  position: absolute;
+  right: -8px;
+  top: -15px;
+}
+.dash-content .dash-single-product form .close-btn:hover {
+  background-color: #7367f0;
+}
+.dash-content .dash-single-product form .single-input {
+  padding: 12px 15px;
+  border-bottom: 1px solid #dbdade;
+  align-items: center;
+}
+.dash-content .dash-single-product form .single-input label {
+  text-transform: capitalize;
+  align-items: center;
+}
+.dash-content .dash-single-product form .single-input input {
+  outline: none;
+  border: 1px solid #dbdade;
+  padding: 6px;
+  border-radius: 6px;
+}
+.dash-content .stock-swap {
+  z-index: 1;
+  width: 40px;
+  padding: 8px;
+  border-radius: 50px;
+  position: relative;
+  cursor: pointer;
+  border: 1px solid;
+}
+.dash-content .stock-swap span {
+  width: 12px;
+  height: 12px;
+  position: absolute;
+  border-radius: 50%;
+  -webkit-border-radius: 50%;
+  -moz-border-radius: 50%;
+  -ms-border-radius: 50%;
+  -o-border-radius: 50%;
+  top: 50%;
+  transform: translateY(-50%);
+  -webkit-transform: translateY(-50%);
+  -moz-transform: translateY(-50%);
+  -ms-transform: translateY(-50%);
+  -o-transform: translateY(-50%);
 }
 
 .shop-card:hover img {
