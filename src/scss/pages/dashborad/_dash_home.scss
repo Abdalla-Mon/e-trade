@@ -69,9 +69,10 @@
 
 .dash-content {
   padding: 20px 0;
-  .search-input {
+  .dash-search {
     margin-bottom: 15px;
-
+  }
+  .search-input {
     padding: 12px;
     box-shadow: $dash-shadow;
     outline: none;
@@ -118,6 +119,9 @@
       background-color: $white-color;
       box-shadow: $dash-shadow;
     }
+    .table-body {
+      height: 85px;
+    }
     th,
     td {
       padding: 12px 15px;
@@ -130,6 +134,50 @@
     td {
       color: $dash-text-color;
       text-transform: capitalize;
+      img {
+        width: 60px;
+      }
+      .svg-container {
+        width: 24px;
+        height: 24px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border-radius: 6px;
+        -webkit-border-radius: 6px;
+        -moz-border-radius: 6px;
+        -ms-border-radius: 6px;
+        -o-border-radius: 6px;
+        cursor: pointer;
+
+        &:hover {
+          background-color: #7367f029;
+        }
+      }
+      svg {
+        color: $primary-dash-color;
+      }
+    }
+    .img-loader {
+      width: 60px !important;
+      height: 60px !important;
+      min-height: 60px !important;
+
+      position: absolute;
+    }
+    .pagintaion {
+      background-color: $white-color;
+      padding: 10px;
+      button {
+        background-color: #f8f7fa;
+        &.Mui-selected {
+          background-color: $primary-dash-color;
+          color: $white-color;
+        }
+        &:hover {
+          background-color: #eee;
+        }
+      }
     }
   }
 }

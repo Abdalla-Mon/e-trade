@@ -13,9 +13,13 @@ export async function fetchData() {
 
     return data.data();
   } catch (e) {
-    const data = await axios.get("./db/products.json");
+    let data = await axios.get("./db/products.json");
+    data = data.data.map((e) => {
+      e.stock = true;
+      return e;
+    });
     const docData = await setDoc(doc(db, "Data", "shop_data"), {
-      data: data.data,
+      data: data,
     });
 
     return data;

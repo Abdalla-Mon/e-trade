@@ -6,6 +6,11 @@ import FormControl from "@mui/material/FormControl";
 import NativeSelect from "@mui/material/NativeSelect";
 import { Link } from "react-router-dom";
 import { BiEditAlt, BiPlus } from "react-icons/bi";
+import { AnimatePresence } from "framer-motion";
+import { Pagination } from "@mui/material";
+import { Img } from "../fixed-component/FixedComponent";
+import { doc, setDoc } from "firebase/firestore";
+import { db } from "../../firebaseConfig/firebaseConfig";
 
 export default function ProductsList() {
   return <DashProductTable />;
@@ -13,13 +18,16 @@ export default function ProductsList() {
 function DashProductTable() {
   const [searchKey, setSearchKey] = useState("");
   const [grid, setGrid] = useState(9);
-  const [slicedNumber, setSlicedNumber] = useState(1);
+  const [slicedNumber, setSlicedNumber] = useState(0);
   const deferedSearchKey = useDeferredValue(searchKey);
   const { data, isLoading } = fetchSearchProducts(deferedSearchKey);
+
   if (isLoading) {
     return "loading";
   }
-  const slicedData = data?.slice(slicedNumber - 1, grid * slicedNumber);
+
+  //   console.log(data?.slice(slicedNumber, grid + slicedNumber));
+  const slicedData = data?.slice(slicedNumber, grid + slicedNumber);
   return (
     <>
       <SearchBar setSearchKey={setSearchKey} setGrid={setGrid} />
@@ -32,6 +40,11 @@ function DashProductTable() {
             ))}
           </tbody>
         </table>{" "}
+        <PaginationRounded
+          dataLength={data.length}
+          grid={grid}
+          setSlicedNumber={setSlicedNumber}
+        />
       </div>
     </>
   );
@@ -66,7 +79,7 @@ function GridSetter({ setGrid }) {
           name: "products",
           id: "uncontrolled-native",
         }}
-        onChange={(e) => setGrid(e.target.value)}
+        onChange={(e) => setGrid(+e.target.value)}
       >
         <option value={9}>9</option>
         <option value={12}>12</option>
@@ -89,22 +102,55 @@ function TableHead() {
   );
 }
 function TableBody({ item }) {
+  const [show, setShow] = useState(false);
   return (
-    <tr className="table-head">
-      <td className="edit">
-        <BiEditAlt />
-      </td>
-      <td className="product">
-        <div className="flex gap-2 items-center">
-          <div className="img">
-            <img src={item.img} alt={item.name} width={60} />
+    <>
+      {show ? <SingleItem item={item} /> : null}
+      <tr className="table-body">
+        <td className="edit">
+          <div className="svg-container" onClick={() => setShow(true)}>
+            <BiEditAlt />
           </div>
-          <span>{item.name}</span>
-        </div>
-      </td>
-      <td className="category">{item.cat}</td>
-      <td className="sub-product">{item.subCat || "no sub category"}</td>
-      <td className="stock">{item.stock ? "In Stock" : "Out Of Stock"}</td>
-    </tr>
+        </td>
+        <td className="product">
+          <div className="flex gap-3 items-center">
+            <Img img={{ src: item.img, alt: item.name }} />
+            <span>{item.name}</span>
+          </div>
+        </td>
+        <td className="category">{item.cat}</td>
+        <td className="sub-product">{item.subCat || "no sub category"}</td>
+        <td className="stock">{item.stock ? "In Stock" : "Out Of Stock"}</td>
+      </tr>
+    </>
+  );
+}
+function SingleItem({ item }) {
+  return (
+    <div className="dash-single-product fixed">
+      <div className="remove-div absolute"></div>
+      <div className="dash-single-content"></div>
+    </div>
+  );
+}
+function PaginationRounded({ setSlicedNumber, grid, dataLength }) {
+  const [page, setPage] = useState(1);
+  let count = Math.ceil(dataLength / grid);
+  useEffect(() => {
+    document.querySelectorAll(".pagintaion   li button")[1].click();
+  }, [grid]);
+  const handleChange = (event, value) => {
+    setPage(value);
+    setSlicedNumber((value - 1) * grid, value * grid);
+  };
+  return (
+    <div className="pagintaion flex justify-end items-center">
+      <Pagination
+        count={count}
+        shape="rounded"
+        page={page}
+        onChange={handleChange}
+      />
+    </div>
   );
 }

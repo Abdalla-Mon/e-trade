@@ -2767,8 +2767,10 @@
 .dash-content {
   padding: 20px 0;
 }
-.dash-content .search-input {
+.dash-content .dash-search {
   margin-bottom: 15px;
+}
+.dash-content .search-input {
   padding: 12px;
   box-shadow: 0 0.125rem 0.25rem rgba(165, 163, 174, 0.3);
   outline: none;
@@ -2816,6 +2818,9 @@
   background-color: #ffffff;
   box-shadow: 0 0.125rem 0.25rem rgba(165, 163, 174, 0.3);
 }
+.dash-content .table-container .table-body {
+  height: 85px;
+}
 .dash-content .table-container th,
 .dash-content .table-container td {
   padding: 12px 15px;
@@ -2828,6 +2833,48 @@
 .dash-content .table-container td {
   color: #6f6b7d;
   text-transform: capitalize;
+}
+.dash-content .table-container td img {
+  width: 60px;
+}
+.dash-content .table-container td .svg-container {
+  width: 24px;
+  height: 24px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 6px;
+  -webkit-border-radius: 6px;
+  -moz-border-radius: 6px;
+  -ms-border-radius: 6px;
+  -o-border-radius: 6px;
+  cursor: pointer;
+}
+.dash-content .table-container td .svg-container:hover {
+  background-color: rgba(115, 103, 240, 0.1607843137);
+}
+.dash-content .table-container td svg {
+  color: #7367f0;
+}
+.dash-content .table-container .img-loader {
+  width: 60px !important;
+  height: 60px !important;
+  min-height: 60px !important;
+  position: absolute;
+}
+.dash-content .table-container .pagintaion {
+  background-color: #ffffff;
+  padding: 10px;
+}
+.dash-content .table-container .pagintaion button {
+  background-color: #f8f7fa;
+}
+.dash-content .table-container .pagintaion button.Mui-selected {
+  background-color: #7367f0;
+  color: #ffffff;
+}
+.dash-content .table-container .pagintaion button:hover {
+  background-color: #eee;
 }
 
 .shop-card:hover img {
