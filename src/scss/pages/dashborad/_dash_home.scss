@@ -25,7 +25,15 @@
     }
   }
 }
-
+.left-dash,
+.right-dash {
+  .close-btn {
+    &:hover {
+      background-color: $primary-dash-color;
+      color: $white-color;
+    }
+  }
+}
 .right-dash {
   flex: 1;
   width: 100%;
@@ -56,8 +64,6 @@
       padding-left: 5px;
     }
   }
-}
-.dash-drawer {
   .nav-icon {
     cursor: pointer;
     color: $dash-heading-color;
@@ -190,6 +196,8 @@
       z-index: -1;
       width: 100%;
       height: 100%;
+      top: 0;
+      left: 0;
     }
     form {
       background-color: white;
@@ -199,18 +207,20 @@
       top: 50%;
       transform: translateY(-50%);
       right: 15px;
+      max-width: 800px;
+      margin: auto;
+      border-radius: 6px;
       .close-btn {
         position: absolute;
         right: -8px;
         top: -15px;
-        &:hover {
-          background-color: $primary-dash-color;
-        }
       }
       .single-input {
         padding: 12px 15px;
         border-bottom: 1px solid $dash-border-color;
-        align-items: center;
+        &:last-child {
+          border-bottom: none;
+        }
         label {
           text-transform: capitalize;
           align-items: center;

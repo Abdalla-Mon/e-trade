@@ -1,5 +1,8 @@
 import { useDeferredValue, useEffect, useState } from "react";
-import { fetchSearchProducts } from "../react-query/FetchData";
+import {
+  fetchSearchProducts,
+  getUpdatedImgUrl,
+} from "../react-query/FetchData";
 import InputLabel from "@mui/material/InputLabel";
 import FormControl from "@mui/material/FormControl";
 import NativeSelect from "@mui/material/NativeSelect";
@@ -9,6 +12,7 @@ import { Pagination } from "@mui/material";
 import { Img } from "../fixed-component/FixedComponent";
 import { doc, setDoc } from "firebase/firestore";
 import { db } from "../../firebaseConfig/firebaseConfig";
+import { supabase } from "../../firebaseConfig/supBase";
 import { useForm } from "react-hook-form";
 import { motion } from "framer-motion";
 export default function ProductsList() {
@@ -148,12 +152,19 @@ function PaginationRounded({ setSlicedNumber, grid, dataLength }) {
     </div>
   );
 }
+
 function SingleItem({ item, setShow }) {
   const form = useForm();
   const [stock, setStock] = useState(item.stock);
+  const [imgSrc, setImg] = useState(item.img);
   const { register, handleSubmit, formState } = form;
   const { errors } = formState;
-  function submit(e) {
+
+  async function submit(e) {
+    const inputFile = document.querySelector(".file-upload");
+    const file = inputFile.files[0];
+    const { data, isLoading } = getUpdatedImgUrl(item.id, file);
+    console.log(data);
     console.log(e);
   }
   const nameObject = {
@@ -177,7 +188,7 @@ function SingleItem({ item, setShow }) {
   const descPrice = {
     text: "Descount :",
     id: "product_desc",
-    value: item.desc,
+    value: item.desc || 0,
     message: "Please enter product descount",
   };
   const sortOrder = {
@@ -189,10 +200,13 @@ function SingleItem({ item, setShow }) {
   return (
     <div className="dash-single-product fixed">
       <div className="remove-div absolute" onClick={() => setShow(false)}></div>
-      <form
+      <motion.form
         className="dash-single-content"
         noValidate
         onSubmit={handleSubmit(submit)}
+        initial={{ scale: 0, y: "-50%" }}
+        animate={{ scale: 1, y: "-50%" }}
+        transition={{ duration: 0.3 }}
       >
         <div className="close-btn" onClick={() => setShow(false)}>
           x
@@ -209,12 +223,14 @@ function SingleItem({ item, setShow }) {
         />
         <div className="single-input file-input flex">
           <label className="flex gap-10">
-            <img src={item.img} alt={item.name} width={100} />
+            Product img :
+            <img src={imgSrc} alt={item.name} width={80} />
             {item.text}
             <input
               id={"product_img"}
               type="file"
               {...register("product_img")}
+              className="file-upload"
             />
           </label>
           <p className="error">{errors["product_img"]?.message}</p>
@@ -264,7 +280,8 @@ function SingleItem({ item, setShow }) {
             </motion.div>
           </label>
         </div>
-      </form>
+        <button>save</button>
+      </motion.form>
     </div>
   );
 }

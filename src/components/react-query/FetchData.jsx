@@ -2,6 +2,7 @@ import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
 import { doc, getDoc, setDoc } from "firebase/firestore";
 import { db } from "../../firebaseConfig/firebaseConfig";
+import { supabase } from "../../firebaseConfig/supBase";
 
 export async function fetchData() {
   try {
@@ -138,5 +139,40 @@ export function getRelatedProducts(el) {
     },
     keepPreviousData: true,
     enabled: !!el,
+  });
+}
+//  post requsets
+
+async function deleteOldImg(imgName) {
+  const { data: d, error: e } = await supabase.storage
+    .from("products_images")
+    .remove([imgName]);
+  return;
+}
+async function uploadNewImg(imgName, avaterFile) {
+  await deleteOldImg(imgName);
+
+  const { data, error } = await supabase.storage
+    .from("products_images")
+    .upload(imgName, avaterFile);
+
+  return data;
+}
+async function getImageUrl(imgName) {
+  const { data, error } = await supabase.storage
+    .from("products_images")
+    .createSignedUrl(imgName, 365 * 24 * 60 * 60 * 10);
+
+  return data.signedUrl;
+}
+async function updatingImg(imgName, avataerFile) {
+  await uploadNewImg(imgName, avataerFile);
+  const url = await getImageUrl(imgName);
+  return url;
+}
+export function getUpdatedImgUrl(imgName, avaterFile) {
+  return useQuery({
+    queryKey: ["getUrl"],
+    queryFn: () => updatingImg(imgName, avaterFile),
   });
 }
