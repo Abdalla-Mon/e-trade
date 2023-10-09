@@ -1,3 +1,25 @@
+import { CircularProgress } from "@mui/material";
+
+export function LoaderProgress({ loading }) {
+  return (
+    <>
+      {loading && (
+        <div className="progress_loading">
+          <div className="honeycomb">
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+          </div>
+        </div>
+      )}
+    </>
+  );
+}
+
 export default function AppLoader() {
   return (
     <div className="app-loader">

@@ -1,7 +1,7 @@
 import { useDeferredValue, useEffect, useState } from "react";
 import {
   fetchSearchProducts,
-  getUpdatedImgUrl,
+  uploadNewImgQuery,
 } from "../react-query/FetchData";
 import InputLabel from "@mui/material/InputLabel";
 import FormControl from "@mui/material/FormControl";
@@ -12,9 +12,9 @@ import { Pagination } from "@mui/material";
 import { Img } from "../fixed-component/FixedComponent";
 import { doc, setDoc } from "firebase/firestore";
 import { db } from "../../firebaseConfig/firebaseConfig";
-import { supabase } from "../../firebaseConfig/supBase";
 import { useForm } from "react-hook-form";
 import { motion } from "framer-motion";
+import { LoaderProgress } from "../fixed-component/Apploader";
 export default function ProductsList() {
   return <DashProductTable />;
 }
@@ -23,8 +23,7 @@ function DashProductTable() {
   const [grid, setGrid] = useState(9);
   const [slicedNumber, setSlicedNumber] = useState(0);
   const deferedSearchKey = useDeferredValue(searchKey);
-  const { data, isLoading } = fetchSearchProducts(deferedSearchKey);
-
+  const { data, isLoading, refetch } = fetchSearchProducts(deferedSearchKey);
   if (isLoading) {
     return "loading";
   }
@@ -38,7 +37,12 @@ function DashProductTable() {
           <TableHead setSearchKey={setSearchKey} setGrid={setGrid} />
           <tbody>
             {slicedData.map((item) => (
-              <TableBody item={item} key={item.name} />
+              <TableBody
+                refetch={refetch}
+                data={data}
+                item={item}
+                key={item.name}
+              />
             ))}
           </tbody>
         </table>{" "}
@@ -105,11 +109,18 @@ function TableHead() {
     </thead>
   );
 }
-function TableBody({ item }) {
+function TableBody({ item, data, refetch }) {
   const [show, setShow] = useState(false);
   return (
     <>
-      {show ? <SingleItem item={item} setShow={setShow} /> : null}
+      {show ? (
+        <SingleItem
+          refetch={refetch}
+          item={item}
+          oldData={data}
+          setShow={setShow}
+        />
+      ) : null}
       <tr className="table-body">
         <td className="edit">
           <div className="svg-container" onClick={() => setShow(true)}>
@@ -153,19 +164,53 @@ function PaginationRounded({ setSlicedNumber, grid, dataLength }) {
   );
 }
 
-function SingleItem({ item, setShow }) {
+function SingleItem({ refetch, oldData, item, setShow }) {
+  const [loader, setLoader] = useState(false);
+
   const form = useForm();
   const [stock, setStock] = useState(item.stock);
   const [imgSrc, setImg] = useState(item.img);
   const { register, handleSubmit, formState } = form;
   const { errors } = formState;
-
-  async function submit(e) {
+  const { mutateAsync } = uploadNewImgQuery();
+  async function mutateTheData() {
     const inputFile = document.querySelector(".file-upload");
-    const file = inputFile.files[0];
-    const { data, isLoading } = getUpdatedImgUrl(item.id, file);
-    console.log(data);
-    console.log(e);
+    const file = await inputFile.files[0];
+    if (file) {
+      const updatingImgData = await mutateAsync({
+        imgName: item.id,
+        avaterFile: file,
+      });
+      return updatingImgData;
+    }
+    return imgSrc;
+  }
+  async function updatingData(data) {
+    const docData = await setDoc(doc(db, "Data", "shop_data"), { data: data });
+    return docData;
+  }
+  async function submit(el) {
+    setLoader(true);
+    const updatedData = await mutateTheData();
+    await setImg(updatedData);
+    const newData = oldData.map((e) => {
+      if (e.id === item.id) {
+        e.id = el.product_id;
+        e.name = el.product_name;
+        e.desc = +el.product_desc;
+        e.price = +el.product_price;
+        e.sortOrder = +el.product_sort;
+        e.img = updatedData;
+        e.stock = stock;
+      }
+      return e;
+    });
+
+    await updatingData(newData);
+    await setLoader(false);
+    const reftching = await refetch();
+    console.log(reftching);
+    document.querySelector(".remove-div").click();
   }
   const nameObject = {
     text: "Name :",
@@ -199,6 +244,7 @@ function SingleItem({ item, setShow }) {
   };
   return (
     <div className="dash-single-product fixed">
+      <LoaderProgress loading={loader} />
       <div className="remove-div absolute" onClick={() => setShow(false)}></div>
       <motion.form
         className="dash-single-content"
@@ -280,7 +326,7 @@ function SingleItem({ item, setShow }) {
             </motion.div>
           </label>
         </div>
-        <button>save</button>
+        <button className="save-btn">save</button>
       </motion.form>
     </div>
   );

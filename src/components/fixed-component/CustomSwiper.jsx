@@ -18,7 +18,7 @@ export function CustomSwiperContainer({
     <div className={"custom-container " + className}>
       <div className="container mx-auto">
         <CustomHeader icon={icon} text={text} head={head} />
-        <CustomSwiper num={40} data={data} swiperEle={swiperEle} />
+        <CustomSwiper num={30} data={data} swiperEle={swiperEle} />
       </div>
     </div>
   );

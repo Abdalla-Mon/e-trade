@@ -1,4 +1,4 @@
-import { useQuery } from "@tanstack/react-query";
+import { useMutation, useQuery } from "@tanstack/react-query";
 import axios from "axios";
 import { doc, getDoc, setDoc } from "firebase/firestore";
 import { db } from "../../firebaseConfig/firebaseConfig";
@@ -115,7 +115,9 @@ export function fetchSearchProducts(el) {
     queryKey: ["searchProducts"],
     queryFn: fetchData,
     select: (data) => {
-      return data.data.filter((e) => e.name.includes(el));
+      return data.data
+        .filter((e) => e.name.includes(el))
+        .sort((a, b) => a.sortOrder - b.sortOrder);
     },
     keepPreviousData: true,
   });
@@ -144,35 +146,25 @@ export function getRelatedProducts(el) {
 //  post requsets
 
 async function deleteOldImg(imgName) {
-  const { data: d, error: e } = await supabase.storage
+  const { error } = await supabase.storage
     .from("products_images")
     .remove([imgName]);
-  return;
+  return error;
 }
-async function uploadNewImg(imgName, avaterFile) {
-  await deleteOldImg(imgName);
-
-  const { data, error } = await supabase.storage
+export async function uploadNewImgAndGetImgUrl(data) {
+  const deleteError = await deleteOldImg(data.imgName);
+  const { data: done, error } = await supabase.storage
     .from("products_images")
-    .upload(imgName, avaterFile);
-
-  return data;
+    .upload(data.imgName, data.avaterFile);
+  const gettingImgUrl = await getImageUrl(done.path);
+  return gettingImgUrl;
 }
 async function getImageUrl(imgName) {
   const { data, error } = await supabase.storage
     .from("products_images")
     .createSignedUrl(imgName, 365 * 24 * 60 * 60 * 10);
-
   return data.signedUrl;
 }
-async function updatingImg(imgName, avataerFile) {
-  await uploadNewImg(imgName, avataerFile);
-  const url = await getImageUrl(imgName);
-  return url;
-}
-export function getUpdatedImgUrl(imgName, avaterFile) {
-  return useQuery({
-    queryKey: ["getUrl"],
-    queryFn: () => updatingImg(imgName, avaterFile),
-  });
+export function uploadNewImgQuery() {
+  return useMutation(uploadNewImgAndGetImgUrl);
 }
