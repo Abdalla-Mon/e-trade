@@ -25,6 +25,8 @@ import { addToCart, addToWishList } from "../redux/cartSlice";
 import ResetPassword from "./auth/user/ResetPassword";
 import DashNav from "./dashboard/Dashboard";
 import ProductsList from "./dashboard/ProductsList";
+import ErrorBoundary from "./Error";
+import RootBoundary from "./Error";
 const LazyAbout = React.lazy(() => import("./about/About"));
 const LazyProducts = React.lazy(() => import("./shop/Shop"));
 const LazyContact = React.lazy(() => import("./contact/Contact"));
@@ -64,16 +66,28 @@ async function getUserCartAnsWishData(dispatch) {
 const router = createHashRouter(
   createRoutesFromElements(
     <>
-      <Route path="dashboard/*" element={<DashRoutes />}>
+      <Route
+        path="dashboard/*"
+        element={<DashRoutes />}
+        errorElement={<RootBoundary />}
+      >
         <Route index element={<ProductsList />} />
         <Route path="add_product" element={<p>add product</p>} />
         <Route path="categories" element={<p>cats</p>} />
         <Route path="orders" element={<p>orders</p>} />
       </Route>
-      <Route path="login" element={<Login />} />
-      <Route path="signUp" element={<SignUp />} />
-      <Route path="reset_password" element={<ResetPassword />} />
-      <Route path="" element={<Routes />}>
+      <Route path="login" element={<Login />} errorElement={<RootBoundary />} />
+      <Route
+        path="signUp"
+        element={<SignUp />}
+        errorElement={<RootBoundary />}
+      />
+      <Route
+        path="reset_password"
+        element={<ResetPassword />}
+        errorElement={<RootBoundary />}
+      />
+      <Route path="" element={<Routes />} errorElement={<RootBoundary />}>
         <Route index element={<Home />} />
         <Route
           path="shop"
@@ -118,11 +132,13 @@ function App() {
     getUserCartAnsWishData(dispatch);
   }, []);
   return (
-    <QueryClientProvider client={queryClient}>
-      <AuthProvider>
-        <RouterProvider router={router} />{" "}
-      </AuthProvider>
-    </QueryClientProvider>
+    <>
+      <QueryClientProvider client={queryClient}>
+        <AuthProvider>
+          <RouterProvider router={router} />{" "}
+        </AuthProvider>
+      </QueryClientProvider>
+    </>
   );
 }
 function Routes() {

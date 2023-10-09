@@ -1,32 +1,39 @@
-import { useMutation, useQuery } from "@tanstack/react-query";
+import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
 import { doc, getDoc, setDoc } from "firebase/firestore";
 import { db } from "../../firebaseConfig/firebaseConfig";
-import { supabase } from "../../firebaseConfig/supBase";
 
 export async function fetchData() {
   try {
     const docRef = doc(db, "Data", "shop_data");
     const data = await getDoc(docRef);
     if (data.data().data.length < 10 || !data.data().data) {
-      return axios.get("./db/products.json");
+      let alterniveData = await handleError();
+      const dataObj = { data: await alterniveData };
+      return dataObj;
     }
-
     return data.data();
   } catch (e) {
-    let data = await axios.get("./db/products.json");
-    data = data.data.map((e) => {
-      e.stock = true;
-      return e;
-    });
-    const docData = await setDoc(doc(db, "Data", "shop_data"), {
-      data: data,
-    });
-
-    return data;
+    let alterniveData = await handleError();
+    const dataObj = { data: await alterniveData };
+    return dataObj;
   }
 }
 
+async function handleError() {
+  let data = await axios.get("./db/products.json");
+  data = await data.data.sort((a, b) => a.sortOrder - b.sortOrder);
+  data = await data.map((e, index) => {
+    e.sortOrder = index;
+    e.stock = true;
+    return e;
+  });
+
+  const docData = await setDoc(doc(db, "Data", "shop_data"), {
+    data: data,
+  });
+  return data;
+}
 export function getHomeData(selector) {
   return useQuery({
     queryKey: ["homeData"],
@@ -145,26 +152,26 @@ export function getRelatedProducts(el) {
 }
 //  post requsets
 
-async function deleteOldImg(imgName) {
-  const { error } = await supabase.storage
-    .from("products_images")
-    .remove([imgName]);
-  return error;
-}
-export async function uploadNewImgAndGetImgUrl(data) {
-  const deleteError = await deleteOldImg(data.imgName);
-  const { data: done, error } = await supabase.storage
-    .from("products_images")
-    .upload(data.imgName, data.avaterFile);
-  const gettingImgUrl = await getImageUrl(done.path);
-  return gettingImgUrl;
-}
-async function getImageUrl(imgName) {
-  const { data, error } = await supabase.storage
-    .from("products_images")
-    .createSignedUrl(imgName, 365 * 24 * 60 * 60 * 10);
-  return data.signedUrl;
-}
-export function uploadNewImgQuery() {
-  return useMutation(uploadNewImgAndGetImgUrl);
-}
+// async function deleteOldImg(imgName) {
+//   const { error } = await supabase.storage
+//     .from("products_images")
+//     .remove([imgName]);
+//   return error;
+// }
+// export async function uploadNewImgAndGetImgUrl(data) {
+//   const deleteError = await deleteOldImg(data.imgName);
+//   const { data: done, error } = await supabase.storage
+//     .from("products_images")
+//     .upload(data.imgName, data.avaterFile);
+//   const gettingImgUrl = await getImageUrl(done.path);
+//   return gettingImgUrl;
+// }
+// async function getImageUrl(imgName) {
+//   const { data, error } = await supabase.storage
+//     .from("products_images")
+//     .createSignedUrl(imgName, 365 * 24 * 60 * 60 * 10);
+//   return data.signedUrl;
+// }
+// export function uploadNewImgQuery() {
+//   return useMutation(uploadNewImgAndGetImgUrl);
+// }

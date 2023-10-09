@@ -2,11 +2,11 @@ import { Link, Navigate } from "react-router-dom";
 import { Input } from "../../fixed-component/Input";
 import { useForm } from "react-hook-form";
 import { authFnc } from "../AuthProvider";
+import { onAuthStateChanged } from "firebase/auth";
 export default function Login() {
   const { formState, register, handleSubmit } = useForm();
   const { errors } = formState;
   const signFnc = authFnc();
-
   function submit(e) {
     // signUp()
     signFnc.login(e.sign_email, e.sign_password);

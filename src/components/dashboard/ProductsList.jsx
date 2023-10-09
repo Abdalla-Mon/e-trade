@@ -1,8 +1,5 @@
 import { useDeferredValue, useEffect, useState } from "react";
-import {
-  fetchSearchProducts,
-  uploadNewImgQuery,
-} from "../react-query/FetchData";
+import { fetchSearchProducts } from "../react-query/FetchData";
 import InputLabel from "@mui/material/InputLabel";
 import FormControl from "@mui/material/FormControl";
 import NativeSelect from "@mui/material/NativeSelect";
@@ -11,10 +8,11 @@ import { BiEditAlt, BiPlus } from "react-icons/bi";
 import { Pagination } from "@mui/material";
 import { Img } from "../fixed-component/FixedComponent";
 import { doc, setDoc } from "firebase/firestore";
-import { db } from "../../firebaseConfig/firebaseConfig";
+import { db, storage } from "../../firebaseConfig/firebaseConfig";
 import { useForm } from "react-hook-form";
 import { motion } from "framer-motion";
 import { LoaderProgress } from "../fixed-component/Apploader";
+import { getDownloadURL, ref, uploadBytes } from "firebase/storage";
 export default function ProductsList() {
   return <DashProductTable />;
 }
@@ -166,23 +164,25 @@ function PaginationRounded({ setSlicedNumber, grid, dataLength }) {
 
 function SingleItem({ refetch, oldData, item, setShow }) {
   const [loader, setLoader] = useState(false);
+  const [deleteBtn, setDelete] = useState(false);
 
   const form = useForm();
   const [stock, setStock] = useState(item.stock);
   const [imgSrc, setImg] = useState(item.img);
   const { register, handleSubmit, formState } = form;
   const { errors } = formState;
-  const { mutateAsync } = uploadNewImgQuery();
+
   async function mutateTheData() {
     const inputFile = document.querySelector(".file-upload");
     const file = await inputFile.files[0];
+
     if (file) {
-      const updatingImgData = await mutateAsync({
-        imgName: item.id,
-        avaterFile: file,
-      });
-      return updatingImgData;
+      const storageRef = ref(storage, "furniture-12");
+      const uploadTask = await uploadBytes(storageRef, file, "furniture-12");
+      const fileN = await getDownloadURL(storageRef);
+      return fileN;
     }
+
     return imgSrc;
   }
   async function updatingData(data) {
@@ -191,25 +191,36 @@ function SingleItem({ refetch, oldData, item, setShow }) {
   }
   async function submit(el) {
     setLoader(true);
-    const updatedData = await mutateTheData();
-    await setImg(updatedData);
-    const newData = oldData.map((e) => {
-      if (e.id === item.id) {
-        e.id = el.product_id;
-        e.name = el.product_name;
-        e.desc = +el.product_desc;
-        e.price = +el.product_price;
-        e.sortOrder = +el.product_sort;
-        e.img = updatedData;
-        e.stock = stock;
-      }
-      return e;
-    });
+    if (!deleteBtn) {
+      const updatedData = await mutateTheData();
+      await setImg(updatedData);
+      const newData = oldData.map((e) => {
+        if (e.id === item.id) {
+          e.id = el.product_id;
+          e.name = el.product_name;
+          e.desc = +el.product_desc;
+          e.price = +el.product_price;
+          e.sortOrder = +el.product_sort;
+          e.img = updatedData;
+          e.stock = stock;
+        }
+        return e;
+      });
 
-    await updatingData(newData);
+      await updatingData(newData);
+    } else {
+      const newData = oldData.filter((e) => e.id !== item.id);
+      await updatingData(newData);
+      // let newData = dataTO.map((e, index) => {
+      //   e.sortOrder = index;
+      //   e.stock = true;
+      //   return e;
+      // });
+      await updatingData(newData);
+    }
+
     await setLoader(false);
     const reftching = await refetch();
-    console.log(reftching);
     document.querySelector(".remove-div").click();
   }
   const nameObject = {
@@ -327,6 +338,9 @@ function SingleItem({ refetch, oldData, item, setShow }) {
           </label>
         </div>
         <button className="save-btn">save</button>
+        <button className="save-btn delete_btn" onClick={() => setDelete(true)}>
+          Delete the product
+        </button>
       </motion.form>
     </div>
   );
