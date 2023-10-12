@@ -1,5 +1,5 @@
 import { useDeferredValue, useEffect, useState } from "react";
-import { fetchSearchProducts } from "../react-query/FetchData";
+import { fetchSearchProducts, getCategeroies } from "../react-query/FetchData";
 import InputLabel from "@mui/material/InputLabel";
 import FormControl from "@mui/material/FormControl";
 import NativeSelect from "@mui/material/NativeSelect";
@@ -13,6 +13,7 @@ import { useForm } from "react-hook-form";
 import { motion } from "framer-motion";
 import { LoaderProgress } from "../fixed-component/Apploader";
 import { getDownloadURL, ref, uploadBytes } from "firebase/storage";
+import { useQuery } from "@tanstack/react-query";
 export default function ProductsList() {
   return <DashProductTable />;
 }
@@ -161,33 +162,32 @@ function PaginationRounded({ setSlicedNumber, grid, dataLength }) {
     </div>
   );
 }
-
+export async function updatingData(data) {
+  const docData = await setDoc(doc(db, "Data", "shop_data"), { data: data });
+  return docData;
+}
 function SingleItem({ refetch, oldData, item, setShow }) {
   const [loader, setLoader] = useState(false);
   const [deleteBtn, setDelete] = useState(false);
+  const [subCatRadio, setSubCatRadio] = useState(item.subCat);
 
   const form = useForm();
   const [stock, setStock] = useState(item.stock);
   const [imgSrc, setImg] = useState(item.img);
   const { register, handleSubmit, formState } = form;
   const { errors } = formState;
-
   async function mutateTheData() {
     const inputFile = document.querySelector(".file-upload");
     const file = await inputFile.files[0];
 
     if (file) {
-      const storageRef = ref(storage, "furniture-12");
-      const uploadTask = await uploadBytes(storageRef, file, "furniture-12");
+      const storageRef = ref(storage, item.id);
+      const uploadTask = await uploadBytes(storageRef, file, item.id);
       const fileN = await getDownloadURL(storageRef);
       return fileN;
     }
 
     return imgSrc;
-  }
-  async function updatingData(data) {
-    const docData = await setDoc(doc(db, "Data", "shop_data"), { data: data });
-    return docData;
   }
   async function submit(el) {
     setLoader(true);
@@ -203,6 +203,7 @@ function SingleItem({ refetch, oldData, item, setShow }) {
           e.sortOrder = +el.product_sort;
           e.img = updatedData;
           e.stock = stock;
+          if (subCatRadio) e.subCat = subCatRadio;
         }
         return e;
       });
@@ -211,16 +212,12 @@ function SingleItem({ refetch, oldData, item, setShow }) {
     } else {
       const newData = oldData.filter((e) => e.id !== item.id);
       await updatingData(newData);
-      // let newData = dataTO.map((e, index) => {
-      //   e.sortOrder = index;
-      //   e.stock = true;
-      //   return e;
-      // });
+
       await updatingData(newData);
     }
 
     await setLoader(false);
-    const reftching = await refetch();
+    await refetch();
     document.querySelector(".remove-div").click();
   }
   const nameObject = {
@@ -337,6 +334,13 @@ function SingleItem({ refetch, oldData, item, setShow }) {
             </motion.div>
           </label>
         </div>
+
+        <CheckBox
+          setRadio={setSubCatRadio}
+          cat={item.cat}
+          text="SubCategories"
+          subCatRadio={subCatRadio}
+        />
         <button className="save-btn">save</button>
         <button className="save-btn delete_btn" onClick={() => setDelete(true)}>
           Delete the product
@@ -345,7 +349,65 @@ function SingleItem({ refetch, oldData, item, setShow }) {
     </div>
   );
 }
-function CustonSingleItemInput({ props, register, errors }) {
+
+function CheckBox({ cat, setRadio, text, subCatRadio }) {
+  const { data, isLoading } = getCategeroies();
+  function hnandleClick(e) {
+    setRadio(e.catName);
+  }
+  if (isLoading) {
+    return "loading";
+  }
+  let subCat = data.categories.filter((e) => e.catName === cat)[0]
+    .subCategories;
+
+  return (
+    <>
+      {!subCat ? (
+        <div className="single-input">
+          {" "}
+          No sub categories to this category please add sub category from
+          category list
+        </div>
+      ) : (
+        <>
+          <div className="single-input radio_input flex gap-3 flex-wrap">
+            {text}:
+            {subCat.map((e) => {
+              return (
+                <label className="flex gap-2" key={e.catName}>
+                  <input
+                    type="radio"
+                    name={text}
+                    onClick={() => {
+                      hnandleClick(e);
+                    }}
+                    value={e.catName}
+                    checked={subCatRadio === e.catName}
+                  />
+                  {e.catName}{" "}
+                </label>
+              );
+            })}
+            <label className="flex gap-2">
+              <input
+                type="radio"
+                name={text}
+                onClick={() => {
+                  hnandleClick({ catName: "none" });
+                }}
+                value={"none"}
+                checked={subCatRadio === "none"}
+              />
+              None
+            </label>
+          </div>
+        </>
+      )}
+    </>
+  );
+}
+export function CustonSingleItemInput({ props, register, errors }) {
   const [value, setValue] = useState(props.value);
   return (
     <div className="single-input">

@@ -2,13 +2,17 @@ import { useForm } from "react-hook-form";
 import { createContext, useContext, useEffect, useRef, useState } from "react";
 import Left from "./LeftCheckout";
 import Right from "./RightCheckout";
-import { useNavigate } from "react-router-dom";
+import { Navigate, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { clearCart } from "../../redux/cartSlice";
 import { doc, getDoc, setDoc } from "firebase/firestore";
 import { auth, db } from "../../firebaseConfig/firebaseConfig";
+import { authFnc } from "../auth/AuthProvider";
 export const SubTotal = createContext("");
 export default function CheckOut() {
+  if (!authFnc().logined) {
+    return <Navigate to={"/login"} replace={true} />;
+  }
   const cartData = useSelector((e) => e.cart);
   if (cartData.cart.length < 1) {
     return (

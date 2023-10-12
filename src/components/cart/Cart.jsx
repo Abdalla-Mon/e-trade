@@ -3,10 +3,14 @@ import { addToCart } from "../../redux/cartSlice";
 import { AiOutlineClose } from "react-icons/ai";
 import { CartItem, handleCart } from "../fixed-component/CardBtns";
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, Navigate } from "react-router-dom";
+import { authFnc } from "../auth/AuthProvider";
 export default function Cart() {
   const cartData = useSelector((e) => e.cart);
   const dispatch = useDispatch();
+  if (!authFnc().logined) {
+    return <Navigate to={"/login"} replace={true} />;
+  }
   if (cartData.cart.length === 0) {
     return (
       <div className="cart text-center">

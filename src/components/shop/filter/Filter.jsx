@@ -93,7 +93,7 @@ function Categroies() {
                     }}
                     key={e.catName}
                   >
-                    Women{" "}
+                    {e.catName}
                   </li>
                   <motion.ul
                     className="cat-women-ul"
@@ -131,14 +131,16 @@ function Categroies() {
                   </motion.ul>
                 </>
               ) : (
-                <li
-                  key={e.catName}
-                  onClick={() => {
-                    handleClick(e.catName, e.catType);
-                  }}
-                >
-                  {e.catName}
-                </li>
+                <>
+                  <li
+                    key={e.catName}
+                    onClick={() => {
+                      handleClick(e.catName, e.catType);
+                    }}
+                  >
+                    {e.catName}
+                  </li>
+                </>
               )}
             </>
           );

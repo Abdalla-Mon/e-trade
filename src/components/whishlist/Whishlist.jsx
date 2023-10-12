@@ -2,10 +2,16 @@ import { useDispatch, useSelector } from "react-redux";
 import { addToWishList } from "../../redux/cartSlice";
 import { AiOutlineClose } from "react-icons/ai";
 import { AddToCart, handleWishList } from "../fixed-component/CardBtns";
+import { authFnc } from "../auth/AuthProvider";
+import { Navigate } from "react-router-dom";
 
 export default function Whishlist() {
   const cartData = useSelector((e) => e.cart);
   const dispatch = useDispatch();
+  if (!authFnc().logined) {
+    return <Navigate to={"/login"} replace={true} />;
+  }
+
   if (cartData.wishList.length === 0) {
     return (
       <div className="cart text-center">

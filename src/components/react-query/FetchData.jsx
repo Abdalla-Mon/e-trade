@@ -150,6 +150,23 @@ export function getRelatedProducts(el) {
     enabled: !!el,
   });
 }
+async function getCategeroiesData() {
+  try {
+    const docRef = doc(db, "Data", "categories");
+
+    const docSnap = await getDoc(docRef);
+    return docSnap.data();
+  } catch (e) {
+    console.log(e);
+  }
+}
+export function getCategeroies() {
+  return useQuery({
+    queryKey: ["categories"],
+    queryFn: getCategeroiesData,
+  });
+}
+
 //  post requsets
 
 // async function deleteOldImg(imgName) {
