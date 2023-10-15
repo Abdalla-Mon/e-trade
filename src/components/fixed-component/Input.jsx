@@ -25,3 +25,26 @@ export function Input({ e, id, className, pattern, type, register, errors }) {
     </div>
   );
 }
+export function CustonSingleItemInput({ props, register, errors }) {
+  const [value, setValue] = useState(props.value);
+  return (
+    <div className="single-input">
+      <label className="flex gap-5">
+        {props.text}
+        <input
+          id={props.id}
+          {...register(props.id, {
+            required: {
+              value: true,
+              message: props.message,
+            },
+          })}
+          type="text"
+          value={value}
+          onChange={(e) => setValue(e.target.value)}
+        />
+      </label>
+      <p className="error">{errors[props.id]?.message}</p>
+    </div>
+  );
+}

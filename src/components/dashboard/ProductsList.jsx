@@ -6,6 +6,7 @@ import NativeSelect from "@mui/material/NativeSelect";
 import { Link } from "react-router-dom";
 import { BiEditAlt, BiPlus } from "react-icons/bi";
 import { Pagination } from "@mui/material";
+import { CustonSingleItemInput } from "../fixed-component/Input";
 import { Img } from "../fixed-component/FixedComponent";
 import { doc, setDoc } from "firebase/firestore";
 import { db, storage } from "../../firebaseConfig/firebaseConfig";
@@ -13,7 +14,6 @@ import { useForm } from "react-hook-form";
 import { motion } from "framer-motion";
 import { LoaderProgress } from "../fixed-component/Apploader";
 import { getDownloadURL, ref, uploadBytes } from "firebase/storage";
-import { useQuery } from "@tanstack/react-query";
 export default function ProductsList() {
   return <DashProductTable />;
 }
@@ -166,6 +166,23 @@ export async function updatingData(data) {
   const docData = await setDoc(doc(db, "Data", "shop_data"), { data: data });
   return docData;
 }
+export async function uplaoadingImgAndGettingItsUrl(
+  inputClassName,
+  id,
+  imgSrc
+) {
+  const inputFile = document.querySelector(inputClassName);
+  const file = await inputFile.files[0];
+
+  if (file) {
+    const storageRef = ref(storage, id);
+    const uploadTask = await uploadBytes(storageRef, file, id);
+    const fileN = await getDownloadURL(storageRef);
+    return fileN;
+  }
+
+  return imgSrc;
+}
 function SingleItem({ refetch, oldData, item, setShow }) {
   const [loader, setLoader] = useState(false);
   const [deleteBtn, setDelete] = useState(false);
@@ -176,23 +193,15 @@ function SingleItem({ refetch, oldData, item, setShow }) {
   const [imgSrc, setImg] = useState(item.img);
   const { register, handleSubmit, formState } = form;
   const { errors } = formState;
-  async function mutateTheData() {
-    const inputFile = document.querySelector(".file-upload");
-    const file = await inputFile.files[0];
 
-    if (file) {
-      const storageRef = ref(storage, item.id);
-      const uploadTask = await uploadBytes(storageRef, file, item.id);
-      const fileN = await getDownloadURL(storageRef);
-      return fileN;
-    }
-
-    return imgSrc;
-  }
   async function submit(el) {
     setLoader(true);
     if (!deleteBtn) {
-      const updatedData = await mutateTheData();
+      const updatedData = await uplaoadingImgAndGettingItsUrl(
+        ".file-upload",
+        item.id,
+        imgSrc
+      );
       await setImg(updatedData);
       const newData = oldData.map((e) => {
         if (e.id === item.id) {
@@ -207,7 +216,6 @@ function SingleItem({ refetch, oldData, item, setShow }) {
         }
         return e;
       });
-
       await updatingData(newData);
     } else {
       const newData = oldData.filter((e) => e.id !== item.id);
@@ -305,34 +313,7 @@ function SingleItem({ refetch, oldData, item, setShow }) {
           errors={errors}
         />
         <div className="single-input">
-          <label className="flex gap-10">
-            Stock:
-            <motion.div
-              className="stock-swap"
-              initial={{ backgroundColor: "#7367f0" }}
-              animate={
-                stock
-                  ? { backgroundColor: "#7367f0", borderColor: "transparent" }
-                  : {
-                      backgroundColor: "#ffffff",
-                      borderColor: "rgb(219,218,222)",
-                    }
-              }
-              onClick={() => setStock((e) => !e)}
-            >
-              <motion.span
-                initial={{ backgroundColor: "#ffffff", right: 5 }}
-                animate={
-                  stock
-                    ? { backgroundColor: "#ffffff", right: 5 }
-                    : {
-                        backgroundColor: "rgb(219,218,222)",
-                        left: 5,
-                      }
-                }
-              ></motion.span>
-            </motion.div>
-          </label>
+          <Stock stock={stock} setStock={setStock} />
         </div>
 
         <CheckBox
@@ -384,7 +365,7 @@ function CheckBox({ cat, setRadio, text, subCatRadio }) {
                     }}
                     value={e.catName}
                     checked={subCatRadio === e.catName}
-                  />
+                  ></input>
                   {e.catName}{" "}
                 </label>
               );
@@ -407,26 +388,35 @@ function CheckBox({ cat, setRadio, text, subCatRadio }) {
     </>
   );
 }
-export function CustonSingleItemInput({ props, register, errors }) {
-  const [value, setValue] = useState(props.value);
+export function Stock({ stock, setStock }) {
   return (
-    <div className="single-input">
-      <label className="flex gap-5">
-        {props.text}
-        <input
-          id={props.id}
-          {...register(props.id, {
-            required: {
-              value: true,
-              message: props.message,
-            },
-          })}
-          type="text"
-          value={value}
-          onChange={(e) => setValue(e.target.value)}
-        />
-      </label>
-      <p className="error">{errors[props.id]?.message}</p>
-    </div>
+    <label className="flex gap-10">
+      In Stock:
+      <motion.div
+        className="stock-swap"
+        initial={{ backgroundColor: "#7367f0" }}
+        animate={
+          stock
+            ? { backgroundColor: "#7367f0", borderColor: "transparent" }
+            : {
+                backgroundColor: "#ffffff",
+                borderColor: "rgb(219,218,222)",
+              }
+        }
+        onClick={() => setStock((e) => !e)}
+      >
+        <motion.span
+          initial={{ backgroundColor: "#ffffff", right: 5 }}
+          animate={
+            stock
+              ? { backgroundColor: "#ffffff", right: 5 }
+              : {
+                  backgroundColor: "rgb(219,218,222)",
+                  left: 5,
+                }
+          }
+        ></motion.span>
+      </motion.div>
+    </label>
   );
 }

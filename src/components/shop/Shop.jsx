@@ -81,17 +81,13 @@ function ShopProducts({ dataSliced, list }) {
                 className="shop-products grid  gap-10"
                 exit={{ opacity: [1, 0, 1] }}
                 transition={{ duration: 1 }}
-                layout
               >
                 {dataSliced.map((e) => {
                   return <ShopListProduct key={e.id} e={e} />;
                 })}
               </motion.div>
             ) : (
-              <motion.div
-                layout
-                className="shop-products grid tab:grid-cols-2 lap:grid-cols-3 pc:grid-cols-4 gap-10"
-              >
+              <motion.div className="shop-products grid tab:grid-cols-2 lap:grid-cols-3 pc:grid-cols-4 gap-10">
                 {dataSliced.map((e) => {
                   return ShopCard(e);
                 })}
