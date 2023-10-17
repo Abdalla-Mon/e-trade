@@ -10,9 +10,10 @@ function selector(data) {
 }
 export default function BestSeller() {
   const { data: bestSellerData, isLoading } = getHomeData(selector);
-  if (isLoading) return "loading";
+
   return (
     <CustomSwiperContainer
+      isLoading={isLoading}
       data={bestSellerData}
       text={"This Month's"}
       swiperEle={BestSellerCard}

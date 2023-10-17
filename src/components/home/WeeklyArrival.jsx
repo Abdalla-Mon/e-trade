@@ -7,12 +7,13 @@ function selector(data) {
 }
 export default function WeeklyArrival() {
   const { data: weeklyArrivalData, isLoading } = getHomeData(selector);
-  if (isLoading) return "loading";
+  // if (isLoading) return "loading";
   return (
     <CustomSwiperContainer
       data={weeklyArrivalData}
       text={"This Week's"}
       swiperEle={ShopCard}
+      isLoading={isLoading}
       head={"New Arrivals"}
       icon={<HiOutlineShoppingBag />}
       className={"new-arrival"}

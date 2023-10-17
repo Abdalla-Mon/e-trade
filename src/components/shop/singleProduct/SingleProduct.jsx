@@ -222,7 +222,6 @@ function Description() {
 function Related({ productData }) {
   const { data, isLoading } = getRelatedProducts(productData);
 
-  if (isLoading) return "loading";
   return (
     <div className="related">
       <CustomSwiperContainer
@@ -232,6 +231,7 @@ function Related({ productData }) {
         head={"Related products"}
         icon={<HiOutlineShoppingBag />}
         className={"related products"}
+        isLoading={isLoading}
       />
     </div>
   );

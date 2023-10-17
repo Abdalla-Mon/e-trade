@@ -11,10 +11,10 @@ function selector(data) {
 
 export default function MonthlyArrival() {
   const { data: monthlyArrivalData, isLoading } = getHomeData(selector);
-  if (isLoading) return "loading";
   return (
     <CustomSwiperContainer
       data={monthlyArrivalData}
+      isLoading={isLoading}
       text={"This Month's"}
       swiperEle={MonthlyArrivalCard}
       head={"New Arrivals"}

@@ -2,10 +2,10 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import "swiper/css/navigation";
 import { BsArrowLeft, BsArrowRight } from "react-icons/bs";
-import { useState } from "react";
 import { Navigation } from "swiper/modules";
-import { motion, useAnimationControls } from "framer-motion";
+import { motion } from "framer-motion";
 import { CustomHeader } from "./FixedComponent";
+import { SingleSkeleton } from "./ShopSkeleton";
 export function CustomSwiperContainer({
   className,
   icon,
@@ -13,25 +13,29 @@ export function CustomSwiperContainer({
   text,
   data,
   swiperEle,
+  isLoading,
 }) {
+  const fakeData = [1, 2, 3, 4];
   return (
     <div className={"custom-container " + className}>
       <div className="container mx-auto">
         <CustomHeader icon={icon} text={text} head={head} />
-        <CustomSwiper num={30} data={data} swiperEle={swiperEle} />
+        <CustomSwiper
+          num={30}
+          data={isLoading ? fakeData : data}
+          swiperEle={swiperEle}
+          isLoading={isLoading}
+        />
       </div>
     </div>
   );
 }
-export default function CustomSwiper({ data, num, swiperEle }) {
-  const [animation, setAnimation] = useState(false);
-  const controls = useAnimationControls();
-  // useEffect(() => {
-  //   controls.start({
-  //     opacity: [0, 1],
-  //     transition: { duration: 0.6 },
-  //   });
-  // }, [animation]);
+export default function CustomSwiper({
+  data,
+  num,
+  swiperEle,
+  isLoading = false,
+}) {
   return (
     <>
       <Swiper
@@ -48,19 +52,13 @@ export default function CustomSwiper({ data, num, swiperEle }) {
         }}
         modules={[Navigation]}
         className="custom-swiper"
-        onSlideChange={() => {
-          // setAnimation(!animation);
-        }}
+        onSlideChange={() => {}}
       >
         {data.map((el, index) => {
           return (
             <SwiperSlide key={index}>
-              <motion.div
-                // whileInView={() => setAnimation(!animation)}
-                animate={controls}
-              >
-                {swiperEle(el)}
-                {/* {swiperEle(el)} */}
+              <motion.div>
+                {isLoading ? <SingleSkeleton /> : swiperEle(el)}
               </motion.div>
             </SwiperSlide>
           );

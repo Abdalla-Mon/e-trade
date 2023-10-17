@@ -38,7 +38,7 @@ export function ProductsSkeleton() {
     </div>
   );
 }
-function SingleSkeleton() {
+export function SingleSkeleton() {
   return (
     <div className="product-skeleton">
       <Skeleton variant="rectangular" width={"100%"} height={200} />
@@ -65,4 +65,3 @@ function FilterSkeleton() {
     </div>
   );
 }
-export function SearchProduct() {}

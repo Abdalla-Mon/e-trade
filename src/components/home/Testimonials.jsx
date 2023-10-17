@@ -57,6 +57,7 @@ export default function Testimonials() {
         head={"Users Feedback"}
         icon={<BiSolidQuoteAltLeft />}
         className={"testimonials"}
+        isLoading={false}
       />
     </div>
   );
