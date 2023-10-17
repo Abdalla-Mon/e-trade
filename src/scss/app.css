@@ -3004,6 +3004,13 @@
   color: #5d596c;
   font-weight: bold;
 }
+.add_product_page .add_products_content .add_product_field .file-upload,
+.add_product_page .add_products_content .add_product_field input {
+  margin-bottom: 0;
+}
+.add_product_page .add_products_content .add_product_field .file-upload {
+  flex: 1;
+}
 .add_product_page .add_products_content .add_product_field label,
 .add_product_page .add_products_content .add_product_field input {
   width: 100%;

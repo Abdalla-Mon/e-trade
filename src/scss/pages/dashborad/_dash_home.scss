@@ -308,6 +308,13 @@
     }
 
     .add_product_field {
+      .file-upload,
+      input {
+        margin-bottom: 0;
+      }
+      .file-upload {
+        flex: 1;
+      }
       label,
       input {
         width: 100%;
