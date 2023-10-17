@@ -2983,6 +2983,7 @@
 .add_product_page > .flex h3 {
   color: #5d596c;
   font-weight: bold;
+  flex: 1;
 }
 .add_product_page .add_products_content {
   margin-top: 20px;
