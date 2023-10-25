@@ -14,7 +14,7 @@ export default function AddProduct() {
   const [subCatRadio, setRadio] = useState(null);
   const [stock, setStock] = useState(true);
   const [loader, setLoader] = useState(false);
-  const { data, isLoading, refetch } = fetchSearchProducts("");
+  const { data, refetch } = fetchSearchProducts("");
   const [customErrors, setCustomErrors] = useState({ id: false, title: false });
   async function submit(el) {
     if (+el.price < +el.desc) {
@@ -78,7 +78,7 @@ export default function AddProduct() {
         </div>
         <div className="add_products_content flex flex-col  gap-8">
           <ProductInfo data={data} />
-          <div className="right  ">
+          <div className="right">
             <PriceInfo />
             <ImgInput />
           </div>
@@ -136,7 +136,7 @@ function ProductInfo({ data }) {
     type: "number",
   };
   return (
-    <div className="product-info product_container pc:w-2/3">
+    <div className="product-info product_container ">
       <h3>Product information</h3>
       <AddProductInput props={nameProps} pattern={namePattern} />
       <div className="grid grid-cols-2 gap-5">
@@ -171,9 +171,9 @@ function PriceInfo() {
   };
   return (
     <>
-      <div className="price-info product_container">
+      <div className="price-info product_container pc:w-3/5">
         <h3>Product Price information</h3>
-        <div className="grid grid-cols-2 gap-6 pc:gap-0 pc:grid-cols-1">
+        <div className="grid grid-cols-2 gap-6  ">
           <AddProductInput props={priceProps} />
           <AddProductInput props={descProps} />
         </div>
@@ -234,7 +234,7 @@ function MainCategory({ setCat }) {
   return (
     <>
       <div className="filed_head">Category</div>
-      <div className=" radio_input flex gap-3 flex-wrap">
+      <div className=" radio_input flex gap-3 flex-wrap ">
         {data.categories.map((e) => {
           return (
             <label className="flex gap-2" key={e.catName}>
@@ -329,15 +329,13 @@ function CheckBox({ cat, setRadio, text, clas }) {
 }
 function ImgInput() {
   const { register, errors } = useContext(AddProductContext);
-  // const [imgSrc, setImgSrc] = useState(
-  //   "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRrawJe0fJKDESUy3rHJh9dW3DZeBUfzuumiQ&usqp=CAU"
-  // );
+
   return (
-    <div className="product_container">
+    <div className="product_container img_upload  pc:w-2/5">
       <div className="add_product_field file-input ">
         <label className="add_prod_input">
           <div className="filed_head">Product Image</div>
-          <div className="flex gap-5 items-center justify-around">
+          <div className="flex flex-col items-center justify-around">
             <div className="filed_head"> Upload Image :</div>
             <input
               id={"product_img"}

@@ -71,6 +71,9 @@
       line-height: 1.6;
       color: $body-color;
     }
+    img {
+      width: 60px;
+    }
     &::before {
       content: "";
       position: absolute;

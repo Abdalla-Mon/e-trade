@@ -27,6 +27,7 @@ import DashNav from "./dashboard/Dashboard";
 import ProductsList from "./dashboard/ProductsList";
 import RootBoundary from "./Error";
 import AddProduct from "./dashboard/AddProduct";
+import CategoryList from "./dashboard/CatsList";
 const LazyAbout = React.lazy(() => import("./about/About"));
 const LazyProducts = React.lazy(() => import("./shop/Shop"));
 const LazyContact = React.lazy(() => import("./contact/Contact"));
@@ -73,7 +74,7 @@ const router = createHashRouter(
       >
         <Route index element={<ProductsList />} />
         <Route path="add_product" element={<AddProduct />} />
-        <Route path="categories" element={<p>cats</p>} />
+        <Route path="categories" element={<CategoryList />} />
         <Route path="orders" element={<p>orders</p>} />
       </Route>
       <Route path="login" element={<Login />} errorElement={<RootBoundary />} />
