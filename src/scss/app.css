@@ -2130,6 +2130,9 @@
   position: relative;
   z-index: 1;
 }
+.ourjourney .ourjourney-card img {
+  width: 80px;
+}
 @media (max-width: 767px) {
   .ourjourney .ourjourney-card {
     padding: 20px;
