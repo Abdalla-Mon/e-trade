@@ -66,6 +66,9 @@ function CatAccording({ cat }) {
     </div>
   );
 }
-function SubCategories() {
-  return <div>s</div>;
+function SubCategories(){
+  return(
+    <div><p></p></div>
+  )
 }
+function SubCatFiled(){}

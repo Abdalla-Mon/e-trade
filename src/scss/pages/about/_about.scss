@@ -54,6 +54,9 @@
     border-radius: 6px;
     position: relative;
     z-index: 1;
+    img {
+      width: 80px;
+    }
     @media (max-width: 767px) {
       padding: 20px;
     }
@@ -70,9 +73,6 @@
       font-size: 1.1rem;
       line-height: 1.6;
       color: $body-color;
-    }
-    img {
-      width: 60px;
     }
     &::before {
       content: "";
